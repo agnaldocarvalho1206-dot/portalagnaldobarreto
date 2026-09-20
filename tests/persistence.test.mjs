@@ -1,0 +1,21 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {PGlite} from '@electric-sql/pglite';
+import {mkdtemp,mkdir,cp} from 'node:fs/promises';
+import path from 'node:path';
+test('PostgreSQL/PGlite preserva registros após fechar, reabrir e restaurar cópia fria',async()=>{
+  await mkdir('work',{recursive:true});
+  const dir=await mkdtemp(path.resolve('work','persistence-'));
+  const source=path.join(dir,'source'),backup=path.join(dir,'restored');
+  let db=await PGlite.create(source);
+  await db.exec('CREATE TABLE check_persistence(id integer PRIMARY KEY, value text NOT NULL)');
+  await db.query('INSERT INTO check_persistence VALUES($1,$2)',[1,'registro persistido']);
+  await db.close();
+  await cp(source,backup,{recursive:true});
+  db=await PGlite.create(source);
+  assert.equal((await db.query('SELECT value FROM check_persistence')).rows[0].value,'registro persistido');
+  await db.close();
+  db=await PGlite.create(backup);
+  assert.equal((await db.query('SELECT value FROM check_persistence')).rows[0].value,'registro persistido');
+  await db.close();
+});

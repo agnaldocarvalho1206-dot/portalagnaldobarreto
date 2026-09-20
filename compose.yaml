@@ -1,0 +1,26 @@
+services:
+  database:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: portal
+      POSTGRES_USER: portal
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configure POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U portal -d portal"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+  portal:
+    build: .
+    env_file: .env
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      database:
+        condition: service_healthy
+    restart: unless-stopped
+volumes:
+  postgres_data:

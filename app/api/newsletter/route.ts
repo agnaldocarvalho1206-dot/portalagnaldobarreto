@@ -1,0 +1,4 @@
+import {readJsonObject,failure} from '../../request-security';
+import {rateLimit,requestSubject} from '../../rate-limit';
+import {rawDb,error,sameOrigin,textValue} from '../../server';
+export async function POST(req:Request){if(!sameOrigin(req))return error('Origem não permitida.',403);try{await rateLimit('newsletter',requestSubject(req),5,60000);const b = await readJsonObject(req) as Record<string, any>; if (!b || typeof b !== "object" || Array.isArray(b)) return error("Dados inválidos.");const email=textValue(b.email,200).toLowerCase();if(!/^\S+@\S+\.\S+$/.test(email)||b.consent!==true)return error('Informe um e-mail válido e autorize a inscrição.');await rawDb().prepare('INSERT INTO subscribers (email,created) VALUES (?,?) ON CONFLICT(email) DO NOTHING').bind(email,Date.now()).run();return Response.json({ok:true})}catch(e){return failure(e,'newsletter')}}

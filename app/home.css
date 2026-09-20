@@ -1,0 +1,139 @@
+/* Home AB: one layout layer, scoped to the landing page. */
+.reference-home{overflow:clip}
+.reference-home .container{width:100%;max-width:1240px;padding-inline:32px}
+.reference-home .section{padding-block:64px}
+.reference-home h2{font-size:clamp(1.65rem,2.5vw,2.2rem);line-height:1.18;text-wrap:balance}
+.reference-home p{line-height:1.7}
+.reference-home .eyebrow{font-size:.8rem;letter-spacing:.14em;margin-bottom:16px}
+.reference-home .button,.reference-home .button.small{min-height:46px;font-size:.875rem;padding:12px 20px;gap:12px}
+.reference-home .hero{grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);min-height:610px;gap:0;overflow:hidden}
+.reference-home .hero-copy{padding-block:54px;position:relative;z-index:3;min-width:0}
+.reference-home .hero h1{font-size:clamp(2.4rem,4.1vw,3.45rem);line-height:1.08;letter-spacing:-.035em}
+.reference-home .hero-copy>p{max-width:420px;margin:24px 0;font-size:1rem}
+.reference-home .hero .actions{gap:12px}
+.reference-home .hero-checks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px;font-size:.875rem}
+.reference-home .hero-checks span{gap:8px}
+.reference-home .hero-checks svg{flex-shrink:0;width:26px;height:26px;margin:0}
+.reference-home .hero-visual{height:560px;width:100%;min-width:0;align-self:end;isolation:isolate;overflow:hidden}
+.reference-home .portrait{width:1000px;max-width:none;left:43%;bottom:0;transform:translateX(-50%);z-index:1}
+.reference-home .digital-backdrop{inset:0 -20px 20px -45px;opacity:.62;z-index:0}
+.reference-home .hero-monogram{position:absolute;width:62px;height:62px;left:30%;top:auto;bottom:100px;z-index:2;object-fit:contain;mix-blend-mode:screen}
+.reference-home .hero-quote{top:10px;right:0;font-size:1.3rem;max-width:160px;z-index:2}
+.reference-home .idea-stack{right:0;top:180px;font-size:.8rem;padding:16px;z-index:2}
+.reference-home .visual-corner{right:0;bottom:58px;max-width:185px;padding:12px;font-size:.75rem;z-index:2}
+.reference-home .tech-strip{max-width:1240px;margin-inline:auto;border-radius:20px;padding-block:22px}
+.reference-home .tech-inner{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:16px;padding:0}
+.reference-home .tech-inner a{font-size:.8rem;text-align:center;min-width:0;gap:8px}
+.reference-home .tech-symbol{font:700 1.5rem/1 'Segoe UI',sans-serif;height:32px}
+.reference-home .section-heading{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:28px}
+.reference-home .section-heading>.button{flex-shrink:0}
+.reference-home .project-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.reference-home .project-card{display:flex;flex-direction:column;min-width:0;height:100%}
+.reference-home .home-project-image{display:block;aspect-ratio:254/171;background-image:url('/portfolio-reference.png');background-size:342.52% auto;background-position:6.17% 31.46%;border-bottom:1px solid #07537f}
+.reference-home .project-fortmet .home-project-image{background-position:50% 31.46%}
+.reference-home .project-nathuralys .home-project-image{background-position:94% 31.46%}
+.reference-home .project-info{padding:20px;flex:1;display:flex;flex-direction:column;align-items:flex-start}
+.reference-home .project-info h3{font-size:1.15rem;line-height:1.35}
+.reference-home .project-info p{font-size:.875rem;margin:8px 0 18px}
+.reference-home .project-cta{font-size:.8rem;margin-top:auto;min-height:36px;padding:7px 12px}
+.reference-home .authority-strip{padding:24px 16px;gap:16px}
+.reference-home .authority-strip>div{min-width:0;gap:12px}
+.reference-home .authority-strip svg{flex-shrink:0}
+.reference-home .authority-strip strong{font-size:1.75rem}
+.reference-home .authority-strip span{font-size:.875rem}
+.reference-home .home-about{display:grid;grid-template-columns:1fr 1fr .65fr;gap:28px;padding-block:48px;min-height:0;align-items:center}
+.reference-home .home-about-copy{padding:0;min-width:0}
+.reference-home .home-about-copy>p{font-size:1rem}
+.reference-home .home-about-photo.corporate-photo{width:100%;height:auto;aspect-ratio:1;min-width:0;margin:0;align-self:center}
+.reference-home .home-about-photo.corporate-photo img{position:static;width:100%;height:100%;object-fit:contain;transform:none;max-width:100%}
+.reference-home .home-differentials{padding:14px;min-width:0;margin:0}
+.reference-home .home-differentials span{font-size:.875rem}
+.reference-home .compact-services{grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+.reference-home .compact-services .service-card{min-height:176px;padding:20px 14px 36px;min-width:0}
+.reference-home .compact-services .service-card h3{font-size:.9rem;line-height:1.4;overflow-wrap:normal}
+.reference-home .process-home,.reference-home .content-home{grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:36px}
+.reference-home .process-grid{grid-template-columns:repeat(5,minmax(0,1fr));gap:22px 12px}
+.reference-home .process-grid>div{padding:24px 4px 16px;min-width:0}
+.reference-home .process-grid h3{font-size:.875rem;line-height:1.4;overflow-wrap:anywhere}
+.reference-home .home-posts{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.reference-home .home-posts .article-card{display:flex;flex-direction:column;min-width:0}
+.reference-home .home-posts .article-body{padding:18px;flex:1;display:flex;flex-direction:column}
+.reference-home .home-posts .article-body h3{font-size:1rem;line-height:1.5}
+.reference-home .home-posts .article-body small{font-size:.8rem;margin-top:auto}
+.reference-home .testimonial-pending{gap:24px;flex-wrap:wrap}
+.reference-home .testimonial-pending>div{flex:1;min-width:220px}
+.reference-home .testimonial-pending .text-link{margin-left:0;white-space:normal}
+.reference-home .final-contact{width:calc(100% - 64px);max-width:1176px;margin:0 auto 48px;padding:36px;gap:28px;grid-template-columns:1.2fr 1.2fr .6fr}
+.reference-home .final-contact h2{font-size:1.9rem}
+.reference-home .final-contact img{display:block;width:100%;max-width:200px;height:auto}
+@media(max-width:1100px){
+ .reference-home .hero{min-height:570px;grid-template-columns:1fr 1fr}
+ .reference-home .hero-visual{height:510px}
+ .reference-home .portrait{width:900px;left:40%}
+ .reference-home .hero-quote{font-size:1rem;max-width:120px}
+ .reference-home .idea-stack,.reference-home .visual-corner{display:none}
+ .reference-home .hero-monogram{left:27%;bottom:90px;width:54px;height:54px}
+ .reference-home .home-about{grid-template-columns:1fr 1fr}
+ .reference-home .home-differentials{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+ .reference-home .compact-services{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .reference-home .content-home{grid-template-columns:1fr}
+ .reference-home .content-home>div:first-child{max-width:520px}
+ .reference-home .authority-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+ .reference-home .authority-strip>div:nth-child(2){border:0}
+}
+@media(max-width:767px){
+ .reference-home .container{padding-inline:22px}
+ .reference-home .section{padding-block:44px}
+ .reference-home .hero{display:flex;flex-direction:column;min-height:0}
+ .reference-home .hero-copy{width:100%;padding:34px 0 18px}
+ .reference-home .hero h1{font-size:clamp(2rem,7.6vw,3.4rem)}
+ .reference-home .hero-visual{height:430px;margin:0;width:100%}
+ .reference-home .portrait{width:780px;left:45%;bottom:0}
+ .reference-home .hero-monogram{left:28%;bottom:78px;width:48px;height:48px}
+ .reference-home .hero-quote{top:8px;right:8px;font-size:.95rem;line-height:1.25;transform:none}
+ .reference-home .hero-checks{font-size:.8rem;gap:10px}
+ .reference-home .hero-checks svg{width:22px;height:22px}
+ .reference-home .tech-inner{grid-template-columns:repeat(5,minmax(0,1fr));gap:22px 8px}
+ .reference-home .section-heading{align-items:flex-start;flex-direction:column;gap:18px}
+ .reference-home .section-heading>.button{margin:0}
+ .reference-home .project-grid{grid-template-columns:1fr;gap:22px}
+ .reference-home .home-about{grid-template-columns:1fr;padding-block:40px;gap:28px}
+ .reference-home .home-about-photo.corporate-photo{max-width:440px;justify-self:center}
+ .reference-home .home-differentials{grid-column:auto;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px}
+ .reference-home .compact-services{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+ .reference-home .compact-services .service-card:last-child{grid-column:1/-1;min-height:140px}
+ .reference-home .process-home{grid-template-columns:1fr;gap:28px}
+ .reference-home .process-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .reference-home .home-posts{grid-template-columns:1fr}
+ .reference-home .home-posts .article-cover{min-height:180px}
+ .reference-home .authority-strip{gap:22px 12px;padding:22px 14px}
+ .reference-home .authority-strip>div{justify-content:flex-start;border:0;gap:10px}
+ .reference-home .authority-strip strong{font-size:1.4rem}
+ .reference-home .authority-strip span{font-size:.8rem}
+ .reference-home .authority-strip svg{width:34px;height:34px;padding:6px}
+ .reference-home .final-contact{width:calc(100% - 44px);display:grid;grid-template-columns:1fr;padding:28px 22px;margin-bottom:32px}
+ .reference-home .final-contact img{max-width:160px;margin-top:0}
+ .reference-home .final-contact>div>p{margin-top:0}
+ .reference-home .final-contact h2{font-size:1.75rem}
+}
+@media(prefers-reduced-motion:reduce){.reference-home *,.reference-home *::before,.reference-home *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Keep copy, captions and controls outside the portrait/table footprint. */
+.reference-home .hero,.ab-about-hero,.ab-projects-hero,.ab-services-hero,.ab-blog-hero,.ab-contact-hero{gap:32px;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+.hero-copy,.ab-about-copy,.ab-projects-copy,.ab-services-copy,.ab-blog-copy,.ab-contact-copy{min-width:0}
+.reference-home .hero h1,.ab-about-hero h1,.ab-projects-hero h1,.ab-services-hero h1,.ab-blog-hero h1,.ab-contact-hero h1{overflow-wrap:anywhere}
+.reference-home .hero-visual,.ab-about-visual,.ab-projects-visual,.ab-services-visual,.ab-blog-visual,.ab-contact-visual{display:flex;flex-direction:column;align-items:stretch;align-self:center;position:relative;isolation:isolate;width:100%;height:auto;min-height:0;overflow:hidden;margin:28px 0;gap:20px}
+.reference-home .portrait,.ab-hero-person,.ab-projects-person,.ab-services-person,.ab-blog-person,.ab-contact-person{position:relative;order:1;inset:auto;left:auto;bottom:auto;transform:none;width:100%;max-width:100%;height:auto;display:block;mask-image:none;object-fit:contain;margin:0;z-index:1}
+.reference-home .hero-quote,.ab-about .ab-handwritten,.ab-services-page .ab-services-quote,.ab-blog-page .ab-blog-script,.ab-contact-page .ab-contact-script{position:relative;order:0;inset:auto;transform:none;max-width:none;width:100%;margin:0;padding:0 16px;text-align:right;font-size:1.1rem!important;line-height:1.5!important}
+.ab-contact-script span{font-size:1.15rem;margin-top:8px}
+.reference-home .idea-stack,.reference-home .visual-corner,.ab-services-principles,.ab-blog-hero-list{position:relative;order:2;inset:auto;transform:none;max-width:none;width:100%;margin:0;display:flex;flex-wrap:wrap;gap:12px 20px;padding:14px 18px;font-size:.875rem}
+.reference-home .idea-stack{flex-direction:row;justify-content:center}
+.reference-home .visual-corner{justify-content:center}
+.reference-home .hero-monogram,.ab-notebook-mark,.ab-projects-mark,.ab-services-mark,.ab-blog-mark,.ab-contact-mark{display:none}
+@media(max-width:767px){
+ .reference-home .hero,.ab-about-hero,.ab-projects-hero,.ab-services-hero,.ab-blog-hero,.ab-contact-hero{gap:18px}
+ .reference-home .hero-visual,.ab-about-visual,.ab-projects-visual,.ab-services-visual,.ab-blog-visual,.ab-contact-visual{height:auto;min-height:0;margin:8px 0 24px;gap:18px}
+ .reference-home .hero-quote,.ab-about .ab-handwritten,.ab-services-page .ab-services-quote,.ab-blog-page .ab-blog-script,.ab-contact-page .ab-contact-script{font-size:1rem!important;padding:0}
+}
+.ab-projects-service-list{position:relative;order:2;inset:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:none;margin:0;padding:16px;gap:14px;font-size:.875rem}.ab-projects-service-list a{min-width:0}
+.notebook-photo{position:relative;display:block}.notebook-photo>.notebook-photo-base{display:block;position:static;width:100%;height:auto;max-width:100%;margin:0;transform:none}.notebook-photo>.notebook-ab-logo{position:absolute;display:block;left:46.5%;top:77.5%;width:9%;height:auto;max-width:none;transform:translate(-50%,-50%);opacity:.9;pointer-events:none;z-index:3;mix-blend-mode:normal}
