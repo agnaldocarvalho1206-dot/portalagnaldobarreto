@@ -32,6 +32,8 @@ console.log(JSON.stringify({
   hostname: databaseUrl.hostname,
   port: databaseUrl.port || '5432',
   database: databaseName,
+  hasUsername: Boolean(databaseUrl.username),
+  hasPassword: Boolean(databaseUrl.password),
 }));
 
 await import('../server.js');
