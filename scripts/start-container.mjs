@@ -1,3 +1,4 @@
+import { spawnSync } from 'node:child_process';
 import { validateProductionConfig } from '../lib/production-config.mjs';
 
 validateProductionConfig();
@@ -45,9 +46,9 @@ function normalizeDatabaseUrl(value) {
 }
 
 process.env.DATABASE_URL = normalizeDatabaseUrl(process.env.DATABASE_URL);
-if (process.env.MIGRATION_DATABASE_URL) {
-  process.env.MIGRATION_DATABASE_URL = normalizeDatabaseUrl(process.env.MIGRATION_DATABASE_URL);
-}
+process.env.MIGRATION_DATABASE_URL = normalizeDatabaseUrl(
+  process.env.MIGRATION_DATABASE_URL || process.env.DATABASE_URL,
+);
 
 const databaseUrl = new URL(process.env.DATABASE_URL);
 const databaseName = databaseUrl.pathname.startsWith('/')
@@ -64,4 +65,24 @@ console.log(JSON.stringify({
   credentialSource: (databaseUrl.username && databaseUrl.password) ? 'database_url_or_separate_env' : 'missing',
 }));
 
+console.log(JSON.stringify({ event: 'database_migration_start' }));
+const migration = spawnSync(
+  process.execPath,
+  ['scripts/migrate-postgres.mjs'],
+  {
+    stdio: 'inherit',
+    env: process.env,
+  },
+);
+
+if (migration.error || migration.status !== 0) {
+  console.error(JSON.stringify({
+    event: 'database_migration_failed',
+    status: migration.status ?? 1,
+    error: migration.error?.message || null,
+  }));
+  process.exit(migration.status ?? 1);
+}
+
+console.log(JSON.stringify({ event: 'database_migration_complete' }));
 await import('../server.js');
