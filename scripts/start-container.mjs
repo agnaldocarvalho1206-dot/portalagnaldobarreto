@@ -14,6 +14,11 @@ function normalizeDatabaseUrl(value) {
     url.hostname = 'portal-agnaldobarreto_database_01';
   }
 
+  const currentDatabase = url.pathname.replace(/^\/+/, '');
+  if (!currentDatabase || currentDatabase === 'portalagnaldobarreto') {
+    url.pathname = '/portal_agnaldobarreto';
+  }
+
   const user = firstDefined(
     url.username,
     process.env.DATABASE_USER,
