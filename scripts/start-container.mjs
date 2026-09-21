@@ -2,24 +2,28 @@ import { validateProductionConfig } from '../lib/production-config.mjs';
 
 validateProductionConfig();
 
-function normalizeDatabaseHost(value) {
+function normalizeDatabaseUrl(value) {
   if (!value) return value;
   const url = new URL(value);
 
-  // Compatibility guard for the legacy EasyPanel host that is still being
-  // injected into the running container. Remove this once the service
-  // environment is confirmed to use the generated internal PostgreSQL host.
   if (url.hostname === 'portalagnaldobarreto') {
     url.hostname = 'portal-agnaldobarreto_database_01';
-    return url.toString();
   }
 
-  return value;
+  if (!url.username && process.env.DATABASE_USER) {
+    url.username = process.env.DATABASE_USER;
+  }
+
+  if (!url.password && process.env.DATABASE_PASSWORD) {
+    url.password = process.env.DATABASE_PASSWORD;
+  }
+
+  return url.toString();
 }
 
-process.env.DATABASE_URL = normalizeDatabaseHost(process.env.DATABASE_URL);
+process.env.DATABASE_URL = normalizeDatabaseUrl(process.env.DATABASE_URL);
 if (process.env.MIGRATION_DATABASE_URL) {
-  process.env.MIGRATION_DATABASE_URL = normalizeDatabaseHost(process.env.MIGRATION_DATABASE_URL);
+  process.env.MIGRATION_DATABASE_URL = normalizeDatabaseUrl(process.env.MIGRATION_DATABASE_URL);
 }
 
 const databaseUrl = new URL(process.env.DATABASE_URL);
@@ -34,6 +38,7 @@ console.log(JSON.stringify({
   database: databaseName,
   hasUsername: Boolean(databaseUrl.username),
   hasPassword: Boolean(databaseUrl.password),
+  credentialSource: (databaseUrl.username && databaseUrl.password) ? 'database_url_or_separate_env' : 'missing',
 }));
 
 await import('../server.js');
