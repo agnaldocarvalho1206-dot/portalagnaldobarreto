@@ -2,6 +2,10 @@ import { validateProductionConfig } from '../lib/production-config.mjs';
 
 validateProductionConfig();
 
+function firstDefined(...values) {
+  return values.find((value) => typeof value === 'string' && value.length > 0);
+}
+
 function normalizeDatabaseUrl(value) {
   if (!value) return value;
   const url = new URL(value);
@@ -10,12 +14,26 @@ function normalizeDatabaseUrl(value) {
     url.hostname = 'portal-agnaldobarreto_database_01';
   }
 
-  if (!url.username && process.env.DATABASE_USER) {
-    url.username = process.env.DATABASE_USER;
+  const user = firstDefined(
+    url.username,
+    process.env.DATABASE_USER,
+    process.env.DB_USER,
+    process.env.PGUSER,
+  );
+
+  const password = firstDefined(
+    url.password,
+    process.env.DATABASE_PASSWORD,
+    process.env.DB_PASSWORD,
+    process.env.PGPASSWORD,
+  );
+
+  if (user && !url.username) {
+    url.username = user;
   }
 
-  if (!url.password && process.env.DATABASE_PASSWORD) {
-    url.password = process.env.DATABASE_PASSWORD;
+  if (password && !url.password) {
+    url.password = password;
   }
 
   return url.toString();
