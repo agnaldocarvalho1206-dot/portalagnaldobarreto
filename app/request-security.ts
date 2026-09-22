@@ -10,8 +10,14 @@ export class InputError extends Error {
 
 export function trustedOrigin(req: Request) {
   if (req.headers.get('sec-fetch-site') === 'cross-site') return false;
-  const expected = process.env.APP_URL ? new URL(process.env.APP_URL).origin : new URL(req.url).origin;
-  return req.headers.get('origin') === expected;
+  const requestOrigin = req.headers.get('origin');
+  if (!requestOrigin) return false;
+  const configured = process.env.APP_URL ? new URL(process.env.APP_URL).origin : null;
+  if (configured && requestOrigin === configured) return true;
+  const forwardedHost = req.headers.get('x-forwarded-host') || req.headers.get('host');
+  const forwardedProto = req.headers.get('x-forwarded-proto') || new URL(req.url).protocol.replace(':', '');
+  if (!forwardedHost) return false;
+  return requestOrigin === `${forwardedProto}://${forwardedHost}`;
 }
 
 export async function readJsonObject(req: Request, max = 32768): Promise<Record<string, any>> {
