@@ -16,6 +16,6 @@ export function LoginForm() {
     <label>Senha<input name="password" type="password" autoComplete="current-password" maxLength={1024} required/></label>
     {error&&<p className="feedback error" role="alert">{error}</p>}
     <button className="button" disabled={busy}>{busy?'Entrando...':'Entrar no portal'}</button>
-    <p className="note">Precisa de acesso ou de uma nova senha? <a href="/contato">Solicite ao atendimento.</a></p>
+    <p className="note"><a href="/recuperar">Esqueci minha senha</a> · Precisa de acesso? <a href="/contato">Solicite ao atendimento.</a></p>
   </form>;
 }
