@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     const email = body.email.trim().toLowerCase();
     await rateLimit('password-recovery-account', email, 4, 30 * 60000);
     await rateLimit('password-recovery-source', requestSubject(req), 20, 30 * 60000);
-    const origin = new URL(req.url).origin;
+    const origin = process.env.APP_URL ? new URL(process.env.APP_URL).origin : (() => { const host=req.headers.get('x-forwarded-host')||req.headers.get('host'); const proto=req.headers.get('x-forwarded-proto')||'https'; return host ? `${proto}://${host}` : new URL(req.url).origin; })();
     const supabase = await createSupabaseServerClient();
     await supabase.auth.resetPasswordForEmail(email, { redirectTo: origin + '/redefinir-senha' });
     return Response.json({ ok: true, message: 'Se o e-mail estiver cadastrado, enviaremos as instruções de recuperação.' }, { headers: { 'Cache-Control': 'no-store' } });
