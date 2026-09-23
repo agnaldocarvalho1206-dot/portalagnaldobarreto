@@ -8,7 +8,7 @@ const normalize=(s:string)=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').to
 async function databasePosts():Promise<PublicBlogPost[]>{
  try{
   const rows=(await rawDatabase().prepare("SELECT title,slug,summary,category,body,minutes,seo_title,seo_description,published_at FROM portal_contents WHERE status='Publicado' AND content_type='Post' AND slug<>'' ORDER BY published_at DESC, updated DESC LIMIT 500").all()).results as any[];
-  return rows.map((p,index)=>({slug:String(p.slug),title:String(p.title),category:String(p.category||'Estratégia'),summary:String(p.summary||''),minutes:String(p.minutes||'3 min'),publishedAt:String(p.published_at||''),author:'Agnaldo Barreto',featured:index<3,tags:[String(p.category||'Estratégia')],imageIndex:index%3,image:'/blog-reference.png',body:String(p.body||''),seoTitle:String(p.seo_title||''),seoDescription:String(p.seo_description||'')})));
+  return rows.map((p,index)=>({slug:String(p.slug),title:String(p.title),category:String(p.category||'Estratégia'),summary:String(p.summary||''),minutes:String(p.minutes||'3 min'),publishedAt:String(p.published_at||''),author:'Agnaldo Barreto',featured:index<3,tags:[String(p.category||'Estratégia')],imageIndex:index%3,image:'/blog-reference.png',body:String(p.body||''),seoTitle:String(p.seo_title||''),seoDescription:String(p.seo_description||'')}));
  }catch(error){console.error(JSON.stringify({event:'public_blog_database_error'}));return []}
 }
 export async function publicBlogEntries(){const dynamic=await databasePosts();const slugs=new Set(dynamic.map(p=>p.slug));return [...dynamic,...blogEntries.filter(p=>!slugs.has(p.slug)).map(p=>({...p,body:p.sections.map(([title,text])=>title+'\n'+text).join('\n\n')}))];}
