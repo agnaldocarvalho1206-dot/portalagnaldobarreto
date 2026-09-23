@@ -8,6 +8,7 @@
 - O Proxy do Next.js renova tokens/cookies do Supabase Auth com `getClaims()` antes de Server Components protegidos; isso evita expiração silenciosa de sessão durante navegação SSR.
 - O retorno após login aceita somente `/portal` ou `/gestao`; clientes não podem usar `return_to` para entrar na gestão e URLs externas são descartadas.
 - Cabeçalhos de segurança e CSP ficam centralizados em `next.config.ts`; o Proxy não mantém uma política paralela que possa sobrescrever a configuração completa.
+- Em produção, a CSP não permite `unsafe-eval`; conexões do navegador ficam limitadas à própria origem e ao projeto Supabase, e frames externos ficam limitados ao Google Maps usado no contato. Em desenvolvimento, `unsafe-eval` e WebSocket local permanecem disponíveis para as ferramentas do Next/React.
 - O preflight exige URL HTTPS e chave `sb_publishable_...` do Supabase, além das dependências já existentes.
 - A autenticação local histórica em `users/sessions` não deve ser usada para provisionar ou revogar acesso.
 
