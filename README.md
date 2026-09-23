@@ -15,11 +15,11 @@ Portal público e área de gestão em Next.js, Node.js, PostgreSQL e armazenamen
 2. Execute `npm ci`.
 3. Copie `.env.example` para `.env` e preencha os valores. Nunca envie `.env` ao Git.
 4. Execute `npm run db:migrate`. Faça backup antes de migrar um banco existente.
-5. Execute `npm run admin:create`. O terminal solicita nome, e-mail e senha, com a senha oculta.
+5. Configure o Supabase Auth e confirme que existe um perfil ativo com papel `admin` em `public.profiles`. A criação e a recuperação de credenciais são feitas pelo Supabase, não pelo PostgreSQL da aplicação.
 6. Para desenvolvimento: defina `APP_URL=http://127.0.0.1:5173` no ambiente e execute `npm run dev`. O Next carrega `.env`; não use credenciais de produção na prévia.
 7. Para produção: configure `APP_URL=https://seu-dominio`, execute `npm run build` e `npm start` com as variáveis exportadas pelo serviço.
 
-O servidor standalone contém os assets após o build. A publicação Docker faz isso automaticamente. Os scripts de migração e gestão de usuários carregam `.env` quando ele existe. Em produção, prefira as variáveis do EasyPanel.
+O servidor standalone contém os assets após o build. A publicação Docker faz isso automaticamente. O script de migração do PostgreSQL carrega `.env` quando ele existe. Em produção, prefira as variáveis do EasyPanel. O arquivo histórico `drizzle/postgres/0001_auth.sql` não define mais o mecanismo de login ativo; autenticação e perfis de acesso são responsabilidade do Supabase Auth.
 
 ## Primeiro acesso e contas
 
