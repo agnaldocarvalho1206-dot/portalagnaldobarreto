@@ -1,6 +1,7 @@
 import { createSupabaseServerClient } from '../../../../lib/supabase/server';
 import { readJsonObject, trustedOrigin, failure, InputError } from '../../../request-security';
 import { rateLimit, requestSubject } from '../../../rate-limit';
+import { loginRedirect } from '../../../auth/redirect';
 
 export async function POST(req: Request) {
   if (!trustedOrigin(req)) return Response.json({ error: 'Origem não permitida.' }, { status: 403 });
@@ -23,7 +24,7 @@ export async function POST(req: Request) {
       await supabase.auth.signOut();
       throw new InputError(403, 'Acesso desativado.');
     }
-    const redirect = profile.role === 'admin' || profile.role === 'staff' ? '/gestao' : '/portal';
+    const redirect = loginRedirect(profile.role, body.returnTo);
     return Response.json({ redirect }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (e) { return failure(e, 'login'); }
 }
