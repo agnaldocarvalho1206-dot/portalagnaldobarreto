@@ -1,6 +1,6 @@
 # Portal Agnaldo Barreto
 
-Portal público e área de gestão em Next.js, Node.js, PostgreSQL e armazenamento S3/R2 privado. O visual existente foi preservado. A aplicação não utiliza login de demonstração nem identidade recebida em cabeçalhos do ChatGPT.
+Portal público e área de gestão em Next.js, Node.js, PostgreSQL e armazenamento S3/R2 privado. O visual existente foi preservado. A aplicação não utiliza login de demonstração nem confia em cabeçalhos externos para definir a identidade do usuário.
 
 ## Requisitos
 
