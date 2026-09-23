@@ -40,7 +40,13 @@ export function failure(error: unknown, operation: string) {
   if (error instanceof InputError) { status = error.status; message = error.message; }
   else if (error instanceof SyntaxError) { status = 400; message = 'Dados inválidos.'; }
   else if (error instanceof Error && error.message === 'BODY_TOO_LARGE') { status = 413; message = 'O envio ultrapassou o tamanho permitido.'; }
-  // Nunca registrar payload, identidade, cookies ou o objeto de erro do banco.
-  if (status === 503) console.error(JSON.stringify({ operation, event: 'request_failed', requestId: crypto.randomUUID() }));
+  // Nunca registrar payload, identidade, cookies, SQL ou o objeto completo de erro do banco.
+  if (status === 503) {
+    const safe = error && typeof error === 'object' ? error as { name?: unknown; code?: unknown; routine?: unknown } : {};
+    const errorName = typeof safe.name === 'string' ? safe.name.slice(0, 80) : 'UnknownError';
+    const errorCode = typeof safe.code === 'string' && /^[A-Za-z0-9_-]{1,40}$/.test(safe.code) ? safe.code : undefined;
+    const errorRoutine = typeof safe.routine === 'string' && /^[A-Za-z0-9_-]{1,80}$/.test(safe.routine) ? safe.routine : undefined;
+    console.error(JSON.stringify({ operation, event: 'request_failed', requestId: crypto.randomUUID(), errorName, ...(errorCode ? { errorCode } : {}), ...(errorRoutine ? { errorRoutine } : {}) }));
+  }
   return Response.json({ error: message }, { status, headers: { 'Cache-Control': 'no-store', ...(status === 429 ? { 'Retry-After': '60' } : {}) } });
 }
