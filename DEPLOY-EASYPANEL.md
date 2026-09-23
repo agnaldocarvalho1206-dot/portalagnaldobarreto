@@ -5,6 +5,7 @@ Use uma VPS com EasyPanel e Docker. cPanel e EasyPanel são painéis diferentes;
 ## 1. Supabase Auth, projeto e PostgreSQL
 
 - Use o projeto Supabase do Portal AB para autenticação e perfis. Configure `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` no EasyPanel usando a URL do projeto e uma chave `sb_publishable_...`. Nunca use chave `service_role` ou `sb_secret_...` em variável `NEXT_PUBLIC_`.
+- Em **Supabase → Authentication → URL Configuration**, defina a **Site URL** igual ao `APP_URL` de produção e adicione a URL exata `${APP_URL}/redefinir-senha` à lista de Redirect URLs. O fluxo de recuperação usa esse endereço em `resetPasswordForEmail`.
 - Confirme no Supabase que `public.profiles` possui RLS e que existe ao menos um perfil ativo com papel `admin` antes de liberar `/gestao`.
 - Crie um projeto no EasyPanel.
 - Adicione um serviço PostgreSQL 17 chamado, por exemplo, banco.
