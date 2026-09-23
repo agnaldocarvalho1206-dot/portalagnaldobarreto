@@ -149,3 +149,39 @@
 .portal-mobile-toggle{display:none;align-items:center;gap:8px;width:100%;padding:11px 13px;margin-bottom:10px;border:1px solid #1b506c;border-radius:12px;background:#071925;color:#bfeaff;font:inherit;font-weight:800;cursor:pointer}
 @media(max-width:820px){.portal-mobile-toggle{display:flex}.portal-sidebar{display:none}.portal-sidebar.mobile-open{display:block;margin-bottom:14px}.portal-sidebar nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.portal-sidebar nav button{min-height:42px}.portal-account{margin-top:12px}}
 @media(max-width:520px){.portal-sidebar nav{grid-template-columns:1fr}.portal-sidebar nav button{width:100%}}
+
+/* Portal AB V44 — densidade e legibilidade responsiva */
+@media(max-width:820px){
+  .portal-layout.container{padding-left:14px;padding-right:14px}
+  .portal-main{min-width:0;padding:14px}
+  .portal-heading{gap:12px;align-items:flex-start}
+  .portal-heading h1{font-size:clamp(24px,7vw,31px);line-height:1.08}
+  .portal-heading p{font-size:13px;line-height:1.55}
+  .stat-grid,.executive-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat-grid>div{min-width:0}
+  .stat-grid strong{overflow-wrap:anywhere}
+  .form-grid{grid-template-columns:1fr}
+  .wide{grid-column:auto}
+  .request-summary{align-items:flex-start;flex-wrap:wrap}
+  .request-summary>div{min-width:0;max-width:100%}
+  .request-summary h3,.request-summary b,.request-summary small{overflow-wrap:anywhere}
+  .report-row{grid-template-columns:minmax(90px,130px) minmax(0,1fr) 24px;gap:10px}
+  .portal-main .panel{max-width:100%;overflow:hidden}
+  .portal-main input,.portal-main select,.portal-main textarea{max-width:100%;box-sizing:border-box}
+}
+@media(max-width:520px){
+  .portal-layout.container{padding-left:10px;padding-right:10px}
+  .portal-main{padding:10px}
+  .portal-heading{margin-bottom:18px}
+  .stat-grid,.executive-stats{grid-template-columns:1fr 1fr;gap:9px}
+  .stat-grid>div{padding:13px 11px}
+  .stat-grid strong{font-size:clamp(23px,8vw,32px)}
+  .portal-main .panel{padding:13px;border-radius:13px}
+  .portal-main .panel>h2{font-size:22px}
+  .request-detail summary{gap:10px;align-items:flex-start}
+  .request-body dl{grid-template-columns:1fr;gap:5px}
+  .request-body dd{margin-bottom:8px}
+  .report-row{grid-template-columns:1fr;gap:7px}
+  .report-row>svg{display:none}
+  .button,.icon-button,.portal-sidebar nav button{touch-action:manipulation}
+}
