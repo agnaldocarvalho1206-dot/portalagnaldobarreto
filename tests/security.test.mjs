@@ -7,7 +7,7 @@ const source = readFileSync(new URL('../app/request-security.ts', import.meta.ur
   .replace("'./contact-upload'", JSON.stringify(new URL('../app/contact-upload.ts', import.meta.url).href));
 const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2022 } }).outputText;
 const { readJsonObject, trustedOrigin, failure } = await import('data:text/javascript;base64,' + Buffer.from(compiled).toString('base64'));
-const request = (body, headers = {}) => new Request('https://portal.test/api/test', { method: 'POST', body, headers: { 'Content-Type': 'application/json', ...headers } });
+const request = (body, headers = {}) => new Request('https://portal.test/api/test', { method: 'POST', body, headers: { 'Content-Type': 'application/json', Host: 'portal.test', ...headers } });
 assert.equal(trustedOrigin(request('{}')), false);
 assert.equal(trustedOrigin(request('{}', { Origin: 'https://portal.test' })), true);
 assert.equal(trustedOrigin(request('{}', { Origin: 'https://attacker.test' })), false);
