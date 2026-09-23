@@ -14,9 +14,12 @@ export function trustedOrigin(req: Request) {
   const forwardedHost = req.headers.get('x-forwarded-host') || req.headers.get('host');
   const forwardedProto = req.headers.get('x-forwarded-proto') || new URL(req.url).protocol.replace(':', '');
   if (!forwardedHost) return false;
-  const expectedOrigin = configured || `${forwardedProto}://${forwardedHost}`;
+  const proxyOrigin = `${forwardedProto}://${forwardedHost}`;
   const requestOrigin = req.headers.get('origin');
-  if (requestOrigin) return requestOrigin === expectedOrigin;
+  // Em produção o navegador fala com o domínio público, enquanto APP_URL pode
+  // refletir a origem interna do serviço. Aceite a origem pública reconstruída
+  // pelos headers do proxy e, quando configurada, também a origem canônica.
+  if (requestOrigin) return requestOrigin === proxyOrigin || requestOrigin === configured;
   if (!['GET','HEAD','OPTIONS'].includes(req.method.toUpperCase())) return false;
   const fetchSite = req.headers.get('sec-fetch-site');
   return !fetchSite || fetchSite === 'same-origin' || fetchSite === 'none';
