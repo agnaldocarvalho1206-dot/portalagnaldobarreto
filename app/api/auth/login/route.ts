@@ -14,8 +14,12 @@ export async function POST(req: Request) {
     const supabase = await createSupabaseServerClient();
     const { data, error } = await supabase.auth.signInWithPassword({ email, password: body.password });
     if (error || !data.user) throw new InputError(401, 'E-mail ou senha inválidos.');
-    const { data: profile } = await supabase.from('profiles').select('role,active').eq('id', data.user.id).single();
-    if (!profile?.active) {
+    const { data: profile, error: profileError } = await supabase.from('profiles').select('role,active').eq('id', data.user.id).single();
+    if (profileError || !profile) {
+      await supabase.auth.signOut();
+      throw new InputError(503, 'Não foi possível validar o perfil de acesso. Tente novamente.');
+    }
+    if (!profile.active) {
       await supabase.auth.signOut();
       throw new InputError(403, 'Acesso desativado.');
     }
