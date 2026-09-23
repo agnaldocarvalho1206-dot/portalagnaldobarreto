@@ -1,6 +1,8 @@
-# Validação administrativa, 15/09/2026
+# Validação administrativa
 
-Escopo: prévia local em /gestao, identidade de desenvolvimento Seedy. Não é certificação de segurança nem teste da hospedagem publicada.
+## Registro histórico — 15/09/2026
+
+Este bloco registra a prévia local realizada naquela data e não representa o mecanismo atual de autenticação. Desde 23/09/2026, o Portal AB usa Supabase Auth e perfis em `public.profiles`; validações novas devem usar contas autorizadas reais de teste no ambiente de homologação. Não é certificação de segurança nem teste da hospedagem publicada.
 
 ## Verificações concluídas
 
@@ -32,7 +34,7 @@ Escopo: prévia local em /gestao, identidade de desenvolvimento Seedy. Não é c
 
 ## Limitações
 
-- Só existe uma identidade simulada local. Isolamento entre dois clientes distintos e administrador precisa de homologação com contas reais autorizadas.
+- O isolamento entre dois clientes distintos e administrador precisa ser homologado com contas reais autorizadas no Supabase Auth; a antiga identidade simulada local não é mais o mecanismo de login.
 - Não foram simulados indisponibilidade real do banco, expiração do provedor de login ou falhas de rede durante uma gravação; os caminhos correspondentes foram revisados no código.
 - Acessibilidade verificada parcialmente, sem certificação WCAG ou ensaio completo com leitor de tela.
 - A fidelidade visual foi avaliada pela consistência com o portal existente. Não há modelo administrativo específico fornecido para comparação pixel a pixel.
