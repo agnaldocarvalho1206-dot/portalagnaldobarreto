@@ -218,3 +218,80 @@
   .reference-home .ab-hero-capability{left:10px;right:10px;bottom:10px;padding:6px;gap:2px}
   .reference-home .ab-hero-capability span{padding:4px 6px;font-size:.51rem}
 }
+
+
+/* Portal AB V59 — Tecnologias + Projetos em Destaque */
+.reference-home .ab-stack-v59{max-width:none;margin:0;border-radius:0;border-block:1px solid rgba(23,117,171,.2);background:linear-gradient(180deg,rgba(4,17,30,.86),rgba(3,12,23,.96));padding:30px 0}
+.reference-home .ab-stack-shell{display:grid;grid-template-columns:230px minmax(0,1fr);gap:30px;align-items:start}
+.reference-home .ab-stack-heading{padding-top:7px}
+.reference-home .ab-stack-heading .eyebrow{margin:0 0 10px}
+.reference-home .ab-stack-heading p{max-width:220px;color:#6f8da6;font-size:.76rem;line-height:1.65}
+.reference-home .ab-stack-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:0}
+.reference-home .ab-tech-card{position:relative;display:grid!important;grid-template-columns:38px minmax(0,1fr);align-items:center;gap:10px;min-width:0;min-height:74px;padding:10px 11px;border:1px solid rgba(38,126,176,.18);border-radius:13px;background:linear-gradient(145deg,rgba(6,27,45,.72),rgba(2,12,22,.82));color:#90a9bd!important;text-align:left!important;overflow:hidden}
+.reference-home .ab-tech-card:after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,199,255,.35),transparent);opacity:0;transition:opacity .25s}
+.reference-home .ab-tech-card:hover{transform:translateY(-2px);border-color:rgba(40,190,249,.4);background:linear-gradient(145deg,rgba(7,39,63,.88),rgba(2,16,28,.92));color:#fff!important}
+.reference-home .ab-tech-card:hover:after{opacity:1}
+.reference-home .ab-tech-card.primary{border-color:rgba(35,157,219,.3)}
+.reference-home .ab-tech-card .tech-symbol{display:grid;place-items:center;width:38px;height:38px;min-width:38px;border:1px solid rgba(35,157,219,.25);border-radius:10px;background:rgba(4,22,38,.8);color:#56dcff;font:750 .92rem/1 'Segoe UI',sans-serif;filter:none}
+.reference-home .ab-tech-copy{display:block;min-width:0}
+.reference-home .ab-tech-copy b{display:block;color:#eaf8ff;font-size:.7rem;font-weight:650;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reference-home .ab-tech-copy small{display:block;margin-top:3px;color:#607e96;font-size:.58rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reference-home .ab-tech-tier{position:absolute;right:7px;top:6px;padding:2px 5px;border-radius:999px;background:rgba(0,127,194,.1);color:#47718b;font-size:.43rem;letter-spacing:.08em;text-transform:uppercase}
+.reference-home .ab-projects-v59{padding-top:105px;padding-bottom:92px}
+.reference-home .ab-projects-heading{align-items:flex-end;margin-bottom:34px}
+.reference-home .ab-projects-heading>div:first-child{max-width:760px}
+.reference-home .ab-projects-heading h2{text-transform:none!important;font-size:clamp(2.3rem,3.4vw,3.35rem);letter-spacing:-.045em;line-height:1.05}
+.reference-home .ab-projects-heading p{max-width:670px;margin-top:18px;color:#7894aa;font-size:.9rem;line-height:1.7}
+.reference-home .ab-project-grid-v59{gap:18px}
+.reference-home .ab-project-card-v59{position:relative;display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid rgba(35,146,207,.28);border-radius:19px;background:linear-gradient(155deg,rgba(7,27,45,.96),rgba(2,11,21,.98));box-shadow:0 18px 55px rgba(0,0,0,.22);transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease}
+.reference-home .ab-project-card-v59:hover{transform:translateY(-6px);border-color:rgba(45,200,255,.58);box-shadow:0 24px 70px rgba(0,0,0,.32),0 0 28px rgba(0,133,255,.08)}
+.reference-home .ab-project-card-head{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;min-height:49px;padding:10px 15px;border-bottom:1px solid rgba(33,118,169,.18);color:#527590}
+.reference-home .ab-project-card-head>span{color:#2bcfff;font-size:.66rem;font-weight:700;letter-spacing:.12em}
+.reference-home .ab-project-card-head small{min-width:0;overflow:hidden;color:#66849b;font-size:.57rem;letter-spacing:.09em;text-overflow:ellipsis;text-transform:uppercase;white-space:nowrap}
+.reference-home .ab-project-card-head svg{color:#50d9ff;transition:transform .25s}
+.reference-home .ab-project-card-v59:hover .ab-project-card-head svg{transform:translate(2px,-2px)}
+.reference-home .ab-project-card-v59 .home-project-image{position:relative;display:block;aspect-ratio:16/10;border-bottom:1px solid rgba(32,128,183,.22);background-color:#041321;background-repeat:no-repeat;filter:saturate(.92) contrast(1.03);transition:filter .3s,transform .45s}
+.reference-home .ab-project-card-v59:hover .home-project-image{filter:saturate(1.08) contrast(1.04);transform:scale(1.015)}
+.reference-home .ab-project-card-v59 .project-info{display:flex;flex:1;flex-direction:column;align-items:stretch;padding:20px 20px 19px}
+.reference-home .ab-project-card-v59 .project-info h3{font-size:1.35rem;letter-spacing:-.025em}
+.reference-home .ab-project-card-v59 .project-info p{margin:9px 0 0;color:#7895ab;font-size:.78rem;line-height:1.65}
+.reference-home .ab-project-tech{display:flex;flex-wrap:wrap;gap:5px;margin:18px 0 17px}
+.reference-home .ab-project-tech span{padding:5px 8px;border:1px solid rgba(34,133,190,.2);border-radius:999px;background:rgba(6,37,59,.55);color:#6ba6c5;font-size:.53rem;line-height:1}
+.reference-home .ab-project-card-v59 .project-cta{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:39px;margin-top:auto;padding:8px 12px;border:1px solid rgba(34,147,208,.26);border-radius:10px;background:rgba(4,26,43,.58);color:#9ccce4;font-size:.64rem;letter-spacing:.04em;text-transform:none}
+.reference-home .ab-project-card-v59:hover .project-cta{border-color:rgba(46,196,252,.4);color:#e6faff}
+.reference-home .ab-authority-v59{margin-top:30px;padding:21px 14px;border-radius:17px;background:linear-gradient(120deg,rgba(5,27,46,.9),rgba(3,14,25,.92));border-color:rgba(28,123,176,.22)}
+.reference-home .ab-authority-v59>div{justify-content:center;border-right-color:rgba(34,113,158,.2)}
+.reference-home .ab-authority-v59 svg{width:39px;height:39px;border-radius:11px;padding:8px;background:rgba(4,48,79,.7)}
+.reference-home .ab-authority-v59 strong{font-size:1.45rem}
+.reference-home .ab-authority-v59 span{font-size:.7rem}
+@media(max-width:1180px){
+  .reference-home .ab-stack-shell{grid-template-columns:1fr}
+  .reference-home .ab-stack-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+  .reference-home .ab-stack-heading p{max-width:620px;text-align:right}
+  .reference-home .ab-stack-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .reference-home .ab-stack-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .reference-home .ab-project-grid-v59{grid-template-columns:1fr 1fr}
+  .reference-home .ab-project-card-v59:last-child{grid-column:1/-1;display:grid;grid-template-columns:minmax(260px,.9fr) 1.1fr}
+  .reference-home .ab-project-card-v59:last-child .ab-project-card-head{grid-column:1/-1}
+  .reference-home .ab-project-card-v59:last-child .home-project-image{height:100%;aspect-ratio:auto;border-bottom:0;border-right:1px solid rgba(32,128,183,.22)}
+}
+@media(max-width:620px){
+  .reference-home .ab-stack-v59{padding:25px 0}
+  .reference-home .ab-stack-heading{display:block}
+  .reference-home .ab-stack-heading p{max-width:none;margin-top:6px;text-align:left}
+  .reference-home .ab-stack-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .reference-home .ab-tech-card{grid-template-columns:32px minmax(0,1fr);min-height:66px;padding:9px 8px;gap:7px}
+  .reference-home .ab-tech-card .tech-symbol{width:32px;height:32px;min-width:32px;border-radius:8px;font-size:.75rem}
+  .reference-home .ab-tech-copy b{font-size:.62rem}
+  .reference-home .ab-tech-copy small{font-size:.5rem}
+  .reference-home .ab-tech-tier{display:none}
+  .reference-home .ab-projects-v59{padding-top:70px;padding-bottom:62px}
+  .reference-home .ab-projects-heading{align-items:flex-start}
+  .reference-home .ab-projects-heading h2{font-size:2.25rem}
+  .reference-home .ab-project-grid-v59{grid-template-columns:1fr;gap:16px}
+  .reference-home .ab-project-card-v59:last-child{grid-column:auto;display:flex}
+  .reference-home .ab-project-card-v59:last-child .home-project-image{height:auto;aspect-ratio:16/10;border-right:0;border-bottom:1px solid rgba(32,128,183,.22)}
+  .reference-home .ab-authority-v59{grid-template-columns:1fr 1fr;gap:14px 6px}
+}
