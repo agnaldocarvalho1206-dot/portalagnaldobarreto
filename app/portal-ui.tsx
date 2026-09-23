@@ -1,6 +1,6 @@
 'use client';
 import {useState,useEffect,useCallback} from 'react';
-import {LayoutDashboard,FolderKanban,FileText,MessageSquare,ArrowUpRight,LogOut,RefreshCw,LoaderCircle,Settings,Send,CheckCircle2,BarChart3,Users,CalendarDays,CircleDollarSign,ClipboardCheck} from 'lucide-react';
+import {LayoutDashboard,FolderKanban,FileText,MessageSquare,ArrowUpRight,LogOut,RefreshCw,LoaderCircle,Settings,Send,CheckCircle2,BarChart3,Users,CalendarDays,CircleDollarSign,ClipboardCheck,CheckSquare} from 'lucide-react';
 import {methodology} from './content';
 type Row=Record<string,any>;
 type PortalRole='admin'|'staff'|'client';
