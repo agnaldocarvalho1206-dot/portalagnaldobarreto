@@ -12,12 +12,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --v8-pool-size=1 --test --test-concurrency=1 tests/*.test.mjs",
     "db:migrate": "node --env-file-if-exists=.env scripts/migrate-postgres.mjs",
-    "admin:create": "node --env-file-if-exists=.env scripts/manage-user.mjs create-admin",
-    "user:create": "node --env-file-if-exists=.env scripts/manage-user.mjs create-client",
-    "user:password": "node --env-file-if-exists=.env scripts/manage-user.mjs reset-password",
     "postbuild": "node scripts/prepare-standalone.mjs",
-    "test:services": "node tests/start-services.mjs",
-    "test:integration": "node tests/run-integration.mjs",
     "preflight": "node --env-file-if-exists=.env scripts/preflight-production.mjs"
   },
   "dependencies": {
