@@ -2,8 +2,10 @@
 
 Use uma VPS com EasyPanel e Docker. cPanel e EasyPanel são painéis diferentes; este projeto usa um **App com Dockerfile** no EasyPanel. Não é hospedagem compartilhada PHP.
 
-## 1. Projeto e PostgreSQL
+## 1. Supabase Auth, projeto e PostgreSQL
 
+- Use o projeto Supabase do Portal AB para autenticação e perfis. Configure `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` no EasyPanel usando a URL do projeto e uma chave `sb_publishable_...`. Nunca use chave `service_role` ou `sb_secret_...` em variável `NEXT_PUBLIC_`.
+- Confirme no Supabase que `public.profiles` possui RLS e que existe ao menos um perfil ativo com papel `admin` antes de liberar `/gestao`.
 - Crie um projeto no EasyPanel.
 - Adicione um serviço PostgreSQL 17 chamado, por exemplo, banco.
 - Configure volume persistente para /var/lib/postgresql/data.
@@ -48,13 +50,9 @@ O health check ready permanece 503 antes das migrações ou quando banco/bucket 
 
 ## 5. Primeiro administrador
 
-Abra terminal interativo do contêiner:
+A autenticação é feita pelo Supabase Auth. Não use `scripts/manage-user.mjs` para criar contas; esse utilitário foi desativado.
 
-```sh
-node scripts/manage-user.mjs create-admin
-```
-
-Digite e-mail, nome e uma senha forte. A senha não aparece na tela. Faça login em /entrar e abra /gestao. Preencha os contatos em Configurações. Não há conta padrão. Redefinição pelo operador usa reset-password e encerra as sessões anteriores.
+No Supabase, confirme o usuário autorizado em **Authentication → Users** e o perfil correspondente em `public.profiles`. O perfil administrativo deve estar com `role = 'admin'` e `active = true`. Depois, faça login em `/entrar` e abra `/gestao`. Recuperação e redefinição de senha usam o fluxo do Supabase Auth; não existem senhas ou sessões locais do Portal AB para editar diretamente no PostgreSQL da aplicação.
 
 ## 6. Domínio e HTTPS
 
@@ -69,7 +67,7 @@ Digite e-mail, nome e uma senha forte. A senha não aparece na tela. Faça login
 ## 7. Health checks e logs
 
 - /api/health/live: processo responde.
-- /api/health/ready: migrações, banco e bucket disponíveis.
+- /api/health/ready: PostgreSQL, bucket e Supabase Auth disponíveis.
 - Configure readiness na porta 3000 com intervalo de 30 s, timeout de 10 s e três falhas.
 - Confira logs do build, App e PostgreSQL. Logs de falha da aplicação são resumidos e não incluem mensagens, senhas ou credenciais.
 - Ative rotação e retenção de logs no host; monitore RAM, CPU, disco e erros 5xx.
@@ -91,7 +89,7 @@ Digite e-mail, nome e uma senha forte. A senha não aparece na tela. Faça login
 3. Restaure os objetos do bucket preservando chaves e metadados, especialmente leadid e filename.
 4. Aponte uma instância isolada do portal para esses recursos.
 5. Confira health check, login, contagem de solicitações/projetos/mensagens e download de anexos.
-6. Revogue sessões restauradas com DELETE FROM sessions em janela controlada, para evitar reativar sessões antigas.
+6. Se houver necessidade de invalidar acessos após uma restauração ou incidente, faça a revogação pelo Supabase Auth. A tabela histórica `sessions` do PostgreSQL da aplicação não controla o login atual.
 7. Só então faça a troca do tráfego. Mantenha o ambiente anterior para rollback.
 
 Teste restauração periodicamente. Não foi executado backup/restore na VPS nesta validação local.
@@ -102,7 +100,7 @@ Teste restauração periodicamente. Não foi executado backup/restore na VPS nes
 - [ ] Domínio e HTTPS funcionando; nenhuma porta de banco pública.
 - [ ] /gestao e /portal anônimos redirecionam ao login.
 - [ ] Cabeçalhos de identidade forjados não dão acesso.
-- [ ] Login válido funciona; senha incorreta falha; logout invalida a sessão.
+- [ ] Supabase Auth está acessível; login válido funciona; senha incorreta falha; logout encerra a sessão.
 - [ ] Cliente não acessa gestão, projetos ou anexos de outro cliente.
 - [ ] Orçamento grava protocolo e aparece no painel.
 - [ ] Alterações de status/progresso e mensagens persistem após reiniciar o App.
