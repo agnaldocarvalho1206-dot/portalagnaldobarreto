@@ -40,7 +40,7 @@ O servidor standalone contém os assets após o build. A publicação Docker faz
 - Cadastro de interessados em conteúdos e exportação CSV restrita à administração, na aba Relatórios. O cadastro não dispara e-mails automaticamente; campanhas dependem do serviço de e-mail contratado.
 - Blog editorial, navegação e filtros.
 - Download de anexos autorizado por usuário ou administrador.
-- Health checks: `/api/health/live` e `/api/health/ready`.
+- Health checks: `/api/health/live` verifica o processo; `/api/health/ready` exige PostgreSQL, bucket privado e Supabase Auth disponíveis.
 
 Cases e números demonstrativos foram retirados da publicação. Projetos públicos reais são cadastrados em `app/content.ts`; não devem ser confundidos com os projetos privados de clientes no painel. Textos editoriais e páginas públicas continuam mantidos nos arquivos existentes. Contatos comerciais são definidos em Gestão → Configurações. Nenhum domínio, contato ou resultado comercial foi inventado para completar a publicação.
 
@@ -64,7 +64,7 @@ Cases e números demonstrativos foram retirados da publicação. Projetos públi
 | POSTGRES_PASSWORD | Somente ao usar o compose fornecido |
 | NEXT_TELEMETRY_DISABLED | 1 |
 
-Gere `RATE_LIMIT_HMAC_SECRET` localmente usando o comando indicado no exemplo de ambiente. Senhas com caracteres especiais na URL do PostgreSQL precisam ser codificadas para URL.
+Gere `RATE_LIMIT_HMAC_SECRET` localmente usando o comando indicado no exemplo de ambiente. Senhas com caracteres especiais na URL do PostgreSQL precisam ser codificadas para URL. Antes do deploy, execute `npm run preflight`; ele também valida a URL HTTPS e a chave publicável `sb_publishable_...` do Supabase.
 
 ## Testes
 
@@ -75,10 +75,10 @@ npm run build
 npm audit --omit=dev
 ```
 
-A integração HTTP usa serviços isolados de teste, não dados reais. Consulte `VALIDACAO-ADMINISTRATIVA.md` para execução e limites da validação.
+A suíte padrão usa apenas recursos isolados de teste e não deve acessar dados reais. O CI executa testes, TypeScript e Build em cada pull request. Consulte `VALIDACAO-ADMINISTRATIVA.md` para o histórico e os limites das validações.
 
 ## Publicação, backups e restauração
 
-Siga **[DEPLOY-EASYPANEL.md](DEPLOY-EASYPANEL.md)**. O Dockerfile é a configuração de publicação. Não use Wrangler, Vinext, arquivos de cache ou a pasta `work` no servidor. O banco D1 antigo e arquivos R2 existentes não são importados automaticamente: se houver dados reais antigos, faça uma migração de dados conferida antes de trocar o serviço.
+Siga **[DEPLOY-EASYPANEL.md](DEPLOY-EASYPANEL.md)**. O Dockerfile é a configuração de publicação. Não use Wrangler, Vinext, arquivos de cache ou a pasta `work` no servidor. Dados ou arquivos de implantações antigas não são importados automaticamente: se houver conteúdo real legado, faça uma migração conferida antes de trocar o serviço.
 
 Não coloque o bucket em modo público. Os arquivos enviados são documentos privados; validação de formato não substitui inspeção antimalware.
