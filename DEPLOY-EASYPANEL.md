@@ -26,8 +26,10 @@ O portal armazena documentos em contact/ com identificador aleatório. O nome or
 - Adicione um App com origem GitHub: agnaldocarvalho1206-dot/portalagnaldobarreto, branch main.
 - Selecione build por Dockerfile, caminho Dockerfile.
 - Configure porta interna 3000 e protocolo HTTP interno.
-- Cadastre o ambiente usando .env.example como guia, com valores reais apenas no editor do EasyPanel.
-- O Dockerfile executa npm ci e npm run build no Linux. Nenhuma dependência deve ser instalada manualmente em um contêiner em execução.
+- Cadastre o ambiente usando .env.example como guia, com valores reais apenas no editor do EasyPanel. O EasyPanel disponibiliza as variáveis do serviço durante o build e no contêiner em execução; o Dockerfile declara apenas `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` como argumentos de build, porque ambos são públicos por definição.
+- Variáveis `NEXT_PUBLIC_*` do Next.js são incorporadas ao bundle durante `npm run build`. Portanto, ao alterar URL ou chave publicável do Supabase no EasyPanel, faça um novo **Deploy/Force Rebuild**; mudar apenas o runtime de uma imagem já construída não atualiza o JavaScript entregue ao navegador.
+- Nunca declare `DATABASE_URL`, credenciais S3, `RATE_LIMIT_HMAC_SECRET`, chave `service_role` ou `sb_secret_...` como `ARG` no Dockerfile.
+- O Dockerfile e o CI executam `npm ci` a partir do lockfile e depois `npm run build` no Linux. Nenhuma dependência deve ser instalada manualmente em um contêiner em execução.
 - Defina pelo menos 1 GB de RAM para o App e memória adicional no build. Ajuste conforme a utilização.
 - O processo roda como usuário node, sem privilégios de root.
 
