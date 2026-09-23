@@ -206,3 +206,18 @@
   .portal-section-title{gap:10px;align-items:flex-start}
   .portal-section-title .text-link{min-height:40px;display:inline-flex;align-items:center}
 }
+
+
+/* Portal AB V46 — consistência por perfil e feedback do cliente */
+.client-portal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px}
+.client-portal-head>div:first-child{min-width:0}
+.client-portal-account{display:flex;flex-direction:column;align-items:flex-end;gap:10px;min-width:220px}
+.client-portal-account small{max-width:280px;color:#88a5ba;overflow-wrap:anywhere;text-align:right}
+.client-portal-account .button{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.client-portal-feedback{margin:14px 0}
+@media(max-width:700px){
+  .client-portal-head{flex-direction:column}
+  .client-portal-account{width:100%;min-width:0;align-items:stretch}
+  .client-portal-account small{text-align:left;max-width:none}
+  .client-portal-account .button{width:100%}
+}
