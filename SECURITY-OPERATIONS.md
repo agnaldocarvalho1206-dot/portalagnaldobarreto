@@ -5,6 +5,8 @@
 - Autenticação e sessões do Portal AB usam Supabase Auth; `public.profiles` concentra papel e situação da conta.
 - Funções auxiliares privilegiadas de RLS foram movidas para schema privado; os wrappers públicos são `SECURITY INVOKER`.
 - O readiness de produção verifica PostgreSQL, armazenamento e disponibilidade do Supabase Auth.
+- O Proxy do Next.js renova tokens/cookies do Supabase Auth com `getClaims()` antes de Server Components protegidos; isso evita expiração silenciosa de sessão durante navegação SSR.
+- Cabeçalhos de segurança e CSP ficam centralizados em `next.config.ts`; o Proxy não mantém uma política paralela que possa sobrescrever a configuração completa.
 - O preflight exige URL HTTPS e chave `sb_publishable_...` do Supabase, além das dependências já existentes.
 - A autenticação local histórica em `users/sessions` não deve ser usada para provisionar ou revogar acesso.
 
