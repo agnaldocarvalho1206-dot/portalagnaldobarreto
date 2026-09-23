@@ -137,3 +137,84 @@
 }
 .ab-projects-service-list{position:relative;order:2;inset:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:none;margin:0;padding:16px;gap:14px;font-size:.875rem}.ab-projects-service-list a{min-width:0}
 .notebook-photo{position:relative;display:block}.notebook-photo>.notebook-photo-base{display:block;position:static;width:100%;height:auto;max-width:100%;margin:0;transform:none}.notebook-photo>.notebook-ab-logo{position:absolute;display:block;left:46.5%;top:77.5%;width:9%;height:auto;max-width:none;transform:translate(-50%,-50%);opacity:.9;pointer-events:none;z-index:3;mix-blend-mode:normal}
+
+
+/* Portal AB V58 — Hero redesign */
+.reference-home .ab-hero-v58{position:relative;display:grid;grid-template-columns:minmax(0,.94fr) minmax(520px,1.06fr);align-items:center;gap:56px;min-height:720px;padding-top:44px;padding-bottom:52px;overflow:visible;isolation:isolate}
+.reference-home .ab-hero-v58:before{content:'';position:absolute;z-index:-2;left:-18vw;top:8%;width:62vw;height:62vw;max-width:900px;max-height:900px;border-radius:50%;background:radial-gradient(circle,rgba(0,102,255,.12),rgba(0,212,255,.035) 38%,transparent 70%);filter:blur(10px);pointer-events:none}
+.reference-home .ab-hero-copy-v58{padding:0;position:relative;z-index:6}
+.reference-home .ab-hero-kicker{display:inline-flex;align-items:center;gap:11px;min-height:34px;padding:7px 12px 7px 9px;margin-bottom:25px;border:1px solid rgba(43,183,246,.26);border-radius:999px;background:rgba(5,25,43,.58);color:#87b9d8;font-size:10px;font-weight:650;letter-spacing:.16em;white-space:nowrap}
+.reference-home .ab-status-dot{width:8px;height:8px;border-radius:50%;background:#2ee6ff;box-shadow:0 0 0 4px rgba(0,208,255,.08),0 0 14px rgba(0,208,255,.65)}
+.reference-home .ab-hero-v58 h1{max-width:690px;margin:0;text-transform:none!important;font-size:clamp(3rem,4.55vw,4.45rem);font-weight:690;line-height:.99;letter-spacing:-.052em;text-wrap:balance}
+.reference-home .ab-hero-v58 h1 em{color:#32cdfa;text-shadow:0 0 36px rgba(0,136,255,.18)}
+.reference-home .ab-hero-copy-v58>p{max-width:610px;margin:28px 0 30px;color:#9fb4c8;font-size:1.04rem;line-height:1.78}
+.reference-home .ab-hero-actions{gap:12px}
+.reference-home .ab-hero-actions .button{min-height:50px;padding:13px 20px;border-radius:999px;text-transform:none;font-size:.82rem;letter-spacing:.01em}
+.reference-home .ab-primary-cta{background:linear-gradient(115deg,#087dff,#0060d8 55%,#004eb8);border-color:#178cff;box-shadow:0 12px 32px rgba(0,102,255,.22),0 0 28px rgba(0,174,255,.12)}
+.reference-home .ab-secondary-cta{background:rgba(4,19,33,.72);border-color:rgba(43,173,235,.38);color:#c9e8f8}
+.reference-home .ab-hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-width:650px;margin-top:35px}
+.reference-home .ab-hero-proof>div{display:flex;align-items:center;gap:10px;min-width:0;padding:13px 10px;border-top:1px solid rgba(66,157,211,.22);color:#7f9bb3}
+.reference-home .ab-hero-proof svg{flex:0 0 auto;color:#31cfff;filter:drop-shadow(0 0 7px rgba(0,192,255,.32))}
+.reference-home .ab-hero-proof span{display:block;min-width:0}
+.reference-home .ab-hero-proof b{display:block;color:#e8f7ff;font-size:.76rem;font-weight:620;letter-spacing:.02em}
+.reference-home .ab-hero-proof small{display:block;margin-top:3px;color:#67839b;font-size:.66rem;line-height:1.35}
+.reference-home .ab-hero-visual-v58{display:block!important;position:relative!important;align-self:center!important;width:100%!important;height:610px!important;min-height:610px!important;margin:0!important;overflow:hidden!important;border:1px solid rgba(29,155,225,.25);border-radius:30px;background:radial-gradient(circle at 42% 52%,rgba(0,111,255,.18),transparent 34%),linear-gradient(145deg,rgba(5,26,46,.88),rgba(2,9,19,.95));box-shadow:inset 0 1px rgba(255,255,255,.035),0 28px 90px rgba(0,0,0,.38);isolation:isolate}
+.reference-home .ab-hero-visual-v58:before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 82%);pointer-events:none}
+.reference-home .ab-hero-visual-v58:after{content:'';position:absolute;z-index:1;left:0;right:0;bottom:0;height:42%;background:linear-gradient(to top,#020914 4%,rgba(2,9,20,.72) 34%,transparent);pointer-events:none}
+.reference-home .ab-hero-globe{position:absolute!important;inset:-35px -45px 25px -65px!important;z-index:0!important;border-radius:0!important;background:url('/digital-globe.png') center 10%/contain no-repeat!important;opacity:.52!important;mix-blend-mode:screen;mask-image:radial-gradient(ellipse,#000 43%,transparent 73%)}
+.reference-home .ab-hero-grid{display:block!important;position:absolute;inset:0;z-index:1;opacity:.52}
+.reference-home .ab-hero-halo{position:absolute;z-index:1;left:50%;top:49%;width:450px;height:450px;transform:translate(-50%,-50%);border:1px solid rgba(35,177,255,.18);border-radius:50%;box-shadow:0 0 0 42px rgba(0,131,255,.025),0 0 0 84px rgba(0,131,255,.018),0 0 80px rgba(0,106,255,.11)}
+.reference-home .ab-hero-topline{position:absolute;z-index:5;left:26px;right:26px;top:22px;display:flex;align-items:center;justify-content:space-between;padding-bottom:11px;border-bottom:1px solid rgba(61,166,220,.18);color:#5f8199;font-size:.61rem;letter-spacing:.2em}
+.reference-home .ab-hero-topline b{color:#44d8ff;font-weight:650}
+.reference-home .ab-hero-nameplate{position:absolute;z-index:6;left:26px;top:75px;display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-left:2px solid #21cfff;background:linear-gradient(90deg,rgba(3,25,43,.82),transparent)}
+.reference-home .ab-hero-nameplate span{color:#ecf9ff;font-size:.72rem;font-weight:700;letter-spacing:.14em}
+.reference-home .ab-hero-nameplate small{color:#68869e;font-size:.56rem;letter-spacing:.15em}
+.reference-home .ab-hero-person-v58{display:block!important;position:absolute!important;z-index:3!important;left:49%!important;bottom:52px!important;top:auto!important;width:980px!important;max-width:none!important;height:auto!important;margin:0!important;transform:translateX(-50%)!important;filter:drop-shadow(0 18px 34px rgba(0,0,0,.68)) drop-shadow(0 0 20px rgba(0,112,255,.16));mask-image:linear-gradient(to bottom,#000 88%,transparent 100%)!important}
+.reference-home .ab-hero-person-v58>.notebook-photo-base{width:100%;height:auto;max-width:none}
+.reference-home .ab-hero-person-v58>.notebook-ab-logo{display:block}
+.reference-home .ab-hero-capability{position:absolute;z-index:7;left:20px;right:20px;bottom:18px;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;padding:9px;border:1px solid rgba(44,174,237,.27);border-radius:999px;background:rgba(2,13,25,.82);backdrop-filter:blur(14px);box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.reference-home .ab-hero-capability span{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;color:#8fb4cc;font-size:.61rem;letter-spacing:.08em}
+.reference-home .ab-hero-capability span+span{border-left:1px solid rgba(70,141,182,.18)}
+.reference-home .ab-hero-capability svg{color:#2fd9ff}
+.reference-home .ab-hero-quote-v58{position:absolute;z-index:6;right:24px;top:118px;max-width:215px;padding:14px 0 14px 16px;border-left:1px solid rgba(58,184,237,.32);color:#93aabe;font:italic .82rem/1.7 Georgia,serif;text-align:right}
+.reference-home .ab-hero-quote-v58 em{color:#d8f5ff;font-style:normal}
+.reference-home .ab-hero-corner{position:absolute;z-index:6;right:24px;bottom:80px;display:flex;align-items:center;gap:10px;max-width:270px;padding:10px 12px;border:1px solid rgba(39,166,227,.25);border-radius:12px;background:rgba(3,17,30,.72);backdrop-filter:blur(12px);color:#7797af;font-size:.62rem;letter-spacing:.03em}
+.reference-home .ab-hero-corner svg{color:#2ed5ff;flex:0 0 auto}
+.reference-home .ab-hero-corner b{color:#dff8ff;font-weight:650}
+@media(max-width:1180px){
+  .reference-home .ab-hero-v58{grid-template-columns:minmax(0,.92fr) minmax(460px,1.08fr);gap:34px}
+  .reference-home .ab-hero-v58 h1{font-size:clamp(2.8rem,4.5vw,3.9rem)}
+  .reference-home .ab-hero-person-v58{width:880px!important}
+  .reference-home .ab-hero-quote-v58{display:none}
+}
+@media(max-width:900px){
+  .reference-home .ab-hero-v58{grid-template-columns:1fr;gap:28px;padding-top:50px;padding-bottom:38px}
+  .reference-home .ab-hero-copy-v58{max-width:760px}
+  .reference-home .ab-hero-copy-v58>p{max-width:680px}
+  .reference-home .ab-hero-visual-v58{height:510px!important;min-height:510px!important}
+  .reference-home .ab-hero-person-v58{width:920px!important;left:50%!important;bottom:48px!important}
+  .reference-home .ab-hero-kicker{white-space:normal}
+}
+@media(max-width:620px){
+  .reference-home .ab-hero-v58{display:grid!important;gap:22px;padding-top:32px;padding-bottom:30px}
+  .reference-home .ab-hero-kicker{margin-bottom:19px;padding:7px 10px;font-size:.55rem;line-height:1.45;letter-spacing:.11em}
+  .reference-home .ab-hero-v58 h1{font-size:clamp(2.45rem,10.8vw,3.4rem);line-height:1.01}
+  .reference-home .ab-hero-copy-v58>p{margin:22px 0 25px;font-size:.96rem;line-height:1.7}
+  .reference-home .ab-hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .reference-home .ab-hero-actions .button{width:100%}
+  .reference-home .ab-hero-proof{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin-top:25px}
+  .reference-home .ab-hero-proof>div{display:block;padding:11px 7px;text-align:center}
+  .reference-home .ab-hero-proof svg{margin:0 auto 7px}
+  .reference-home .ab-hero-proof small{display:none}
+  .reference-home .ab-hero-visual-v58{height:405px!important;min-height:405px!important;border-radius:22px}
+  .reference-home .ab-hero-person-v58{width:760px!important;bottom:46px!important}
+  .reference-home .ab-hero-globe{inset:-10px -35px 40px!important}
+  .reference-home .ab-hero-halo{width:310px;height:310px}
+  .reference-home .ab-hero-topline{left:16px;right:16px;top:16px;font-size:.52rem}
+  .reference-home .ab-hero-nameplate{left:16px;top:57px;padding:8px 10px}
+  .reference-home .ab-hero-nameplate span{font-size:.58rem}
+  .reference-home .ab-hero-nameplate small{font-size:.47rem}
+  .reference-home .ab-hero-corner{display:none}
+  .reference-home .ab-hero-capability{left:10px;right:10px;bottom:10px;padding:6px;gap:2px}
+  .reference-home .ab-hero-capability span{padding:4px 6px;font-size:.51rem}
+}
