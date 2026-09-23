@@ -26,19 +26,11 @@ O servidor standalone contém os assets após o build. A publicação Docker faz
 - Login: **/entrar**
 - Administração: **/gestao**
 - Área do cliente: **/portal**
-- Primeiro administrador: `npm run admin:create`.
-- Criar cliente: `npm run user:create`.
-- Redefinir senha e revogar todas as sessões da conta: `npm run user:password`.
-
-No contêiner do EasyPanel, abra um terminal interativo e use:
-
-```sh
-node scripts/manage-user.mjs create-admin
-```
-
-Para clientes, use `create-client`; para redefinição, `reset-password`. Não passe senhas como argumentos e não as coloque em arquivos versionados. Não existe senha padrão, cadastro público de administrador nem botão de acesso fictício. O operador deve verificar a identidade do cliente antes de criar/redefinir a conta. Ao criar uma conta, solicitações anônimas anteriores com aquele e-mail são vinculadas pelo operador à conta.
-
-As senhas usam scrypt com salt aleatório; sessões de oito horas usam tokens aleatórios armazenados somente como hash no PostgreSQL. Logout revoga a sessão no servidor. Usuários comuns não acessam funções administrativas nem registros de outros clientes.
+- A autenticação é feita pelo **Supabase Auth**.
+- Os dados de autorização ficam em `public.profiles`, com os papéis `admin`, `staff` e `client` e o campo `active`.
+- Em **Gestão → Usuários**, administradores podem visualizar perfis existentes, alterar papéis e ativar/desativar contas. O sistema bloqueia a remoção do próprio papel de administrador e a auto-desativação para reduzir risco de bloqueio acidental.
+- A listagem e as alterações respeitam as políticas RLS do Supabase; nenhuma chave secreta é enviada ao navegador.
+- Não existe senha padrão, cadastro público de administrador nem botão de acesso fictício. Provisionamento e recuperação de credenciais permanecem sob o Supabase Auth.
 
 ## Recursos conectados
 
@@ -57,6 +49,8 @@ Cases e números demonstrativos foram retirados da publicação. Projetos públi
 | Variável | Uso |
 |---|---|
 | APP_URL | Origem pública HTTPS, sem caminho |
+| NEXT_PUBLIC_SUPABASE_URL | URL pública do projeto Supabase |
+| NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY | Chave publicável do Supabase usada com RLS |
 | DATABASE_URL | Conexão do usuário da aplicação ao PostgreSQL |
 | DATABASE_SSL | false na rede privada EasyPanel; true com TLS validado em banco remoto |
 | DATABASE_POOL_MAX | De 1 a 50; padrão 10 |
