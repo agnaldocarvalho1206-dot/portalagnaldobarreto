@@ -1,5 +1,5 @@
 import {services} from './content';
-const order=['sites','lojas','landing','portfolios','portais','manutencao','consultoria','treinamentos'];
+const order=['sites','lojas','landing','portfolios','portais','wordpress','manutencao','consultoria','treinamentos'];
 const titles:Record<string,string>={lojas:'Lojas virtuais',manutencao:'Manutenção e suporte'};
 export const serviceCatalog=order.map((slug,index)=>{const item=services.find(s=>s.slug===slug);if(!item)throw new Error('Serviço não encontrado: '+slug);return {...item,title:titles[slug]||item.name,order:index,image:'/services-reference.png',quoteUrl:'/contato?servico='+encodeURIComponent(item.name)};});
 export const serviceSteps=[['Descoberta','Entendo seu negócio e suas necessidades.'],['Diagnóstico','Analiso o cenário e as oportunidades.'],['Estratégia','Alinhamos objetivos, prioridades e escopo.'],['Design','Desenho a experiência e a linguagem visual.'],['Desenvolvimento','Transformo a proposta em uma solução funcional.'],['Conteúdo','Organizamos textos, imagens e informações.'],['Testes','Reviso navegação, responsividade e funcionamento.'],['Publicação','Preparamos o projeto para entrar no ar.'],['Acompanhamento','Definimos os cuidados e as próximas melhorias.']];
