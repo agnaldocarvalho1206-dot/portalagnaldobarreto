@@ -368,3 +368,98 @@
   .reference-home .ab-service-card-v60.service-consultoria{grid-column:auto;min-height:245px;padding-right:18px}
   .reference-home .ab-service-card-v60.service-consultoria:after{display:none}
 }
+
+
+/* Portal AB V61 — Processo + Depoimentos + Conteúdos */
+.reference-home .ab-process-v61{padding-top:102px;padding-bottom:100px}
+.reference-home .ab-process-heading-v61{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(320px,.7fr);gap:60px;align-items:end;margin-bottom:34px}
+.reference-home .ab-process-heading-v61 h2{text-transform:none!important;font-size:clamp(2.35rem,3.5vw,3.45rem);line-height:1.05;letter-spacing:-.048em}
+.reference-home .ab-process-heading-v61>div:last-child{justify-self:end;max-width:500px}
+.reference-home .ab-process-heading-v61 p{margin-bottom:20px;color:#7791a6;font-size:.9rem;line-height:1.72}
+.reference-home .ab-process-heading-v61 .button{border-radius:999px;text-transform:none}
+.reference-home .ab-process-phases-v61{display:grid;grid-template-columns:2fr 2fr 3fr 2fr;gap:8px;margin-bottom:10px}
+.reference-home .ab-process-phases-v61 span{padding:8px 10px;border-bottom:1px solid rgba(38,151,211,.25);color:#41677f;font-size:.52rem;letter-spacing:.13em;text-transform:uppercase}
+.reference-home .ab-process-grid-v61{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.reference-home .ab-process-grid-v61 article{position:relative;display:flex;min-width:0;min-height:180px;flex-direction:column;align-items:flex-start;gap:13px;padding:17px;border:1px solid rgba(32,124,175,.18);border-radius:15px;background:linear-gradient(145deg,rgba(5,24,41,.72),rgba(2,12,22,.8));overflow:hidden}
+.reference-home .ab-process-grid-v61 article:after{content:'';position:absolute;right:-35px;bottom:-45px;width:110px;height:110px;border:1px solid rgba(0,183,255,.08);border-radius:50%}
+.reference-home .ab-process-card-top{display:flex;align-items:center;justify-content:space-between;width:100%;gap:10px}
+.reference-home .ab-process-card-top small{position:static;color:#34d1ff;font-size:.63rem;font-weight:700;letter-spacing:.12em}
+.reference-home .ab-process-card-top span{color:#456a82;font-size:.48rem;letter-spacing:.12em;text-transform:uppercase}
+.reference-home .ab-process-grid-v61 article>svg{color:#33cfff;filter:drop-shadow(0 0 8px rgba(0,186,255,.16));margin-top:auto}
+.reference-home .ab-process-grid-v61 h3{font-size:1rem;line-height:1.3}
+.reference-home .ab-process-line{display:block;width:34px;height:1px;margin-top:2px;background:linear-gradient(90deg,#27ccff,transparent)}
+.reference-home .ab-testimonials-v61{position:relative;border-block:1px solid rgba(30,117,168,.18);background:radial-gradient(circle at 8% 100%,rgba(0,108,255,.12),transparent 30%),linear-gradient(180deg,#020b15,#03101d)}
+.reference-home .ab-testimonials-heading-v61{align-items:flex-end}
+.reference-home .ab-testimonials-heading-v61>div:first-child{max-width:760px}
+.reference-home .ab-testimonials-heading-v61 h2{text-transform:none!important;font-size:clamp(2.25rem,3.3vw,3.25rem);line-height:1.07;letter-spacing:-.045em}
+.reference-home .ab-testimonials-heading-v61 p{max-width:620px;margin-top:15px;color:#708ba1;font-size:.82rem;line-height:1.65}
+.reference-home .ab-testimonial-grid-v61{gap:12px}
+.reference-home .ab-testimonial-card-v61{display:flex;min-height:250px;flex-direction:column;padding:22px;border-color:rgba(35,136,192,.24);border-radius:17px;background:linear-gradient(145deg,rgba(6,29,48,.84),rgba(2,12,23,.92))}
+.reference-home .ab-quote-mark-v61{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;color:#2ed3ff}
+.reference-home .ab-quote-mark-v61 span{color:#385d74;font-size:.55rem;letter-spacing:.13em}
+.reference-home .ab-testimonial-card-v61 blockquote{margin:0;color:#bdd0dd;font-size:.9rem;line-height:1.75}
+.reference-home .ab-testimonial-card-v61 figcaption{margin-top:auto;padding-top:18px;border-top:1px solid rgba(32,108,151,.18)}
+.reference-home .ab-testimonial-card-v61 figcaption b{font-size:.76rem}
+.reference-home .ab-testimonial-card-v61 figcaption p{margin-top:3px;color:#637f96;font-size:.65rem}
+.reference-home .ab-testimonial-empty-v61{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:24px;padding:25px 28px;border:1px solid rgba(35,139,194,.25);border-radius:18px;background:linear-gradient(145deg,rgba(6,29,48,.75),rgba(2,12,23,.9));box-shadow:none}
+.reference-home .ab-empty-quote-v61{display:grid;place-items:center;width:62px;height:62px;border:1px solid rgba(42,177,235,.28);border-radius:17px;background:rgba(4,34,55,.75);color:#34d4ff}
+.reference-home .ab-testimonial-empty-v61 small{color:#3ccfff;font-size:.54rem;font-weight:700;letter-spacing:.13em}
+.reference-home .ab-testimonial-empty-v61 h3{margin-top:5px;font-size:1.15rem}
+.reference-home .ab-testimonial-empty-v61 p{max-width:700px;margin-top:7px;color:#7893a8;font-size:.78rem;line-height:1.6}
+.reference-home .ab-testimonial-empty-v61 .button{margin:0;white-space:nowrap;border-radius:999px}
+.reference-home .ab-content-v61{display:block;padding-top:100px;padding-bottom:104px}
+.reference-home .ab-content-heading-v61{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:30px;align-items:end;margin-bottom:32px}
+.reference-home .ab-content-heading-v61 .eyebrow,.reference-home .ab-content-heading-v61 h2,.reference-home .ab-content-heading-v61 p{grid-column:1}
+.reference-home .ab-content-heading-v61 h2{text-transform:none!important;font-size:clamp(2.3rem,3.5vw,3.4rem);line-height:1.06;letter-spacing:-.046em}
+.reference-home .ab-content-heading-v61 p{max-width:660px;margin-top:16px;color:#758fa4;font-size:.86rem;line-height:1.7}
+.reference-home .ab-content-heading-v61 .button{grid-column:2;grid-row:1/4;align-self:end;border-radius:999px;text-transform:none}
+.reference-home .ab-content-layout-v61{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);gap:13px}
+.reference-home .ab-featured-post-v61,.reference-home .ab-post-row-v61{overflow:hidden;border:1px solid rgba(34,133,190,.22);border-radius:18px;background:linear-gradient(145deg,rgba(6,26,44,.82),rgba(2,12,22,.92));box-shadow:none}
+.reference-home .ab-featured-post-v61{display:grid;grid-template-columns:minmax(230px,.85fr) minmax(0,1.15fr);min-height:340px}
+.reference-home .ab-featured-post-v61 .article-cover{height:100%;min-height:340px;border-right:1px solid rgba(35,128,181,.18);background:radial-gradient(circle at 50% 55%,rgba(0,134,255,.22),transparent 34%),linear-gradient(145deg,#062744,#020d18)}
+.reference-home .ab-featured-post-v61 .article-cover svg{width:86px;height:86px;left:calc(50% - 43px);bottom:calc(50% - 43px);color:#38cfff;opacity:.86}
+.reference-home .ab-featured-post-v61 .article-body{display:flex;flex-direction:column;padding:28px}
+.reference-home .ab-featured-post-v61 .article-body small{color:#43cfff;font-size:.58rem;letter-spacing:.08em}
+.reference-home .ab-featured-post-v61 .article-body h3{margin:15px 0 13px;font-size:1.45rem;line-height:1.35}
+.reference-home .ab-featured-post-v61 .article-body p{color:#7893a8;font-size:.8rem;line-height:1.7}
+.reference-home .ab-featured-post-v61 .article-body>span{display:flex;align-items:center;gap:8px;margin-top:auto;padding-top:20px;color:#8ecbe5;font-size:.66rem}
+.reference-home .ab-content-stack-v61{display:grid;grid-template-rows:1fr 1fr;gap:13px}
+.reference-home .ab-post-row-v61{display:grid;grid-template-columns:145px minmax(0,1fr);min-height:163px}
+.reference-home .ab-post-row-v61 .article-cover{height:100%;min-height:163px;border-right:1px solid rgba(35,128,181,.18);background:linear-gradient(145deg,#082943,#020d18)}
+.reference-home .ab-post-row-v61 .article-cover svg{width:43px;height:43px;left:calc(50% - 21px);bottom:calc(50% - 21px);color:#38cfff}
+.reference-home .ab-post-row-v61 .article-body{display:flex;flex-direction:column;padding:20px}
+.reference-home .ab-post-row-v61 .article-body small{color:#557f99;font-size:.56rem}
+.reference-home .ab-post-row-v61 .article-body h3{margin:10px 0;font-size:.96rem;line-height:1.45}
+.reference-home .ab-post-row-v61 .article-body>span{display:flex;align-items:center;justify-content:space-between;margin-top:auto;color:#7db2cc;font-size:.62rem}
+.reference-home .ab-featured-post-v61:hover,.reference-home .ab-post-row-v61:hover{transform:translateY(-3px);border-color:rgba(45,194,247,.46)}
+@media(max-width:980px){
+  .reference-home .ab-process-heading-v61{grid-template-columns:1fr;gap:18px}
+  .reference-home .ab-process-heading-v61>div:last-child{justify-self:start;max-width:700px}
+  .reference-home .ab-process-phases-v61{display:none}
+  .reference-home .ab-process-grid-v61{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .reference-home .ab-testimonial-empty-v61{grid-template-columns:auto 1fr}
+  .reference-home .ab-testimonial-empty-v61 .button{grid-column:2;justify-self:start}
+  .reference-home .ab-content-heading-v61{grid-template-columns:1fr}
+  .reference-home .ab-content-heading-v61 .button{grid-column:1;grid-row:auto;justify-self:start;margin-top:20px}
+  .reference-home .ab-content-layout-v61{grid-template-columns:1fr}
+  .reference-home .ab-content-stack-v61{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+}
+@media(max-width:620px){
+  .reference-home .ab-process-v61{padding-top:70px;padding-bottom:68px}
+  .reference-home .ab-process-heading-v61 h2{font-size:2.25rem}
+  .reference-home .ab-process-grid-v61{grid-template-columns:1fr 1fr;gap:7px}
+  .reference-home .ab-process-grid-v61 article{min-height:158px;padding:14px}
+  .reference-home .ab-process-grid-v61 h3{font-size:.9rem}
+  .reference-home .ab-testimonials-heading-v61{align-items:flex-start}
+  .reference-home .ab-testimonials-heading-v61 h2{font-size:2.2rem}
+  .reference-home .ab-testimonial-empty-v61{grid-template-columns:1fr;padding:22px}
+  .reference-home .ab-testimonial-empty-v61 .button{grid-column:1}
+  .reference-home .ab-content-v61{padding-top:72px;padding-bottom:72px}
+  .reference-home .ab-content-heading-v61 h2{font-size:2.2rem}
+  .reference-home .ab-featured-post-v61{grid-template-columns:1fr}
+  .reference-home .ab-featured-post-v61 .article-cover{min-height:190px;border-right:0;border-bottom:1px solid rgba(35,128,181,.18)}
+  .reference-home .ab-featured-post-v61 .article-body{padding:22px}
+  .reference-home .ab-content-stack-v61{grid-template-columns:1fr;gap:9px}
+  .reference-home .ab-post-row-v61{grid-template-columns:105px minmax(0,1fr)}
+  .reference-home .ab-post-row-v61 .article-body{padding:16px}
+}
