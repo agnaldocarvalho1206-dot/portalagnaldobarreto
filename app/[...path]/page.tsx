@@ -8,7 +8,7 @@ import ServicesAB from '../services-ab';
 import ProjectsAB from '../projects-ab';
 import AboutAB from '../about-ab';
 import {notFound} from 'next/navigation';
-import {ArrowUpRight,ArrowRight,Check,LockKeyhole,ShieldCheck,Code2,Mail,Phone} from 'lucide-react';
+import {ArrowUpRight,ArrowRight,Check,LockKeyhole,ShieldCheck,Code2,Mail,Phone,Monitor} from 'lucide-react';
 import {services,projects,technologies,methodology,posts} from '../content';
 import {ProjectGrid,BlogGrid,Newsletter,ContactForm,ShareButton} from '../interactions';
 import {requirePortalUser} from '../auth-guard';
