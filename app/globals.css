@@ -787,3 +787,82 @@
   .ab-corporate-v63,
   .ab-cta-portrait-v64{width:100%!important}
 }
+
+
+/* Portal AB V64.2 — retratos limpos sem textos rasterizados */
+.ab-corporate-v63,
+.ab-cta-portrait-v64,
+.ab-services-corporate,
+.ab-contact-corporate,
+.ab-blog-corporate{
+  display:block;
+  overflow:hidden;
+}
+.ab-corporate-v63>.notebook-photo-base,
+.ab-cta-portrait-v64>.notebook-photo-base,
+.ab-services-corporate>.notebook-photo-base,
+.ab-contact-corporate>.notebook-photo-base,
+.ab-blog-corporate>.notebook-photo-base{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+}
+
+/* SOBRE */
+.ab-corporate-v63{
+  position:absolute!important;
+  z-index:2!important;
+  left:50%!important;
+  bottom:0!important;
+  width:96%!important;
+  max-width:none!important;
+  transform:translateX(-50%)!important;
+}
+
+/* PROJETOS — CTA usa a fotografia limpa, sem textos embutidos na imagem. */
+.ab-cta-portrait-v64{
+  position:absolute!important;
+  left:50%!important;
+  bottom:0!important;
+  width:98%!important;
+  max-width:none!important;
+  transform:translateX(-50%)!important;
+}
+.ab-projects-cta-image-v64{isolation:isolate}
+.ab-projects-cta-image-v64 .notebook-ab-logo{z-index:4}
+
+/* SERVIÇOS */
+.ab-services-corporate{
+  position:relative;
+  width:100%!important;
+  border:1px solid #008cff40;
+  border-radius:14px;
+  background:linear-gradient(145deg,#061526,#020a14);
+}
+.ab-services-corporate>.notebook-photo-base{border-radius:14px}
+
+/* CONTATO */
+.ab-contact-corporate{
+  position:relative;
+  width:100%!important;
+  border-radius:12px;
+  background:linear-gradient(145deg,#061526,#020a14);
+}
+.ab-contact-corporate>.notebook-photo-base{border-radius:12px}
+
+/* BLOG */
+.ab-blog-corporate{
+  position:relative;
+  width:100%!important;
+  border-radius:13px;
+  background:linear-gradient(145deg,#061526,#020a14);
+}
+.ab-blog-corporate>.notebook-photo-base{border-radius:13px}
+
+@media(max-width:700px){
+  .ab-corporate-v63,
+  .ab-cta-portrait-v64{width:100%!important}
+}
