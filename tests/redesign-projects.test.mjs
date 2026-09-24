@@ -9,8 +9,9 @@ const page = readFileSync(new URL('../app/[...path]/page.tsx', import.meta.url),
 test('cases publicados permanecem disponíveis nas três rotas principais', () => {
   for (const slug of ['portal-ab', 'fortmet', 'nathuralys']) {
     assert.equal(contentSource.includes(`slug:'${slug}'`), true);
-    assert.equal(page.includes("'/projetos/'+p.slug"), true);
   }
+  assert.match(page, /projects\.find\(p=>p\.slug===path\[1\]\)/);
+  assert.match(page, /if\(page==='projetos'\)/);
 });
 
 test('categorias editoriais continuam mapeadas para filtros do portfólio', () => {
