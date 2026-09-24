@@ -642,3 +642,38 @@
 @media(max-width:620px){
   .reference-home .ab-about-visual-v60{aspect-ratio:4/3!important}
 }
+
+
+/* Portal AB V64.5 — correção profissional do bloco Sobre */
+.reference-home .ab-about-visual-v60{
+  min-height:525px!important;
+  aspect-ratio:auto!important;
+  overflow:hidden!important;
+  border:1px solid rgba(31,143,204,.26)!important;
+  border-radius:26px!important;
+  background:linear-gradient(145deg,#061b2f,#020b15)!important;
+  box-shadow:0 24px 70px rgba(0,0,0,.30)!important;
+}
+.reference-home .ab-about-glow-v60{display:none!important}
+.reference-home .ab-about-visual-v60>.ab-about-corporate-v60{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  transform:none!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  filter:none!important;
+  border-radius:inherit!important;
+}
+.reference-home .ab-about-tag-v60,
+.reference-home .ab-about-signature-v60{display:none!important}
+
+@media(max-width:900px){
+  .reference-home .ab-about-visual-v60{min-height:500px!important}
+}
+@media(max-width:620px){
+  .reference-home .ab-about-visual-v60{min-height:360px!important}
+  .reference-home .ab-about-visual-v60>.ab-about-corporate-v60{object-fit:cover!important}
+}
