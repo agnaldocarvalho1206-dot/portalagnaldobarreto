@@ -866,3 +866,139 @@
   .ab-corporate-v63,
   .ab-cta-portrait-v64{width:100%!important}
 }
+
+
+/* Portal AB V64.5 — padrão profissional dos heros internos */
+/* Moldura visual comum — sem retângulos vazios e sem sobreposição sobre o personagem. */
+.ab-services-visual,
+.ab-blog-visual,
+.ab-contact-visual{
+  position:relative!important;
+  height:590px!important;
+  min-height:590px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(35,151,211,.26)!important;
+  border-radius:28px!important;
+  background:
+    radial-gradient(circle at 48% 44%,rgba(0,112,255,.18),transparent 38%),
+    linear-gradient(145deg,rgba(5,27,47,.97),rgba(2,10,20,.99))!important;
+  box-shadow:0 26px 80px rgba(0,0,0,.34)!important;
+  isolation:isolate!important;
+}
+
+/* Globo com presença, porém atrás da fotografia. */
+.ab-services-globe,
+.ab-blog-globe,
+.ab-contact-globe{
+  z-index:0!important;
+  width:690px!important;
+  max-width:none!important;
+  left:50%!important;
+  top:-35px!important;
+  transform:translateX(-50%)!important;
+  opacity:.45!important;
+  mix-blend-mode:screen!important;
+  mask-image:radial-gradient(ellipse,#000 40%,transparent 76%)!important;
+}
+
+/* Personagem principal maior — referência da Home/Projetos, sem achatamento. */
+.ab-services-person,
+.ab-blog-person,
+.ab-contact-person{
+  position:absolute!important;
+  z-index:3!important;
+  width:1220px!important;
+  max-width:none!important;
+  height:auto!important;
+  left:48%!important;
+  bottom:-2px!important;
+  transform:translateX(-50%)!important;
+  margin:0!important;
+  mask-image:linear-gradient(to bottom,#000 94%,transparent 100%)!important;
+  filter:drop-shadow(0 20px 38px rgba(0,0,0,.55))!important;
+}
+.ab-services-person>.notebook-photo-base,
+.ab-blog-person>.notebook-photo-base,
+.ab-contact-person>.notebook-photo-base{
+  width:100%!important;
+  height:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  transform:none!important;
+}
+
+/* Remove os elementos que estavam cobrindo a imagem ou criando caixas escuras vazias. */
+.ab-services-page .ab-services-quote,
+.ab-services-principles,
+.ab-services-mark,
+.ab-blog-page .ab-blog-script,
+.ab-blog-hero-list,
+.ab-blog-mark,
+.ab-contact-page .ab-contact-script,
+.ab-contact-mark{
+  display:none!important;
+}
+
+/* Sobre/Projetos: manter o personagem grande e equilibrado, sem textos atravessando a foto. */
+.ab-about-person-v63,
+.ab-projects-person-v64{
+  width:960px!important;
+  left:50%!important;
+  bottom:48px!important;
+  transform:translateX(-50%)!important;
+}
+.ab-about-quote-v63,
+.ab-projects-note-v64{
+  max-width:190px!important;
+  background:rgba(2,16,29,.90)!important;
+  backdrop-filter:blur(12px)!important;
+  border-radius:12px!important;
+}
+
+/* Imagens institucionais secundárias: proporção natural, sem deformação. */
+.ab-corporate-v63,
+.ab-cta-portrait-v64,
+.ab-services-corporate,
+.ab-contact-corporate,
+.ab-blog-corporate{
+  height:auto!important;
+  object-fit:cover!important;
+  object-position:center!important;
+}
+
+@media(max-width:1100px){
+  .ab-services-visual,
+  .ab-blog-visual,
+  .ab-contact-visual{height:540px!important;min-height:540px!important}
+  .ab-services-person,
+  .ab-blog-person,
+  .ab-contact-person{width:1080px!important;left:50%!important}
+  .ab-services-globe,
+  .ab-blog-globe,
+  .ab-contact-globe{width:620px!important}
+}
+
+@media(max-width:700px){
+  .ab-services-visual,
+  .ab-blog-visual,
+  .ab-contact-visual{
+    height:410px!important;
+    min-height:410px!important;
+    border-radius:22px!important;
+  }
+  .ab-services-person,
+  .ab-blog-person,
+  .ab-contact-person{
+    width:820px!important;
+    left:50%!important;
+    bottom:-2px!important;
+  }
+  .ab-services-globe,
+  .ab-blog-globe,
+  .ab-contact-globe{width:500px!important;top:-20px!important}
+  .ab-about-person-v63,
+  .ab-projects-person-v64{width:760px!important;left:50%!important}
+  .ab-about-quote-v63,
+  .ab-projects-note-v64{display:none!important}
+}
