@@ -582,3 +582,29 @@
   .reference-home .ab-about-tag-v60{top:12px!important;left:12px!important}
   .reference-home .ab-about-signature-v60{display:none!important}
 }
+
+
+/* Portal AB V64.2 — retratos limpos nas áreas secundárias */
+.reference-home .ab-about-corporate-v60{
+  position:absolute!important;
+  z-index:2!important;
+  left:61%!important;
+  bottom:-2px!important;
+  width:78%!important;
+  max-width:none!important;
+  transform:translateX(-50%)!important;
+  filter:drop-shadow(0 18px 34px rgba(0,0,0,.5));
+}
+.reference-home .ab-about-corporate-v60>.notebook-photo-base{
+  width:100%!important;
+  height:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+}
+@media(max-width:900px){
+  .reference-home .ab-about-corporate-v60{width:88%!important;left:55%!important}
+}
+@media(max-width:620px){
+  .reference-home .ab-about-corporate-v60{width:96%!important;left:50%!important}
+}
