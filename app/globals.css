@@ -2771,3 +2771,119 @@ details.admin-table-row-v65>summary::-webkit-details-marker{display:none}
     opacity:.46!important;
   }
 }
+
+
+/* Portal AB V66.2 — remover sobreposição da citação sobre Agnaldo */
+/* A citação passa a ocupar a área livre à esquerda do retrato.
+   Regra global: Dashboard, Leads, Clientes, Projetos, Tarefas e Aprovações. */
+.portal-admin-v65 .admin-hero-quote-v65{
+  z-index:8!important;
+  left:4.5%!important;
+  right:auto!important;
+  top:24px!important;
+  width:168px!important;
+  max-width:168px!important;
+  padding:0!important;
+  color:#f5fbff!important;
+  font:italic .73rem/1.36 Georgia,serif!important;
+  text-align:left!important;
+  transform:rotate(-3deg)!important;
+  text-shadow:0 2px 6px rgba(0,0,0,.82)!important;
+}
+.portal-admin-v65 .admin-hero-quote-v65 small{
+  display:block!important;
+  margin-top:7px!important;
+  color:#61d9f5!important;
+  font:italic .51rem/1.25 Georgia,serif!important;
+}
+
+/* Abre uma zona segura em torno do rosto sem alterar a identidade do banner. */
+.portal-admin-v65 .admin-hero-person-v65{
+  left:62%!important;
+  width:540px!important;
+  bottom:-68px!important;
+}
+.portal-admin-v65 .admin-hero-ab-v65{
+  right:22%!important;
+  top:33px!important;
+  font-size:4.75rem!important;
+  opacity:.46!important;
+}
+.portal-admin-v65 .admin-hero-pillars-v65{
+  right:16px!important;
+  top:28px!important;
+  z-index:9!important;
+}
+
+/* Dashboard principal usa o mesmo posicionamento para não reintroduzir conflito. */
+.portal-admin-v65.portal-tab-resumo .admin-hero-quote-v65{
+  left:4.5%!important;
+  right:auto!important;
+  top:24px!important;
+  width:168px!important;
+  max-width:168px!important;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-person-v65{
+  left:62%!important;
+  width:540px!important;
+  bottom:-68px!important;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-ab-v65{
+  right:22%!important;
+  top:33px!important;
+  font-size:4.75rem!important;
+  opacity:.46!important;
+}
+
+/* Em resoluções intermediárias a frase fica ainda mais compacta e afastada do rosto. */
+@media(max-width:1200px){
+  .portal-admin-v65 .admin-hero-quote-v65,
+  .portal-admin-v65.portal-tab-resumo .admin-hero-quote-v65{
+    left:3.5%!important;
+    right:auto!important;
+    top:18px!important;
+    width:145px!important;
+    max-width:145px!important;
+    font-size:.66rem!important;
+  }
+  .portal-admin-v65 .admin-hero-person-v65,
+  .portal-admin-v65.portal-tab-resumo .admin-hero-person-v65{
+    left:64%!important;
+    width:485px!important;
+    bottom:-64px!important;
+  }
+  .portal-admin-v65 .admin-hero-ab-v65,
+  .portal-admin-v65.portal-tab-resumo .admin-hero-ab-v65{
+    right:18%!important;
+    font-size:4.15rem!important;
+    opacity:.40!important;
+  }
+}
+
+/* Tablet: mantém personagem legível e retira a citação se não houver área segura suficiente. */
+@media(max-width:900px){
+  .portal-admin-v65 .admin-hero-quote-v65,
+  .portal-admin-v65.portal-tab-resumo .admin-hero-quote-v65{
+    display:none!important;
+  }
+  .portal-admin-v65 .admin-hero-person-v65,
+  .portal-admin-v65.portal-tab-resumo .admin-hero-person-v65{
+    left:65%!important;
+    width:455px!important;
+    bottom:-73px!important;
+  }
+}
+
+/* Mobile: sem texto decorativo sobre a imagem. */
+@media(max-width:620px){
+  .portal-admin-v65 .admin-hero-quote-v65,
+  .portal-admin-v65.portal-tab-resumo .admin-hero-quote-v65{
+    display:none!important;
+  }
+  .portal-admin-v65 .admin-hero-person-v65,
+  .portal-admin-v65.portal-tab-resumo .admin-hero-person-v65{
+    left:67%!important;
+    width:395px!important;
+    bottom:-67px!important;
+  }
+}
