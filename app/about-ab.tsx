@@ -7,23 +7,26 @@ const areas=[{title:'Sites institucionais',text:'Presença digital profissional.
 const skills=[['WordPress','Principal'],['Elementor Pro','Principal'],['Crocoblock / JetEngine','Principal'],['WooCommerce','Principal'],['HTML / CSS / JavaScript','Complementar'],['Design UI/UX','Estratégico'],['SEO e performance','Complementar'],['Estratégia digital','Estratégico']];
 const steps=[{title:'Descoberta',text:'Entendo seu negócio e suas necessidades.',Icon:Search},{title:'Diagnóstico',text:'Analiso o cenário e as oportunidades.',Icon:Target},{title:'Estratégia',text:'Definimos prioridades e a direção.',Icon:Lightbulb},{title:'Design',text:'Organizo a experiência e a linguagem visual.',Icon:Monitor},{title:'Desenvolvimento',text:'Transformo a proposta em um site funcional.',Icon:Settings},{title:'Conteúdo',text:'Refinamos textos, imagens e organização.',Icon:FileText},{title:'Testes',text:'Reviso navegação, responsividade e funcionamento.',Icon:ShieldCheck},{title:'Publicação',text:'Seu projeto entra no ar com os cuidados finais.',Icon:Upload},{title:'Acompanhamento',text:'Planejamos melhorias e próximos passos.',Icon:ChartNoAxesCombined}];
 export default async function AboutAB(){const settings=await publicSettings();return <main id="conteudo" className="ab-about ab-about-v63">
-<section className="container ab-about-hero-v63">
-  <div className="ab-about-copy-v63">
-    <nav className="ab-crumb" aria-label="Localização"><a href="/">Início</a><span aria-hidden="true">›</span><span aria-current="page">Sobre</span></nav>
-    <div className="ab-about-kicker-v63"><span aria-hidden="true"/><b>ESTRATÉGIA · DESIGN · TECNOLOGIA</b></div>
-    <h1>Crio experiências digitais com <em>direção, identidade e visão de negócio.</em></h1>
-    <p className="ab-about-lead-v63">Sou Agnaldo Barreto, web designer. Transformo necessidades de empresas e profissionais em sites, lojas, portais e experiências digitais claras, funcionais e preparadas para evoluir.</p>
-    <div className="ab-about-actions-v63"><a className="button" href="/contato">Conversar sobre um projeto <ArrowRight size={18}/></a><a className="button outline" href="/projetos">Explorar meus projetos <ArrowRight size={18}/></a></div>
-    <div className="ab-about-proof-v63"><span><Target size={17}/><b>Estratégia</b></span><span><Monitor size={17}/><b>Design</b></span><span><Code2 size={17}/><b>Tecnologia</b></span></div>
+<section className="container ab-about-hero-v63 ab-about-hero-v647">
+  <div className="ab-about-copy-v63 ab-about-copy-v647">
+    <div className="ab-about-kicker-v647"><span aria-hidden="true"/><b>SOBRE AGNALDO BARRETO</b></div>
+    <h1>Mais do que<br/>construir páginas.<br/><span>Eu projeto caminhos<br/>digitais <em>com propósito.</em></span></h1>
+    <p>Transformo necessidades de empresas e profissionais em experiências digitais claras, funcionais e visualmente consistentes.</p>
+    <p>Meu trabalho conecta estratégia, conteúdo, design e tecnologia para que cada projeto tenha direção desde a primeira conversa até a evolução depois da publicação.</p>
+    <div className="ab-about-principles-v647">
+      <span><Lightbulb size={18}/><b>Clareza</b></span>
+      <span><Layers size={18}/><b>Consistência</b></span>
+      <span><ChartNoAxesCombined size={18}/><b>Performance</b></span>
+      <span><Rocket size={18}/><b>Evolução</b></span>
+    </div>
+    <div className="ab-about-actions-v647"><a className="button" href="#trajetoria">Conheça minha história <ArrowRight size={18}/></a></div>
   </div>
-  <div className="ab-about-visual-v63">
+  <div className="ab-about-visual-v63 ab-about-visual-v647">
     <img className="ab-about-globe-v63" src="/digital-globe.png" alt="" aria-hidden="true" width="1254" height="1254"/>
-    <div className="ab-about-grid-v63" aria-hidden="true"/>
-    <div className="ab-about-orbit-v63" aria-hidden="true"/>
     <div className="ab-about-id-v63"><span>AGNALDO BARRETO</span><small>WEB DESIGNER · DIGITAL EXPERIENCE</small></div>
     <NotebookPortrait className="ab-about-person-v63" src="/agnaldo.png" alt="Agnaldo Barreto sorrindo em sua mesa de trabalho" width="1862" height="845" fetchPriority="high"/>
     <div className="ab-about-quote-v63">“Cada projeto começa entendendo <em>o que precisa fazer sentido.</em>”</div>
-    <div className="ab-about-stack-v63"><span>WordPress</span><span>Elementor Pro</span><span>Crocoblock</span><span>UX/UI</span></div>
+    <div className="ab-about-stack-v63 ab-about-stack-v647"><span>WordPress</span><span>Elementor Pro</span><span>Crocoblock</span><span>UX/UI</span></div>
   </div>
 </section>
 
