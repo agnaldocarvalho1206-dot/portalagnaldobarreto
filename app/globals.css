@@ -1002,3 +1002,382 @@
   .ab-about-quote-v63,
   .ab-projects-note-v64{display:none!important}
 }
+
+
+/* Portal AB V64.6 — redesign aprovado: Serviços, Conteúdos e Contato */
+.ab-services-page .ab-hero-v646,
+.ab-blog-page .ab-hero-v646,
+.ab-contact-page .ab-hero-v646{
+  display:grid!important;
+  grid-template-columns:minmax(0,.78fr) minmax(600px,1.22fr)!important;
+  gap:34px!important;
+  align-items:center!important;
+  min-height:720px!important;
+  padding-top:42px!important;
+  padding-bottom:58px!important;
+}
+.ab-services-copy,.ab-blog-copy,.ab-contact-copy{min-width:0}
+.ab-services-copy .eyebrow,.ab-blog-copy .eyebrow,.ab-contact-copy .eyebrow{
+  margin-bottom:22px!important;
+  color:#72dfff!important;
+  letter-spacing:.19em!important;
+}
+.ab-services-copy h1,.ab-blog-copy h1,.ab-contact-copy h1{
+  margin:0!important;
+  font-size:clamp(3.1rem,4.8vw,5rem)!important;
+  line-height:.98!important;
+  letter-spacing:-.055em!important;
+  text-transform:none!important;
+}
+.ab-services-copy h1 em,.ab-blog-copy h1 em,.ab-contact-copy h1 em{
+  color:#17d7f4!important;
+  font-style:normal!important;
+}
+.ab-services-copy>p,.ab-blog-copy>p,.ab-contact-copy>p{
+  max-width:610px!important;
+  margin:26px 0 28px!important;
+  color:#d2dce6!important;
+  font-size:1rem!important;
+  line-height:1.65!important;
+}
+.ab-services-copy .actions{display:flex!important;gap:12px!important;flex-wrap:wrap!important}
+.ab-services-copy .button{min-height:52px!important;border-radius:999px!important;text-transform:none!important}
+.ab-services-copy .button:first-child{min-width:220px!important}
+.ab-services-copy .button.outline{min-width:220px!important}
+
+.ab-hero-service-badges{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:28px;
+}
+.ab-hero-service-badges span,
+.ab-blog-hero-benefits-v646 span{
+  min-width:0;
+  min-height:74px;
+  padding:12px 10px;
+  border:1px solid rgba(38,190,235,.42);
+  border-radius:14px;
+  background:rgba(3,18,31,.68);
+  color:#e8f8ff;
+}
+.ab-hero-service-badges span{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+.ab-hero-service-badges svg,
+.ab-blog-hero-benefits-v646 svg{color:#24def4;flex:0 0 auto}
+.ab-hero-service-badges b,
+.ab-blog-hero-benefits-v646 b{font-size:.72rem;line-height:1.25}
+
+.ab-services-page .ab-hero-visual-v646,
+.ab-blog-page .ab-hero-visual-v646,
+.ab-contact-page .ab-hero-visual-v646{
+  position:relative!important;
+  height:650px!important;
+  min-height:650px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(30,177,232,.44)!important;
+  border-radius:28px!important;
+  background:
+    radial-gradient(circle at 48% 44%,rgba(0,132,255,.22),transparent 43%),
+    linear-gradient(145deg,#031426,#010914)!important;
+  box-shadow:0 28px 84px rgba(0,0,0,.38),inset 0 0 42px rgba(0,114,255,.05)!important;
+  isolation:isolate!important;
+}
+.ab-services-globe,.ab-blog-globe,.ab-contact-globe{
+  display:block!important;
+  position:absolute!important;
+  z-index:0!important;
+  left:50%!important;
+  top:-55px!important;
+  width:780px!important;
+  max-width:none!important;
+  height:auto!important;
+  transform:translateX(-50%)!important;
+  opacity:.78!important;
+  mix-blend-mode:screen!important;
+  mask-image:radial-gradient(ellipse,#000 54%,transparent 82%)!important;
+}
+.ab-services-person,.ab-blog-person,.ab-contact-person{
+  display:block!important;
+  position:absolute!important;
+  z-index:3!important;
+  left:44%!important;
+  bottom:-8px!important;
+  width:1140px!important;
+  max-width:none!important;
+  height:auto!important;
+  transform:translateX(-50%)!important;
+  margin:0!important;
+  filter:drop-shadow(0 22px 40px rgba(0,0,0,.56))!important;
+  mask-image:linear-gradient(to bottom,#000 94%,transparent 100%)!important;
+}
+.ab-services-person>.notebook-photo-base,
+.ab-blog-person>.notebook-photo-base,
+.ab-contact-person>.notebook-photo-base{
+  width:100%!important;
+  height:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  transform:none!important;
+}
+.ab-hero-panel-label-v646{
+  position:absolute;
+  z-index:7;
+  left:28px;
+  top:28px;
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  min-width:245px;
+  padding:15px 18px 14px 20px;
+  border-left:3px solid #1fe2f3;
+  border-radius:2px 12px 12px 2px;
+  background:linear-gradient(90deg,rgba(1,13,25,.94),rgba(2,17,31,.80));
+  backdrop-filter:blur(12px);
+}
+.ab-hero-panel-label-v646 span,
+.ab-hero-panel-label-v646 b{
+  color:#f3fbff;
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.15em;
+}
+.ab-hero-panel-label-v646 small{
+  color:#a2bdd0;
+  font-size:.54rem;
+  letter-spacing:.17em;
+}
+.ab-services-page .ab-services-quote,
+.ab-blog-page .ab-blog-script,
+.ab-contact-page .ab-contact-script{
+  display:block!important;
+  position:absolute!important;
+  z-index:8!important;
+  right:22px!important;
+  top:38px!important;
+  width:235px!important;
+  max-width:235px!important;
+  margin:0!important;
+  padding:17px 18px!important;
+  border:1px solid rgba(29,222,243,.75)!important;
+  border-radius:17px!important;
+  background:rgba(1,12,24,.91)!important;
+  color:#f5fbff!important;
+  font:italic 1rem/1.45 Georgia,serif!important;
+  text-align:left!important;
+  transform:none!important;
+  backdrop-filter:blur(12px)!important;
+  box-shadow:0 12px 34px rgba(0,0,0,.22)!important;
+}
+.ab-services-quote em,.ab-blog-script em,.ab-contact-script em{
+  color:#23def2!important;
+  font-style:normal!important;
+  font-weight:700!important;
+}
+.ab-contact-script span{display:inline!important;margin:0!important;font:inherit!important;color:inherit!important}
+.ab-services-principles,.ab-services-mark,.ab-blog-hero-list,.ab-blog-mark,.ab-contact-mark{display:none!important}
+
+.ab-hero-techbar-v646{
+  position:absolute;
+  z-index:9;
+  left:22px;
+  right:22px;
+  bottom:16px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  align-items:center;
+  min-height:62px;
+  padding:7px 10px;
+  overflow:hidden;
+  border:1px solid rgba(35,200,239,.55);
+  border-radius:20px;
+  background:rgba(1,13,26,.92);
+  backdrop-filter:blur(14px);
+  box-shadow:0 14px 34px rgba(0,0,0,.26);
+}
+.ab-hero-techbar-v646 span{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-width:0;
+  min-height:38px;
+  padding:0 8px;
+  color:#eefaff;
+  font-size:.68rem;
+  white-space:nowrap;
+}
+.ab-hero-techbar-v646 span+span{border-left:1px solid rgba(44,176,222,.34)}
+.ab-hero-techbar-v646 svg{color:#24def3;flex:0 0 auto}
+
+.ab-blog-search{
+  margin-top:26px!important;
+  border:1px solid rgba(31,204,239,.62)!important;
+  border-radius:999px!important;
+  background:rgba(3,19,32,.72)!important;
+}
+.ab-blog-search button{border-radius:50%!important}
+.ab-blog-tags{margin-top:18px!important;gap:8px!important}
+.ab-blog-tags button{
+  min-height:40px!important;
+  padding:8px 14px!important;
+  border:1px solid rgba(125,174,203,.45)!important;
+  border-radius:999px!important;
+  background:rgba(3,18,31,.58)!important;
+}
+.ab-blog-hero-benefits-v646{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:22px;
+}
+.ab-blog-hero-benefits-v646 span{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  gap:8px;
+  min-height:98px;
+}
+.ab-blog-page>.ab-blog-benefits{display:none!important}
+.ab-blog-categories-v646{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+.ab-blog-categories-v646 span{font-size:.62rem!important}
+
+.ab-contact-page .ab-hero-v646{
+  grid-template-columns:minmax(0,.84fr) minmax(590px,1.16fr)!important;
+}
+.ab-contact-hero-benefits{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:9px!important;
+  margin:22px 0 18px!important;
+}
+.ab-contact-hero-benefits>div{
+  min-height:66px!important;
+  padding:10px 11px!important;
+  border:1px solid rgba(54,177,220,.42)!important;
+  border-radius:14px!important;
+  background:rgba(3,18,31,.64)!important;
+}
+.ab-contact-hero-benefits svg{color:#26dff3!important}
+.ab-contact-hero-benefits span{font-size:.66rem!important;line-height:1.25!important}
+.ab-contact-hero-cards-v646{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.ab-contact-hero-cards-v646 article{
+  min-height:245px;
+  padding:18px;
+  border:1px solid rgba(33,178,224,.48);
+  border-radius:17px;
+  background:linear-gradient(145deg,rgba(3,20,35,.78),rgba(1,12,23,.86));
+}
+.ab-contact-hero-cards-v646 article>svg{color:#26def3}
+.ab-contact-hero-cards-v646 h2{
+  margin-top:13px;
+  font-size:1.25rem!important;
+  letter-spacing:-.025em;
+}
+.ab-contact-hero-cards-v646 p{
+  margin:8px 0 15px!important;
+  color:#b9cad6!important;
+  font-size:.74rem!important;
+  line-height:1.5!important;
+}
+.ab-contact-hero-cards-v646 .button{
+  min-height:42px!important;
+  padding:10px 15px!important;
+  border-radius:999px!important;
+  text-transform:none!important;
+}
+.ab-contact-quick-v646{display:grid;gap:7px}
+.ab-contact-quick-v646 a{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:8px;
+  min-height:36px;
+  padding:7px 10px;
+  border:1px solid rgba(36,190,232,.42);
+  border-radius:999px;
+  color:#eefaff;
+  font-size:.66rem;
+}
+.ab-contact-quick-v646 a svg:first-child{color:#25def3}
+
+@media(max-width:1100px){
+  .ab-services-page .ab-hero-v646,
+  .ab-blog-page .ab-hero-v646,
+  .ab-contact-page .ab-hero-v646{
+    grid-template-columns:1fr!important;
+    min-height:0!important;
+    gap:28px!important;
+  }
+  .ab-services-copy,.ab-blog-copy,.ab-contact-copy{max-width:820px}
+  .ab-services-page .ab-hero-visual-v646,
+  .ab-blog-page .ab-hero-visual-v646,
+  .ab-contact-page .ab-hero-visual-v646{
+    height:610px!important;
+    min-height:610px!important;
+  }
+  .ab-services-person,.ab-blog-person,.ab-contact-person{
+    left:47%!important;
+    width:1120px!important;
+  }
+}
+@media(max-width:700px){
+  .ab-services-page .ab-hero-v646,
+  .ab-blog-page .ab-hero-v646,
+  .ab-contact-page .ab-hero-v646{
+    padding:28px 22px 44px!important;
+    gap:22px!important;
+  }
+  .ab-services-copy h1,.ab-blog-copy h1,.ab-contact-copy h1{
+    font-size:clamp(2.55rem,12vw,3.55rem)!important;
+  }
+  .ab-services-copy>p,.ab-blog-copy>p,.ab-contact-copy>p{
+    margin:20px 0 22px!important;
+    font-size:.94rem!important;
+  }
+  .ab-hero-service-badges,
+  .ab-blog-hero-benefits-v646{grid-template-columns:1fr 1fr}
+  .ab-services-page .ab-hero-visual-v646,
+  .ab-blog-page .ab-hero-visual-v646,
+  .ab-contact-page .ab-hero-visual-v646{
+    height:440px!important;
+    min-height:440px!important;
+    border-radius:22px!important;
+  }
+  .ab-services-globe,.ab-blog-globe,.ab-contact-globe{
+    width:535px!important;
+    top:-22px!important;
+  }
+  .ab-services-person,.ab-blog-person,.ab-contact-person{
+    left:48%!important;
+    bottom:-3px!important;
+    width:850px!important;
+  }
+  .ab-hero-panel-label-v646{
+    left:13px;top:13px;min-width:0;max-width:58%;padding:10px 11px 9px 13px;
+  }
+  .ab-hero-panel-label-v646 span,.ab-hero-panel-label-v646 b{font-size:.61rem}
+  .ab-hero-panel-label-v646 small{font-size:.43rem}
+  .ab-services-page .ab-services-quote,
+  .ab-blog-page .ab-blog-script,
+  .ab-contact-page .ab-contact-script{display:none!important}
+  .ab-hero-techbar-v646{
+    left:10px;right:10px;bottom:10px;
+    grid-template-columns:1fr 1fr;
+    min-height:74px;
+    border-radius:15px;
+  }
+  .ab-blog-categories-v646{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .ab-blog-categories-v646 span:last-child{display:none}
+  .ab-contact-hero-benefits{grid-template-columns:1fr!important}
+  .ab-contact-hero-cards-v646{grid-template-columns:1fr}
+}
