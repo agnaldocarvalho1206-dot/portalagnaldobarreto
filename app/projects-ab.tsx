@@ -4,23 +4,29 @@ import {PortfolioExplorer} from './portfolio-explorer';
 import {queryPortfolio} from './portfolio-data';
 import {publicSettings} from './server';
 export default async function ProjectsAB(){const s=await publicSettings();return <main id="conteudo" className="ab-projects-page ab-projects-page-v64">
-<section className="container ab-projects-hero-v64">
-  <div className="ab-projects-copy-v64">
-    <nav className="ab-crumb" aria-label="Localização"><a href="/">Início</a><span aria-hidden="true">›</span><span aria-current="page">Projetos</span></nav>
-    <div className="ab-projects-kicker-v64"><span aria-hidden="true"/><b>PORTFÓLIO · CASES · EXPERIÊNCIAS DIGITAIS</b></div>
-    <h1>Projetos que conectam <em>estratégia, identidade e tecnologia.</em></h1>
-    <p>Cada case parte de um contexto diferente. O objetivo é transformar necessidades em experiências digitais claras, responsivas e preparadas para evoluir.</p>
-    <div className="actions ab-projects-actions-v64"><a className="button" href="#portfolio">Explorar os cases <ArrowRight size={18}/></a><a className="button outline" href="/contato">Conversar sobre um projeto <MessagesSquare size={17}/></a></div>
-    <div className="ab-projects-proof-v64"><span><Target size={17}/><b>Direção</b></span><span><Monitor size={17}/><b>Experiência</b></span><span><Code2 size={17}/><b>Construção</b></span></div>
+<section className="container ab-projects-hero-v64 ab-projects-hero-v647">
+  <div className="ab-projects-copy-v64 ab-projects-copy-v647">
+    <div className="ab-projects-kicker-v647"><span aria-hidden="true"/><div><b>PORTFÓLIO AB</b><small>PROJETOS SELECIONADOS</small></div></div>
+    <h1>Projetos que<br/>conectam<br/><em>estratégia,<br/>identidade e<br/>resultado.</em></h1>
+    <p>Cada projeto nasce de uma necessidade real e evolui com direção, clareza e atenção aos detalhes.</p>
+    <p>Aqui você encontra páginas, lojas, landing pages e portais criados para organizar a experiência digital e fortalecer a presença de cada marca.</p>
+    <div className="ab-projects-principles-v647">
+      <span><Target size={18}/><b>Estratégia</b></span>
+      <span><ShieldCheck size={18}/><b>Qualidade</b></span>
+      <span><Users size={18}/><b>Parceria</b></span>
+      <span><ChartNoAxesCombined size={18}/><b>Evolução</b></span>
+    </div>
+    <div className="actions ab-projects-actions-v64 ab-projects-actions-v647">
+      <a className="button" href="#portfolio">Ver um projeto <ArrowRight size={18}/></a>
+      <a className="button outline" href="#portfolio">Explorar portfólio <FolderOpen size={17}/></a>
+    </div>
   </div>
-  <div className="ab-projects-visual-v64">
+  <div className="ab-projects-visual-v64 ab-projects-visual-v647">
     <img className="ab-projects-globe-v64" src="/digital-globe.png" width="1254" height="1254" alt="" aria-hidden="true"/>
-    <div className="ab-projects-grid-v64" aria-hidden="true"/>
-    <div className="ab-projects-orbit-v64" aria-hidden="true"/>
     <div className="ab-projects-id-v64"><span>PORTFÓLIO AB</span><small>PROJETOS SELECIONADOS</small></div>
     <NotebookPortrait className="ab-projects-person-v64" src="/agnaldo.png" width="1862" height="845" alt="Agnaldo Barreto sorrindo à mesa, atrás de seu notebook" fetchPriority="high"/>
-    <div className="ab-projects-services-v64">{[[Monitor,'Sites institucionais','sites'],[ShoppingCart,'Lojas virtuais','lojas'],[PanelsTopLeft,'Landing pages','landing'],[Code2,'Portais e sistemas','portais']].map(([Icon,label,slug]:any)=><a key={slug} href={'/servicos#'+slug}><Icon size={17}/><span>{label}</span></a>)}</div>
-    <div className="ab-projects-note-v64">Do conceito à entrega.<br/><em>Cada tela precisa fazer sentido.</em></div>
+    <div className="ab-projects-note-v64">“Do conceito à entrega.<br/><em>Cada tela precisa fazer sentido.</em>”</div>
+    <div className="ab-projects-services-v64 ab-projects-services-v647">{[[Monitor,'Sites institucionais'],[ShoppingCart,'Lojas virtuais'],[PanelsTopLeft,'Landing pages'],[Code2,'Portais e sistemas']].map(([Icon,label]:any)=><span key={label}><Icon size={18}/><b>{label}</b></span>)}</div>
   </div>
 </section>
 
