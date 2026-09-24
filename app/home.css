@@ -490,3 +490,95 @@
   .reference-home .ab-final-cta-actions{width:100%}
   .reference-home .ab-final-cta-mark{width:190px;right:-40px;top:28%;opacity:.05}
 }
+
+
+/* Portal AB V64.1 — Correção global de retratos e sobreposições */
+/* Regra-base: preserva a proporção original da fotografia em todos os usos do componente NotebookPortrait. */
+.notebook-photo{line-height:0}
+.notebook-photo>.notebook-photo-base{
+  display:block!important;
+  width:100%!important;
+  height:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  transform:none!important;
+}
+.notebook-photo>.notebook-ab-logo{height:auto!important}
+
+/* HOME — reserva uma faixa lateral real para textos e mantém rosto/corpo livres. */
+.reference-home .ab-hero-visual-v58{overflow:hidden!important}
+.reference-home .ab-hero-person-v58{
+  width:800px!important;
+  left:34%!important;
+  bottom:52px!important;
+}
+.reference-home .ab-hero-nameplate{
+  left:22px!important;
+  top:72px!important;
+  max-width:220px;
+  background:rgba(2,16,29,.88)!important;
+  backdrop-filter:blur(12px);
+}
+.reference-home .ab-hero-quote-v58{
+  right:18px!important;
+  top:90px!important;
+  width:190px;
+  max-width:190px!important;
+  padding:13px 14px!important;
+  border:1px solid rgba(58,184,237,.26)!important;
+  border-left:2px solid #2ed5ff!important;
+  border-radius:12px;
+  background:rgba(2,16,29,.88)!important;
+  backdrop-filter:blur(12px);
+  text-align:left!important;
+}
+.reference-home .ab-hero-corner{
+  right:18px!important;
+  bottom:82px!important;
+  width:210px;
+  max-width:210px!important;
+  background:rgba(2,16,29,.9)!important;
+}
+
+/* HOME / SOBRE — a foto fica em uma área própria e as legendas ocupam a margem livre. */
+.reference-home .ab-about-visual-v60>img{
+  width:78%!important;
+  left:61%!important;
+  bottom:-2px!important;
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+}
+.reference-home .ab-about-tag-v60{
+  left:20px!important;
+  right:auto!important;
+  top:20px!important;
+  max-width:210px;
+}
+.reference-home .ab-about-signature-v60{
+  left:20px!important;
+  bottom:20px!important;
+  max-width:210px;
+  background:rgba(2,18,32,.9)!important;
+}
+
+/* Breakpoints: quando não existe espaço lateral suficiente, removemos overlays em vez de deixá-los cobrir a pessoa. */
+@media(max-width:1180px){
+  .reference-home .ab-hero-person-v58{width:760px!important;left:39%!important}
+  .reference-home .ab-hero-nameplate{top:24px!important}
+  .reference-home .ab-hero-corner{display:none!important}
+}
+@media(max-width:900px){
+  .reference-home .ab-hero-person-v58{width:790px!important;left:50%!important;bottom:42px!important}
+  .reference-home .ab-hero-nameplate,
+  .reference-home .ab-hero-quote-v58,
+  .reference-home .ab-hero-corner{display:none!important}
+  .reference-home .ab-about-visual-v60>img{width:88%!important;left:55%!important}
+}
+@media(max-width:620px){
+  .reference-home .ab-hero-person-v58{width:690px!important;left:50%!important;bottom:36px!important}
+  .reference-home .ab-about-visual-v60>img{width:96%!important;left:50%!important}
+  .reference-home .ab-about-tag-v60{top:12px!important;left:12px!important}
+  .reference-home .ab-about-signature-v60{display:none!important}
+}
