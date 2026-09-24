@@ -463,3 +463,30 @@
   .reference-home .ab-post-row-v61{grid-template-columns:105px minmax(0,1fr)}
   .reference-home .ab-post-row-v61 .article-body{padding:16px}
 }
+
+
+/* Portal AB V62 — CTA final */
+.reference-home .ab-final-cta-v62{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(340px,.85fr);gap:58px;align-items:center;min-height:360px;margin-top:10px;margin-bottom:82px;padding:54px 58px;overflow:hidden;border:1px solid rgba(39,161,222,.32);border-radius:28px;background:radial-gradient(circle at 12% 90%,rgba(0,113,255,.18),transparent 32%),linear-gradient(135deg,rgba(6,31,52,.96),rgba(2,11,21,.98));box-shadow:0 28px 90px rgba(0,0,0,.3);isolation:isolate}
+.reference-home .ab-final-cta-v62:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px);background-size:46px 46px;mask-image:radial-gradient(circle at 30% 50%,#000,transparent 78%)}
+.reference-home .ab-final-cta-glow{position:absolute;z-index:-1;right:-90px;top:-150px;width:480px;height:480px;border:1px solid rgba(35,184,255,.13);border-radius:50%;box-shadow:0 0 0 55px rgba(0,121,255,.022),0 0 0 110px rgba(0,121,255,.014),0 0 90px rgba(0,102,255,.09)}
+.reference-home .ab-final-cta-mark{position:absolute;right:4%;top:50%;z-index:-1;width:280px;transform:translateY(-50%);opacity:.07;filter:drop-shadow(0 0 28px #00aaff)}
+.reference-home .ab-final-cta-mark img{width:100%;height:auto}
+.reference-home .ab-final-cta-copy{max-width:760px}
+.reference-home .ab-final-cta-copy h2{text-transform:none!important;font-size:clamp(2.45rem,4vw,3.9rem);line-height:1.02;letter-spacing:-.052em}
+.reference-home .ab-final-cta-copy p{max-width:690px;margin-top:20px;color:#819bae;font-size:.91rem;line-height:1.76}
+.reference-home .ab-final-cta-actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.reference-home .ab-final-cta-actions .button{width:100%;min-height:50px;border-radius:999px;text-transform:none;font-size:.78rem}
+.reference-home .ab-final-cta-actions .button.outline{background:rgba(3,18,31,.58)}
+.reference-home .ab-final-cta-actions small{margin-top:8px;color:#4f7088;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:900px){
+  .reference-home .ab-final-cta-v62{grid-template-columns:1fr;gap:28px;padding:46px 38px}
+  .reference-home .ab-final-cta-actions{max-width:520px}
+  .reference-home .ab-final-cta-mark{right:-4%;width:240px}
+}
+@media(max-width:620px){
+  .reference-home .ab-final-cta-v62{min-height:0;margin-bottom:58px;padding:34px 22px;border-radius:22px}
+  .reference-home .ab-final-cta-copy h2{font-size:2.28rem}
+  .reference-home .ab-final-cta-copy p{font-size:.86rem}
+  .reference-home .ab-final-cta-actions{width:100%}
+  .reference-home .ab-final-cta-mark{width:190px;right:-40px;top:28%;opacity:.05}
+}
