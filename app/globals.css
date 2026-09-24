@@ -2700,3 +2700,74 @@ details.admin-table-row-v65>summary::-webkit-details-marker{display:none}
   .portal-admin-v65.portal-tab-resumo .admin-hero-quote-v65{display:none}
   .admin-footer-brand-v66 em{display:none}
 }
+
+
+/* Portal AB V66.1 — ajuste fino global do personagem no Gestão Administrativa */
+/* Aplicação uniforme em Dashboard, Leads, Clientes, Projetos, Tarefas e Aprovações. */
+.portal-admin-v65 .admin-hero-visual-v65{
+  overflow:hidden!important;
+}
+.portal-admin-v65 .admin-hero-person-v65{
+  left:58%!important;
+  bottom:-70px!important;
+  width:555px!important;
+  max-width:none!important;
+  transform:translateX(-50%)!important;
+  filter:drop-shadow(0 12px 24px rgba(0,0,0,.55))!important;
+}
+.portal-admin-v65 .admin-hero-person-v65>.notebook-photo-base{
+  width:100%!important;
+  height:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  transform:none!important;
+}
+/* Monograma AB mais sutil e sempre atrás do retrato. */
+.portal-admin-v65 .admin-hero-ab-v65{
+  z-index:1!important;
+  right:27%!important;
+  top:31px!important;
+  font-size:5rem!important;
+  -webkit-text-stroke:1.35px rgba(42,190,255,.46)!important;
+  filter:drop-shadow(0 0 8px rgba(0,119,255,.40))!important;
+  opacity:.58!important;
+}
+/* Texto e pilares mantidos fora da área crítica do rosto. */
+.portal-admin-v65 .admin-hero-quote-v65{
+  z-index:7!important;
+}
+.portal-admin-v65 .admin-hero-pillars-v65{
+  z-index:7!important;
+}
+@media(max-width:1200px){
+  .portal-admin-v65 .admin-hero-person-v65{
+    width:500px!important;
+    left:60%!important;
+    bottom:-66px!important;
+  }
+  .portal-admin-v65 .admin-hero-ab-v65{
+    font-size:4.5rem!important;
+    right:22%!important;
+  }
+}
+@media(max-width:900px){
+  .portal-admin-v65 .admin-hero-person-v65{
+    width:470px!important;
+    left:64%!important;
+    bottom:-76px!important;
+  }
+}
+@media(max-width:620px){
+  .portal-admin-v65 .admin-hero-person-v65{
+    width:405px!important;
+    left:67%!important;
+    bottom:-69px!important;
+  }
+  .portal-admin-v65 .admin-hero-ab-v65{
+    font-size:3.35rem!important;
+    right:12%!important;
+    top:22px!important;
+    opacity:.46!important;
+  }
+}
