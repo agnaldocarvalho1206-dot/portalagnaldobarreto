@@ -577,3 +577,213 @@
  .ab-next-project-v64{margin:0 22px 18px;align-items:flex-start;flex-direction:column}.ab-case-final-v64{grid-template-columns:1fr;margin:0 22px 58px;padding:32px 22px}.ab-case-final-v64 .button{width:100%}
 }
 @media(max-width:440px){.ab-device-grid-v64{grid-template-columns:1fr}.ab-device-grid-v64>div:last-child{grid-column:auto}.ab-projects-benefits-v64{grid-template-columns:1fr}}
+
+
+/* Portal AB V64.1 — Correção visual global de retratos */
+/* Mantém fotografias do Agnaldo sem esticar/comprimir. */
+.ab-about-person-v63>.notebook-photo-base,
+.ab-projects-person-v64>.notebook-photo-base,
+.ab-services-person>.notebook-photo-base,
+.ab-contact-person>.notebook-photo-base,
+.ab-blog-person>.notebook-photo-base{
+  width:100%!important;
+  height:auto!important;
+  max-width:none!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+  transform:none!important;
+}
+.ab-corporate-v63,
+.ab-cta-portrait-v64,
+.ab-services-corporate,
+.ab-contact-photo>img:last-child,
+.ab-blog-editorial-photo>img:last-child{
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+}
+
+/* SOBRE — personagem deslocado para a esquerda e texto em faixa lateral independente. */
+.ab-about-visual-v63{overflow:hidden!important}
+.ab-about-person-v63{
+  width:800px!important;
+  left:35%!important;
+  bottom:45px!important;
+}
+.ab-about-id-v63{
+  left:18px!important;
+  top:18px!important;
+  max-width:225px;
+  background:rgba(2,16,29,.9)!important;
+  backdrop-filter:blur(12px);
+}
+.ab-about-quote-v63{
+  right:18px!important;
+  top:90px!important;
+  width:190px;
+  max-width:190px!important;
+  padding:12px 13px!important;
+  border:1px solid rgba(54,188,240,.26)!important;
+  border-right:2px solid #32d5ff!important;
+  border-radius:12px;
+  background:rgba(2,16,29,.9)!important;
+  backdrop-filter:blur(12px);
+  text-align:left!important;
+}
+
+/* PROJETOS V64 — reserva coluna direita para a frase; rosto/corpo não ficam sob o texto. */
+.ab-projects-visual-v64{overflow:hidden!important}
+.ab-projects-person-v64{
+  width:790px!important;
+  left:35%!important;
+  bottom:55px!important;
+}
+.ab-projects-id-v64{
+  left:18px!important;
+  top:18px!important;
+  max-width:225px;
+  background:rgba(2,16,29,.9)!important;
+  backdrop-filter:blur(12px);
+}
+.ab-projects-note-v64{
+  right:18px!important;
+  top:88px!important;
+  width:190px;
+  max-width:190px!important;
+  padding:12px 13px;
+  border:1px solid rgba(54,188,240,.24);
+  border-right:2px solid #32d5ff;
+  border-radius:12px;
+  background:rgba(2,16,29,.9);
+  backdrop-filter:blur(12px);
+  text-align:left!important;
+}
+
+/* SERVIÇOS — cria uma faixa lateral segura para frase e princípios. */
+.ab-services-visual{overflow:hidden!important}
+.ab-services-person{
+  width:830px!important;
+  left:35%!important;
+  bottom:0!important;
+}
+.ab-services-page .ab-services-quote{
+  right:14px!important;
+  top:18px!important;
+  width:205px;
+  max-width:205px;
+  padding:12px 13px!important;
+  border:1px solid rgba(42,180,238,.24)!important;
+  border-left:2px solid #2ed5ff!important;
+  border-radius:12px;
+  background:rgba(2,16,29,.9)!important;
+  backdrop-filter:blur(12px);
+  transform:none!important;
+  font-family:Georgia,serif!important;
+  font-size:.95rem!important;
+  line-height:1.5!important;
+}
+.ab-services-principles{
+  right:14px!important;
+  top:190px!important;
+  width:205px;
+  background:rgba(2,16,29,.9)!important;
+  backdrop-filter:blur(12px);
+}
+
+/* CONTATO — texto passa a ocupar coluna própria, sem cruzar a fotografia. */
+.ab-contact-visual{overflow:hidden!important}
+.ab-contact-person{
+  width:820px!important;
+  left:35%!important;
+  bottom:0!important;
+}
+.ab-contact-page .ab-contact-script{
+  right:14px!important;
+  top:22px!important;
+  width:210px;
+  max-width:210px;
+  padding:12px 13px;
+  border:1px solid rgba(42,180,238,.24);
+  border-left:2px solid #2ed5ff;
+  border-radius:12px;
+  background:rgba(2,16,29,.9);
+  backdrop-filter:blur(12px);
+  transform:none!important;
+  font-family:Georgia,serif!important;
+  font-size:.95rem!important;
+  line-height:1.5!important;
+}
+.ab-contact-script span{font-size:1rem!important;margin-top:12px!important;color:#6fdfff}
+
+/* BLOG — frase e lista ficam em uma lateral protegida. */
+.ab-blog-visual{overflow:hidden!important}
+.ab-blog-person{
+  width:800px!important;
+  left:35%!important;
+  bottom:0!important;
+}
+.ab-blog-page .ab-blog-script{
+  right:14px!important;
+  top:18px!important;
+  width:210px;
+  max-width:210px!important;
+  padding:12px 13px;
+  border:1px solid rgba(42,180,238,.24);
+  border-left:2px solid #2ed5ff;
+  border-radius:12px;
+  background:rgba(2,16,29,.9);
+  backdrop-filter:blur(12px);
+  transform:none!important;
+  font-family:Georgia,serif!important;
+  font-size:.9rem!important;
+  line-height:1.5!important;
+}
+.ab-blog-hero-list{
+  right:14px!important;
+  top:175px!important;
+  width:210px;
+  background:rgba(2,16,29,.9)!important;
+  backdrop-filter:blur(12px);
+}
+
+/* Retratos secundários: sem recorte forçado ou deformação. */
+.ab-profile-visual-v63,
+.ab-projects-cta-image-v64,
+.ab-services-why-photo,
+.ab-contact-photo,
+.ab-blog-editorial-photo{overflow:hidden!important}
+.ab-corporate-v63{width:96%!important;left:50%!important}
+.ab-cta-portrait-v64{width:98%!important;left:50%!important}
+
+/* Em larguras intermediárias, overlays são removidos para garantir legibilidade e preservar a personagem. */
+@media(max-width:1100px){
+  .ab-about-person-v63,
+  .ab-projects-person-v64,
+  .ab-services-person,
+  .ab-contact-person,
+  .ab-blog-person{
+    left:50%!important;
+    width:820px!important;
+  }
+  .ab-about-quote-v63,
+  .ab-projects-note-v64,
+  .ab-services-page .ab-services-quote,
+  .ab-services-principles,
+  .ab-contact-page .ab-contact-script,
+  .ab-blog-page .ab-blog-script,
+  .ab-blog-hero-list{display:none!important}
+}
+@media(max-width:700px){
+  .ab-about-person-v63,
+  .ab-projects-person-v64,
+  .ab-services-person,
+  .ab-contact-person,
+  .ab-blog-person{
+    width:700px!important;
+    left:50%!important;
+  }
+  .ab-about-id-v63,
+  .ab-projects-id-v64{top:12px!important;left:12px!important}
+  .ab-corporate-v63,
+  .ab-cta-portrait-v64{width:100%!important}
+}
