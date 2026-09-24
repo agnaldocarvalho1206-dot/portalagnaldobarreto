@@ -2233,3 +2233,470 @@ details.admin-table-row-v65>summary::-webkit-details-marker{display:none}
   .admin-hero-title-v65 h1{font-size:2.1rem!important}
   .admin-hero-icon-v65{width:54px;height:54px}
 }
+
+
+/* Portal AB V66 — Dashboard Gestão Administrativa implantado */
+.portal-admin-v65.portal-tab-resumo .portal-main{
+  padding-bottom:0!important;
+}
+.portal-admin-v65.portal-tab-resumo{
+  background:
+    radial-gradient(circle at 72% 5%,rgba(0,112,255,.10),transparent 24%),
+    linear-gradient(145deg,#020812,#03111e 52%,#020914)!important;
+}
+
+/* Topbar mais próximo do layout aprovado */
+.portal-admin-v65.portal-tab-resumo .admin-topbar-v65{
+  height:61px;
+  background:linear-gradient(90deg,#03101d 0%,#061a34 56%,#07112a 100%);
+  border-bottom-color:rgba(0,132,255,.42);
+}
+.portal-admin-v65.portal-tab-resumo .admin-topbar-v65>label{
+  max-width:780px;
+  border-color:rgba(16,139,255,.72);
+  box-shadow:inset 0 0 18px rgba(0,107,255,.08);
+}
+.admin-avatar-v66{
+  overflow:hidden!important;
+  border:1px solid rgba(63,186,255,.5)!important;
+  background:#07162b!important;
+}
+.admin-avatar-v66 img{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:50% 23%;
+}
+
+/* Hero real do dashboard */
+.portal-admin-v65.portal-tab-resumo .admin-hero-v66{
+  grid-template-columns:minmax(0,.86fr) minmax(520px,1.14fr);
+  min-height:192px;
+  margin-bottom:8px;
+  background:
+    radial-gradient(circle at 73% 50%,rgba(0,116,255,.22),transparent 30%),
+    linear-gradient(90deg,#03101c 0%,#06101b 43%,#042246 74%,#020914 100%);
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-copy-v65{
+  padding:12px 18px 15px 18px;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-title-v65{
+  gap:16px;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-icon-v65{
+  width:68px;
+  height:68px;
+  margin-top:5px;
+  color:#0aa6ff;
+  background:linear-gradient(145deg,#06308e,#061948);
+  box-shadow:0 0 22px rgba(0,115,255,.62),inset 0 0 18px rgba(20,207,255,.12);
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-title-v65 h1{
+  font-size:clamp(2.15rem,3.25vw,3.35rem)!important;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-title-v65 h2{
+  margin-top:5px;
+  font-size:clamp(.9rem,1.35vw,1.15rem)!important;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-title-v65 p{
+  max-width:620px;
+  font-size:.69rem;
+}
+.admin-hero-studio-v66{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  background:
+    radial-gradient(circle at 22% 34%,rgba(53,171,255,.16),transparent 13%),
+    radial-gradient(circle at 74% 28%,rgba(0,109,255,.18),transparent 15%),
+    linear-gradient(90deg,rgba(0,0,0,.28),rgba(1,24,50,.18) 45%,rgba(0,0,0,.16));
+  opacity:.92;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-person-v65{
+  left:58%!important;
+  bottom:-72px!important;
+  width:560px!important;
+  max-width:none!important;
+  transform:translateX(-50%)!important;
+  filter:drop-shadow(0 12px 24px rgba(0,0,0,.58))!important;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-person-v65>.notebook-photo-base{
+  width:100%!important;
+  height:auto!important;
+  object-fit:contain!important;
+  object-position:center bottom!important;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-ab-v65{
+  z-index:1;
+  right:28%;
+  top:28px;
+  font-size:5.4rem;
+  -webkit-text-stroke:1.6px rgba(39,195,255,.56);
+  filter:drop-shadow(0 0 9px rgba(0,119,255,.54));
+  opacity:.72;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-quote-v65{
+  z-index:7;
+  left:auto;
+  right:17%;
+  top:28px;
+  width:176px;
+  max-width:176px;
+  color:#fff;
+  font-size:.76rem;
+  transform:rotate(-4deg);
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-pillars-v65{
+  right:18px;
+  top:28px;
+  font-size:.58rem;
+  line-height:1.32;
+}
+.portal-admin-v65.portal-tab-resumo .admin-hero-visual-v65{
+  overflow:hidden;
+}
+
+/* KPIs + data */
+.admin-dashboard-kpi-row-v66{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 160px;
+  gap:9px;
+  align-items:stretch;
+  margin:8px 0 9px;
+}
+.admin-dashboard-kpi-row-v66 .admin-kpis-v65{
+  margin:0;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:9px;
+}
+.admin-dashboard-kpi-row-v66 .admin-kpi-v65{
+  min-height:84px;
+}
+.admin-date-v66{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  align-items:center;
+  gap:10px;
+  min-height:84px;
+  padding:11px 12px;
+  border:1px solid rgba(20,133,209,.66);
+  border-radius:7px;
+  background:linear-gradient(145deg,#06182a,#03101c);
+  color:#eaf6fc;
+}
+.admin-date-v66>svg{color:#dff6ff}
+.admin-date-v66 span,.admin-date-v66 b,.admin-date-v66 small{display:block}
+.admin-date-v66 span{font-size:.49rem;color:#b9ccda}
+.admin-date-v66 b{margin:2px 0;font-size:.61rem;line-height:1.25}
+.admin-date-v66 small{font-size:.48rem;color:#8fa8b9;line-height:1.3}
+
+/* Grade analítica principal */
+.admin-dashboard-grid-v66{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(270px,.92fr) minmax(170px,.50fr) minmax(230px,.67fr);
+  gap:9px;
+  margin:9px 0;
+}
+.admin-dashboard-grid-v66>.admin-panel-v65{
+  min-height:214px;
+}
+.admin-evolution-v66{
+  padding-bottom:7px!important;
+}
+.admin-chart-legend-v66{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:#bcd0dd;
+  font-size:.51rem;
+}
+.admin-chart-legend-v66 span{display:flex;align-items:center;gap:5px}
+.admin-chart-legend-v66 i{
+  width:12px;height:4px;border-radius:999px;background:#1595ff
+}
+.admin-chart-legend-v66 i.proj{background:#9656ff}
+.admin-evolution-v66 svg{
+  display:block;
+  width:100%;
+  height:170px;
+  margin-top:3px;
+}
+.admin-evolution-v66 svg .grid{
+  stroke:rgba(71,143,185,.22);
+  stroke-width:1;
+}
+.admin-evolution-v66 svg text{
+  fill:#92aabc;
+  font-size:8px;
+  font-family:Inter,sans-serif;
+}
+.admin-evolution-v66 svg path{
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.admin-evolution-v66 svg .revenue{
+  stroke:#1199ff;
+  stroke-width:3;
+  filter:drop-shadow(0 0 5px rgba(0,141,255,.75));
+}
+.admin-evolution-v66 svg .projects{
+  stroke:#9758ff;
+  stroke-width:2.5;
+  filter:drop-shadow(0 0 4px rgba(140,71,255,.56));
+}
+.admin-evolution-v66 svg .revenue-dot{fill:#18c8ff;stroke:#d7f8ff;stroke-width:.8}
+.admin-evolution-v66 svg .project-dot{fill:#a765ff;stroke:#efdfff;stroke-width:.7}
+
+/* Serviços */
+.admin-services-v66{
+  padding:11px 12px!important;
+}
+.admin-services-v66>div{
+  margin-bottom:9px;
+}
+.admin-services-v66>div>span{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:4px;
+  font-size:.51rem;
+}
+.admin-services-v66>div b{font-weight:500;color:#e8f2f8}
+.admin-services-v66>div small{color:#fff}
+.admin-services-v66>div>i{
+  display:block;
+  height:7px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#0b2b44;
+}
+.admin-services-v66>div>i>em{
+  display:block;
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#0f8fff,#18cfff);
+}
+.admin-services-v66 em.s1{background:linear-gradient(90deg,#724bff,#af63ff)}
+.admin-services-v66 em.s2{background:linear-gradient(90deg,#ffc12a,#ff9a16)}
+.admin-services-v66 em.s3{background:linear-gradient(90deg,#10d993,#24f0a8)}
+.admin-services-v66 em.s4{background:linear-gradient(90deg,#ff5965,#ff827a)}
+.admin-services-v66 em.s5{background:linear-gradient(90deg,#b5c8d3,#dce7ed)}
+
+/* Compromissos */
+.admin-appointments-v66>div:last-child{
+  display:grid;
+  gap:7px;
+  margin-top:8px;
+}
+.admin-appointments-v66 article{
+  display:grid;
+  grid-template-columns:46px 1fr;
+  gap:8px;
+  align-items:center;
+  min-height:45px;
+  padding:6px;
+  border:1px solid rgba(23,104,158,.52);
+  border-radius:6px;
+  background:#041423;
+}
+.admin-appointments-v66 time{
+  display:grid;
+  place-content:center;
+  min-height:37px;
+  border-radius:5px;
+  background:linear-gradient(145deg,#5735d8,#0d7fff);
+  text-align:center;
+}
+.admin-appointments-v66 time b{font-size:.72rem;color:#fff}
+.admin-appointments-v66 time small{font-size:.45rem;color:#eef8ff}
+.admin-appointments-v66 article span b{
+  display:block;
+  color:#fff;
+  font-size:.52rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.admin-appointments-v66 article span small{
+  display:block;
+  margin-top:2px;
+  color:#91a8b8;
+  font-size:.46rem;
+}
+
+/* Projetos recentes + tarefas */
+.admin-dashboard-lower-v66{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(320px,.82fr);
+  gap:9px;
+  margin:9px 0;
+}
+.admin-recent-projects-v66,.admin-today-v66{min-height:205px}
+.admin-project-table-v66{
+  overflow:hidden;
+  margin-top:7px;
+  border:1px solid rgba(20,86,130,.45);
+  border-radius:6px;
+}
+.admin-project-table-v66 .head,
+.admin-project-table-v66 .row{
+  display:grid;
+  grid-template-columns:.9fr 1.25fr .9fr .75fr .45fr;
+  align-items:center;
+  gap:7px;
+}
+.admin-project-table-v66 .head{
+  min-height:29px;
+  padding:0 8px;
+  background:#071b2d;
+}
+.admin-project-table-v66 .head b{font-size:.49rem;color:#c8dae6}
+.admin-project-table-v66 .row{
+  min-height:34px;
+  padding:4px 8px;
+  border-top:1px solid rgba(19,65,96,.5);
+  color:#dcebf4;
+  font-size:.49rem;
+}
+.admin-project-table-v66 .row:nth-child(odd){background:rgba(3,20,34,.56)}
+.admin-project-table-v66 .row span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admin-project-table-v66 .row span>b{display:block;font-size:.51rem;color:#fff;overflow:hidden;text-overflow:ellipsis}
+.admin-project-table-v66 .row span>small{display:block;font-size:.43rem;color:#7896aa}
+.admin-project-table-v66 .row button{
+  border:0;
+  background:none;
+  color:#18cfff;
+  font-size:.48rem;
+}
+.admin-today-v66 .admin-checklist-v65 label{min-height:31px}
+
+/* Ações rápidas */
+.admin-quick-v66{
+  margin:9px 0 0;
+}
+.admin-quick-v66 button{
+  min-height:68px;
+}
+
+/* Rodapé interno do dashboard */
+.admin-footer-v66{
+  display:grid;
+  grid-template-columns:320px 1fr auto;
+  align-items:center;
+  gap:14px;
+  min-height:70px;
+  margin:14px -12px 0;
+  padding:10px 18px;
+  border-top:1px solid rgba(0,125,255,.28);
+  background:linear-gradient(90deg,#020a14,#04162a,#020a14);
+}
+.admin-footer-brand-v66{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  min-width:0;
+}
+.admin-footer-brand-v66 img{
+  width:43px;height:43px;object-fit:contain;
+  filter:drop-shadow(0 0 10px rgba(0,120,255,.44));
+}
+.admin-footer-brand-v66 span b{display:block;color:#fff;font-size:.59rem}
+.admin-footer-brand-v66 span small{display:block;color:#19d7ef;font-size:.45rem}
+.admin-footer-brand-v66 em{
+  margin-left:12px;
+  color:#1be0f2;
+  font-size:.5rem;
+  font-style:normal;
+  white-space:nowrap;
+}
+.admin-footer-v66 nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:4px 8px;
+}
+.admin-footer-v66 nav button{
+  padding:0;
+  border:0;
+  background:none;
+  color:#9fb6c6;
+  font-size:.43rem;
+}
+.admin-footer-v66 nav button+button:before{
+  content:'|';
+  margin-right:8px;
+  color:#24506b;
+}
+.admin-footer-v66>small{
+  max-width:170px;
+  color:#89a1b2;
+  font-size:.43rem;
+  line-height:1.4;
+  text-align:right;
+}
+
+/* Sidebar refinada para o Dashboard */
+.portal-admin-v65.portal-tab-resumo .portal-sidebar{
+  background:
+    radial-gradient(circle at 40% 86%,rgba(0,97,255,.12),transparent 18%),
+    linear-gradient(180deg,#03111f,#020a13 76%,#051526)!important;
+}
+.portal-admin-v65.portal-tab-resumo .portal-sidebar nav button{
+  min-height:38px!important;
+}
+.portal-admin-v65.portal-tab-resumo .portal-sidebar nav button.active{
+  background:linear-gradient(90deg,#073aff,#0aa9ff)!important;
+}
+
+/* Responsividade do Dashboard V66 */
+@media(max-width:1450px){
+  .admin-dashboard-kpi-row-v66{grid-template-columns:1fr 145px}
+  .admin-dashboard-grid-v66{grid-template-columns:minmax(0,1.45fr) minmax(250px,.9fr) minmax(165px,.5fr)}
+  .admin-dashboard-grid-v66>.admin-appointments-v66{grid-column:1/-1}
+  .admin-appointments-v66>div:last-child{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .admin-footer-v66{grid-template-columns:280px 1fr}
+  .admin-footer-v66>small{display:none}
+}
+@media(max-width:1200px){
+  .portal-admin-v65.portal-tab-resumo .admin-hero-v66{grid-template-columns:1fr minmax(420px,.95fr)}
+  .portal-admin-v65.portal-tab-resumo .admin-hero-person-v65{width:510px!important;left:60%!important}
+  .admin-dashboard-kpi-row-v66{grid-template-columns:1fr}
+  .admin-dashboard-kpi-row-v66 .admin-kpis-v65{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .admin-date-v66{display:none}
+  .admin-dashboard-grid-v66{grid-template-columns:1fr 1fr}
+  .admin-dashboard-grid-v66>.admin-services-v66,
+  .admin-dashboard-grid-v66>.admin-appointments-v66{grid-column:auto}
+  .admin-appointments-v66>div:last-child{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .portal-admin-v65.portal-tab-resumo .admin-hero-v66{grid-template-columns:1fr}
+  .portal-admin-v65.portal-tab-resumo .admin-hero-visual-v65{min-height:164px}
+  .portal-admin-v65.portal-tab-resumo .admin-hero-person-v65{
+    width:520px!important;
+    left:66%!important;
+    bottom:-87px!important;
+  }
+  .portal-admin-v65.portal-tab-resumo .admin-hero-quote-v65{left:20px;right:auto;top:24px}
+  .portal-admin-v65.portal-tab-resumo .admin-hero-pillars-v65{right:14px}
+  .admin-dashboard-grid-v66,.admin-dashboard-lower-v66{grid-template-columns:1fr}
+  .admin-dashboard-grid-v66>.admin-panel-v65{min-height:auto}
+  .admin-appointments-v66>div:last-child{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .admin-footer-v66{grid-template-columns:1fr;text-align:center}
+  .admin-footer-brand-v66{justify-content:center}
+}
+@media(max-width:620px){
+  .admin-dashboard-kpi-row-v66 .admin-kpis-v65{grid-template-columns:1fr 1fr}
+  .admin-appointments-v66>div:last-child{grid-template-columns:1fr}
+  .admin-project-table-v66{overflow-x:auto}
+  .admin-project-table-v66 .head,.admin-project-table-v66 .row{min-width:650px}
+  .portal-admin-v65.portal-tab-resumo .admin-hero-person-v65{
+    width:430px!important;
+    left:68%!important;
+    bottom:-77px!important;
+  }
+  .portal-admin-v65.portal-tab-resumo .admin-hero-ab-v65{font-size:3.6rem;right:14%;top:22px}
+  .portal-admin-v65.portal-tab-resumo .admin-hero-quote-v65{display:none}
+  .admin-footer-brand-v66 em{display:none}
+}
