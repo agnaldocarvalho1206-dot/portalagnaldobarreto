@@ -8,9 +8,9 @@ const workflow = readFileSync(new URL('../.github/workflows/validate.yml', impor
 test('build usa lockfile para runtime e ferramentas de build fixadas', () => {
   assert.match(docker, /RUN npm ci --omit=dev --no-audit --no-fund --prefer-offline/);
   assert.match(workflow, /run: npm ci --no-audit --no-fund/);
-  assert.match(docker, /mkdir -p \/build-tools && cd \/build-tools/);
+  assert.match(docker, /mkdir -p \/app/.build-tools && cd \/app/.build-tools/);
   assert.match(docker, /npm install --no-save --package-lock=false/);
-  assert.match(docker, /ln -s \/build-tools\/node_modules\/@tailwindcss\/postcss/);
+  assert.match(docker, /ln -s \/app/.build-tools\/node_modules\/@tailwindcss\/postcss/);
 
   for (const pkg of [
     '@tailwindcss/postcss@4.2.1',
