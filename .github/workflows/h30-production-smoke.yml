@@ -1,0 +1,22 @@
+name: H30 Production Smoke
+
+on:
+  push:
+    branches: [homologacao-h30-smoke-final]
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      HOMOLOGATION_BASE_URL: https://agnaldobarreto.tech
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Production smoke
+        run: node scripts/smoke-deployment.mjs
