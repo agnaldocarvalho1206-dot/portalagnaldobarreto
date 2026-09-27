@@ -6,7 +6,7 @@ ENV NODE_OPTIONS=--max-old-space-size=384 \
     npm_config_update_notifier=false
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev --no-audit --no-fund --prefer-offline
-RUN mkdir -p /build-tools && cd /build-tools \
+RUN mkdir -p /app/.build-tools && cd /app/.build-tools \
     && printf '{"private":true,"type":"module"}\n' > package.json \
     && npm install --no-save --package-lock=false --no-audit --no-fund --prefer-offline \
       @tailwindcss/postcss@4.2.1 \
@@ -18,14 +18,14 @@ RUN mkdir -p /build-tools && cd /build-tools \
       tw-animate-css@1.4.0 \
       typescript@5.9.3 \
     && mkdir -p /app/node_modules/@tailwindcss /app/node_modules/@types \
-    && ln -s /build-tools/node_modules/@tailwindcss/postcss /app/node_modules/@tailwindcss/postcss \
-    && ln -s /build-tools/node_modules/tailwindcss /app/node_modules/tailwindcss \
-    && ln -s /build-tools/node_modules/tw-animate-css /app/node_modules/tw-animate-css \
-    && ln -s /build-tools/node_modules/typescript /app/node_modules/typescript \
-    && ln -s /build-tools/node_modules/@types/node /app/node_modules/@types/node \
-    && ln -s /build-tools/node_modules/@types/pg /app/node_modules/@types/pg \
-    && ln -s /build-tools/node_modules/@types/react /app/node_modules/@types/react \
-    && ln -s /build-tools/node_modules/@types/react-dom /app/node_modules/@types/react-dom
+    && ln -s /app/.build-tools/node_modules/@tailwindcss/postcss /app/node_modules/@tailwindcss/postcss \
+    && ln -s /app/.build-tools/node_modules/tailwindcss /app/node_modules/tailwindcss \
+    && ln -s /app/.build-tools/node_modules/tw-animate-css /app/node_modules/tw-animate-css \
+    && ln -s /app/.build-tools/node_modules/typescript /app/node_modules/typescript \
+    && ln -s /app/.build-tools/node_modules/@types/node /app/node_modules/@types/node \
+    && ln -s /app/.build-tools/node_modules/@types/pg /app/node_modules/@types/pg \
+    && ln -s /app/.build-tools/node_modules/@types/react /app/node_modules/@types/react \
+    && ln -s /app/.build-tools/node_modules/@types/react-dom /app/node_modules/@types/react-dom
 
 FROM dependencies AS builder
 ARG NEXT_PUBLIC_SUPABASE_URL
