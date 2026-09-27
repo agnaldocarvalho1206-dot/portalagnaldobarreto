@@ -18,6 +18,10 @@ test('produção exige HTTPS, Supabase, banco e armazenamento configurados',()=>
     S3_SECRET_ACCESS_KEY:'example'
   };
   assert.doesNotThrow(()=>validateProductionConfig(env));
+  assert.doesNotThrow(()=>validateProductionConfig({
+    ...env,
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:'eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYW5vbiJ9.synthetic_signature_123',
+  }));
   for(const change of [
     {APP_URL:'http://example.test'},
     {NEXT_PUBLIC_SUPABASE_URL:'http://project.supabase.co'},
