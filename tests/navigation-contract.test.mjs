@@ -96,3 +96,12 @@ test('dashboard não usa percentuais demonstrativos quando não existem leads re
   assert.doesNotMatch(ui, /Lojas Virtuais',value:24/);
   assert.match(ui, /Nenhum dado real de serviços disponível ainda/);
 });
+
+
+test('atalhos administrativos executam a ação prometida', () => {
+  const ui=read('app/portal-ui.tsx');
+  assert.match(ui,/setTab\('Projetos'\);setCreate\(true\)/);
+  assert.match(ui,/defaultOpen=\{selected===p\.id\}/);
+  assert.doesNotMatch(ui,/>Novo Cliente<\/b><small>Cadastrar cliente<\/small>/);
+  assert.match(ui,/>Clientes<\/b><small>Gerenciar clientes<\/small>/);
+});
