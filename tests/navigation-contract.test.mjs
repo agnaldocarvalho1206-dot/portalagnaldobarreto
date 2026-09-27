@@ -105,3 +105,28 @@ test('atalhos administrativos executam a ação prometida', () => {
   assert.doesNotMatch(ui,/>Novo Cliente<\/b><small>Cadastrar cliente<\/small>/);
   assert.match(ui,/>Clientes<\/b><small>Gerenciar clientes<\/small>/);
 });
+
+
+test('todos os destinos setTab usados por botões existem no portal', () => {
+  const ui=read('app/portal-ui.tsx');
+  const allowed=new Set([
+    'Resumo','Leads / CRM','Clientes','Propostas','Projetos','Mensagens',
+    'Tarefas','Calendário','Aprovações','Financeiro','Documentos',
+    'Relatórios / BI','Conteúdos','Suporte','Usuários','Configurações',
+    'Solicitações'
+  ]);
+  const targets=[...ui.matchAll(/setTab\('([^']+)'\)/g)].map(match=>match[1]);
+  assert.ok(targets.length>0,'Nenhum destino setTab foi encontrado.');
+  for(const target of targets){
+    assert.ok(allowed.has(target),'Botão/atalho aponta para aba inexistente: '+target);
+  }
+});
+
+test('atalhos do rodapé administrativo apontam somente para abas válidas', () => {
+  const ui=read('app/portal-ui.tsx');
+  const match=ui.match(/function AdminFooterV66[\s\S]*?const links=\[([\s\S]*?)\];const visibleLinks/);
+  assert.ok(match,'Lista de atalhos do rodapé administrativo não encontrada.');
+  const tabs=[...match[1].matchAll(/\['([^']+)','[^']+'\]/g)].map(item=>item[1]);
+  const valid=new Set(['Resumo','Leads / CRM','Clientes','Propostas','Projetos','Tarefas','Calendário','Relatórios / BI','Financeiro','Documentos','Suporte','Conteúdos','Configurações']);
+  for(const tab of tabs)assert.ok(valid.has(tab),'Rodapé aponta para aba inexistente: '+tab);
+});
