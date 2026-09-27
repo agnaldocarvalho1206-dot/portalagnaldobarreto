@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {randomBytes} from 'node:crypto';
-import {validateProductionConfig} from '../lib/production-config.mjs';
+import {validateProductionConfig,validateRuntimeConfig} from '../lib/production-config.mjs';
 
 test('produção exige HTTPS, Supabase, banco e armazenamento configurados',()=>{
   assert.throws(()=>validateProductionConfig({}),/Configure/);
@@ -27,4 +27,18 @@ test('produção exige HTTPS, Supabase, banco e armazenamento configurados',()=>
     {S3_ENDPOINT:'http://storage.example.test'},
     {DATABASE_SSL:''}
   ]) assert.throws(()=>validateProductionConfig({...env,...change}));
+});
+
+
+test('runtime sobe sem storage, mas preflight completo continua exigindo bucket',()=>{
+  const env={
+    APP_URL:'https://example.test',
+    NEXT_PUBLIC_SUPABASE_URL:'https://project.supabase.co',
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:'sb_publishable_test_key_for_validation_123456',
+    DATABASE_URL:'postgresql://user@database/portal',
+    DATABASE_SSL:'false',
+    RATE_LIMIT_HMAC_SECRET:randomBytes(32).toString('hex'),
+  };
+  assert.doesNotThrow(()=>validateRuntimeConfig(env));
+  assert.throws(()=>validateProductionConfig(env),/S3_ENDPOINT/);
 });
