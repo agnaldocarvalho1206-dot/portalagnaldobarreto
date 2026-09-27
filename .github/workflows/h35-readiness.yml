@@ -22,7 +22,7 @@ jobs:
           node --input-type=module <<'NODE'
           const base=new URL(process.env.BASE);
           const [live,ready]=await Promise.all([
-            fetch(new URL('/api/health/live',base),{headers:{'User-Agent':'Portal-AB-H35/1.0'}}),
+            fetch(new URL('/api/health/live',base),{headers:{'User-Agent':'Portal-AB-H35b/1.0'}}),
             fetch(new URL('/api/health/ready',base),{headers:{'User-Agent':'Portal-AB-H35/1.0'}}),
           ]);
           const liveJson=await live.json();
