@@ -31,6 +31,7 @@ O servidor standalone contém os assets após o build. A publicação Docker faz
 - Em **Gestão → Usuários**, administradores podem visualizar perfis existentes, alterar papéis e ativar/desativar contas. O sistema bloqueia a remoção do próprio papel de administrador e a auto-desativação para reduzir risco de bloqueio acidental.
 - A listagem e as alterações respeitam as políticas RLS do Supabase; nenhuma chave secreta é enviada ao navegador.
 - Não existe senha padrão, cadastro público de administrador nem botão de acesso fictício. Provisionamento e recuperação de credenciais permanecem sob o Supabase Auth.
+- Novas senhas definidas pelo fluxo `/redefinir-senha` exigem 12+ caracteres com maiúscula, minúscula, número e símbolo. A proteção nativa do Supabase contra senhas vazadas depende de recurso do plano e deve ser revisada separadamente no painel do provedor.
 
 ## Recursos conectados
 
