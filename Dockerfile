@@ -1,7 +1,11 @@
 FROM node:24-bookworm-slim AS dependencies
 WORKDIR /app
+ENV NODE_OPTIONS=--max-old-space-size=384 \
+    npm_config_maxsockets=2 \
+    npm_config_progress=false \
+    npm_config_update_notifier=false
 COPY package.json package-lock.json ./
-RUN npm ci --no-audit --no-fund
+RUN npm ci --no-audit --no-fund --prefer-offline
 
 FROM dependencies AS builder
 ARG NEXT_PUBLIC_SUPABASE_URL
