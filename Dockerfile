@@ -6,7 +6,7 @@ ENV NODE_OPTIONS=--max-old-space-size=384 \
     npm_config_update_notifier=false
 COPY package.json package-lock.json ./
 RUN npm ci --omit=dev --no-audit --no-fund --prefer-offline
-RUN npm install --no-save --package-lock=false --no-audit --no-fund --prefer-offline \
+RUN npm install --omit=dev --no-save --package-lock=false --no-audit --no-fund --prefer-offline \
     @tailwindcss/postcss@4.2.1 \
     @types/node@22.19.19 \
     @types/pg@8.23.1 \
