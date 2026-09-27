@@ -1,5 +1,13 @@
 # Segurança do portal
 
+## Atualização de 27/09/2026
+
+- A redefinição de senha do Portal AB exige no mínimo 12 caracteres, com letra maiúscula, letra minúscula, número e símbolo.
+- A política é aplicada somente a novas senhas/redefinições; logins existentes não são bloqueados retroativamente pelo front-end.
+- O advisor de segurança do Supabase reporta proteção contra senhas vazadas desativada. O projeto atual está no plano Free, no qual esse recurso nativo não está disponível; reavaliar ao migrar de plano.
+- O rate limit de login continua ativo por conta e por origem, e a recuperação não revela se um e-mail está cadastrado.
+- MFA permanece uma decisão operacional futura e não deve ser declarado como habilitado enquanto não houver configuração e fluxo homologados.
+
 ## Atualização de 23/09/2026
 
 - Autenticação e sessões do Portal AB usam Supabase Auth; `public.profiles` concentra papel e situação da conta.
