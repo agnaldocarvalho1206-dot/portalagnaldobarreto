@@ -51,3 +51,15 @@ test('Docker limita memoria e concorrencia durante instalacao/build no EasyPanel
   assert.match(docker, /npm_config_progress=false/);
   assert.match(docker, /npm ci --omit=dev --no-audit --no-fund --prefer-offline/);
 });
+
+
+test('imagem final preserva apenas a configuracao publica Supabase do build',()=>{
+  const runner=docker.slice(docker.indexOf('FROM node:24-bookworm-slim AS runner'));
+  assert.match(runner,/ARG NEXT_PUBLIC_SUPABASE_URL/);
+  assert.match(runner,/ARG NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY/);
+  assert.match(runner,/NEXT_PUBLIC_SUPABASE_URL=\$\{NEXT_PUBLIC_SUPABASE_URL\}/);
+  assert.match(runner,/NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=\$\{NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY\}/);
+  for(const secret of ['DATABASE_URL','S3_SECRET_ACCESS_KEY','RATE_LIMIT_HMAC_SECRET']){
+    assert.doesNotMatch(runner,new RegExp('ARG\\s+'+secret));
+  }
+});
