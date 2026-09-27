@@ -46,7 +46,7 @@ jobs:
       - name: Docker runtime liveness
         shell: bash
         run: |
-          docker run -d --rm --name portal-ab-runtime \
+          docker run -d --name portal-ab-runtime \
             -e APP_URL=https://example.test \
             -e DATABASE_URL=postgresql://user:pass@127.0.0.1:5432/portal \
             -e DATABASE_SSL=false \
@@ -61,6 +61,8 @@ jobs:
             fi
             sleep 1
           done
+          echo "Container state:"
+          docker inspect --format='status={{.State.Status}} exit={{.State.ExitCode}} error={{.State.Error}}' portal-ab-runtime || true
+          echo "Container logs:"
           docker logs portal-ab-runtime || true
-          docker inspect portal-ab-runtime || true
           exit 1
