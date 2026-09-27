@@ -1,4 +1,4 @@
-name: H30 Production Smoke
+name: H30 Production Security Smoke
 
 on:
   push:
@@ -10,13 +10,37 @@ permissions:
 jobs:
   smoke:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
-    env:
-      HOMOLOGATION_BASE_URL: https://agnaldobarreto.tech
+    timeout-minutes: 8
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-      - name: Production smoke
-        run: node scripts/smoke-deployment.mjs
+      - name: Public and security smoke
+        env:
+          BASE: https://agnaldobarreto.tech
+        run: |
+          node --input-type=module <<'NODE'
+          const base=new URL(process.env.BASE);
+          async function req(path,expected){
+            const r=await fetch(new URL(path,base),{redirect:'manual',headers:{'User-Agent':'Portal-AB-H30/1.0'}});
+            if(!expected.includes(r.status)) throw new Error(path+' -> '+r.status+' esperado '+expected.join('/'));
+            return r;
+          }
+          for(const path of ['/','/sobre','/projetos','/servicos','/blog','/contato','/depoimentos','/privacidade','/entrar','/recuperar']){
+            const r=await req(path,[200]);
+            if(!r.headers.get('content-security-policy'))throw new Error(path+' sem CSP');
+            if(!r.headers.get('strict-transport-security'))throw new Error(path+' sem HSTS');
+          }
+          const live=await (await req('/api/health/live',[200])).json();
+          if(live.status!=='ok')throw new Error('live inválido');
+          for(const path of ['/portal','/gestao']){
+            const r=await req(path,[302,303,307,308]);
+            if(!(r.headers.get('location')||'').includes('/entrar'))throw new Error(path+' sem redirect para login');
+          }
+          const api=await req('/api/portal',[401]);
+          await req('/api/projetos?pagina=0',[400]);
+          await req('/api/blog?pagina=0',[400]);
+          const ready=await req('/api/health/ready',[200,503]);
+          const readiness=await ready.json();
+          console.log(JSON.stringify({event:'h30_security_smoke_passed',live,readiness,portalApi:api.status}));
+          NODE
