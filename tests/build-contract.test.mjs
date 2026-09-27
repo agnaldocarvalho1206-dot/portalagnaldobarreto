@@ -46,6 +46,7 @@ test('Docker declara somente configuração pública do Supabase no build', () =
 
 test('Docker limita memoria e concorrencia durante instalacao/build no EasyPanel', () => {
   assert.match(docker, /NODE_OPTIONS=--max-old-space-size=384/);
+  assert.match(docker, /FROM dependencies AS builder\nENV NODE_OPTIONS=--max-old-space-size=768/);
   assert.match(docker, /npm_config_maxsockets=1/);
   assert.match(docker, /npm_config_progress=false/);
   assert.match(docker, /npm ci --omit=dev --no-audit --no-fund --prefer-offline/);
