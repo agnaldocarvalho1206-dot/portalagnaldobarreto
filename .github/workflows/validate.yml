@@ -16,7 +16,7 @@ jobs:
     timeout-minutes: 25
     env:
       NEXT_PUBLIC_SUPABASE_URL: https://okhdrmnbfhbdmrrlakdj.supabase.co
-      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ci-placeholder-key
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder_1234567890
     steps:
       - name: Checkout
         uses: actions/checkout@v4
