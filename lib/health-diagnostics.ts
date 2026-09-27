@@ -34,3 +34,25 @@ export function classifyStorageFailure(error:unknown){
   if(message.includes('certificate')||message.includes('ssl')||message.includes('tls'))return 'tls';
   return 'unknown';
 }
+
+
+export function describeStorageEndpoint(value:string|undefined){
+  if(!value)return {provider:'missing',format:'missing'} as const;
+  try{
+    const url=new URL(value);
+    if(url.protocol!=='https:'||url.pathname!=='/'||url.search||url.hash||url.username||url.password){
+      return {provider:'invalid',format:'invalid'} as const;
+    }
+    const host=url.hostname.toLowerCase();
+    const r2=/^[a-f0-9]{32}(?:\.(?:eu|us|fedramp))?\.r2\.cloudflarestorage\.com$/;
+    if(host.endsWith('.r2.cloudflarestorage.com')){
+      return {provider:'cloudflare-r2',format:r2.test(host)?'valid':'invalid'} as const;
+    }
+    if(host.endsWith('.amazonaws.com')){
+      return {provider:'aws-s3',format:'valid'} as const;
+    }
+    return {provider:'custom',format:'valid'} as const;
+  }catch{
+    return {provider:'invalid',format:'invalid'} as const;
+  }
+}
