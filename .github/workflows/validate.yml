@@ -43,3 +43,24 @@ jobs:
             --build-arg NEXT_PUBLIC_SUPABASE_URL="$NEXT_PUBLIC_SUPABASE_URL" \
             --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="$NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY" \
             -t portal-ab-ci .
+      - name: Docker runtime liveness
+        shell: bash
+        run: |
+          docker run -d --rm --name portal-ab-runtime \
+            -e APP_URL=https://example.test \
+            -e DATABASE_URL=postgresql://user:pass@127.0.0.1:5432/portal \
+            -e DATABASE_SSL=false \
+            -e RATE_LIMIT_HMAC_SECRET=0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef \
+            -p 127.0.0.1:3100:3000 \
+            portal-ab-ci
+          for i in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:3100/api/health/live >/tmp/live.json; then
+              cat /tmp/live.json
+              docker logs portal-ab-runtime
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs portal-ab-runtime || true
+          docker inspect portal-ab-runtime || true
+          exit 1
