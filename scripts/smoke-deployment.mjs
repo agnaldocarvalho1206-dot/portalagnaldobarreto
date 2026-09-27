@@ -6,6 +6,38 @@ const base=new URL(value);
 if(base.protocol!=='https:'||base.pathname!=='/'||base.search||base.hash)throw new Error('Use a origem HTTPS publicada, sem caminho, query ou hash.');
 
 const checked=new Map();
+const EXPECTED_LIVE_CONTRACT='portal-ab-health-v2';
+
+async function waitForCurrentDeployment(){
+  const url=new URL('/api/health/live',base);
+  let lastStatus=0,lastBody='';
+  for(let attempt=1;attempt<=20;attempt++){
+    const response=await fetch(url,{
+      redirect:'manual',
+      headers:{
+        'User-Agent':'Portal-AB-Homologation/1.0',
+        'Cache-Control':'no-cache',
+      },
+    });
+    lastStatus=response.status;
+    lastBody=(await response.text()).slice(0,1000);
+    let body;
+    try{body=JSON.parse(lastBody)}catch{body=null;}
+
+    if(response.status===200&&body?.status==='ok'&&body?.contract===EXPECTED_LIVE_CONTRACT){
+      checked.set(url.pathname,response.status);
+      return body;
+    }
+
+    if(attempt<20)await new Promise(resolve=>setTimeout(resolve,15000));
+  }
+
+  throw new Error(
+    'Produção não atualizou para o contrato de liveness '+EXPECTED_LIVE_CONTRACT
+    +' após as tentativas de homologação | último status '+lastStatus+(lastBody?' | '+lastBody:''),
+  );
+}
+
 
 async function request(path,{expected,redirect='manual'}={}){
   const url=new URL(path,base);
@@ -44,47 +76,11 @@ for(const path of publicRoutes){
   }
 }
 
-const live=await request('/api/health/live',{expected:[200]});
-const liveJson=await live.json();
-if(liveJson.status!=='ok')throw new Error('Liveness não confirmou status ok.');
+const liveJson=await waitForCurrentDeployment();
+if(liveJson.status!=='ok'||liveJson.contract!==EXPECTED_LIVE_CONTRACT)throw new Error('Liveness não confirmou a revisão atual.');
 
-async function waitForCurrentDeployment(){
-  const url=new URL('/api/health/ready',base);
-  let lastStatus=0,lastBody='';
-  for(let attempt=1;attempt<=20;attempt++){
-    const response=await fetch(url,{
-      redirect:'manual',
-      headers:{
-        'User-Agent':'Portal-AB-Homologation/1.0',
-        'Cache-Control':'no-cache',
-      },
-    });
-    lastStatus=response.status;
-    lastBody=(await response.text()).slice(0,1000);
-    let body;
-    try{body=JSON.parse(lastBody)}catch{body=null;}
-
-    const checks=body?.checks;
-    const currentContract=checks
-      && ['database','storage','auth'].every(key=>['ok','unavailable'].includes(checks[key]));
-
-    if(currentContract){
-      checked.set(url.pathname,response.status);
-      if(response.status!==200||body.status!=='ready'){
-        throw new Error('/api/health/ready confirmou deploy atual, mas dependências não estão prontas | '+lastBody);
-      }
-      return body;
-    }
-
-    if(attempt<20)await new Promise(resolve=>setTimeout(resolve,15000));
-  }
-  throw new Error(
-    'Produção não atualizou para o contrato de readiness H12 após as tentativas de homologação'
-    +' | último status '+lastStatus+(lastBody?' | '+lastBody:''),
-  );
-}
-
-const readyJson=await waitForCurrentDeployment();
+const ready=await request('/api/health/ready',{expected:[200]});
+const readyJson=await ready.json();
 if(readyJson.status!=='ready')throw new Error('Readiness não confirmou banco, storage e Supabase.');
 
 for(const path of ['/portal','/gestao']){
