@@ -39,15 +39,22 @@ O deploy de produção é orquestrado por `.github/workflows/deploy-production.y
 
 1. No serviço `portal-agnaldobarretoapp`, abra **Deployments** no EasyPanel e copie o **Deployment Trigger URL**.
 2. No GitHub, salve esse valor somente como secret de Actions chamado `EASYPANEL_DEPLOY_TRIGGER_URL`.
-3. Nunca grave o Trigger URL em arquivo, issue, log, variável pública ou código-fonte: o endereço contém token secreto.
-4. A cada push em `main`, o workflow:
+3. Para permitir que o workflow também habilite/inicie um serviço parado, configure no EasyPanel uma origem HTTPS válida para o painel e gere uma credencial de API. Salve somente no GitHub Actions:
+   - `EASYPANEL_API_URL` = origem HTTPS do painel, sem `/api`;
+   - `EASYPANEL_API_TOKEN` = bearer token do usuário autorizado.
+4. Nunca use bearer token do EasyPanel sobre HTTP simples. O script `scripts/start-easypanel-service.mjs` recusa qualquer `EASYPANEL_API_URL` que não seja HTTPS.
+5. Nunca grave Trigger URL, API token ou URL MCP com chave em arquivo, issue, log, variável pública ou código-fonte.
+6. A cada push em `main`, o workflow:
+   - tenta iniciar/habilitar o App pela API quando os dois secrets de API estiverem configurados;
    - aciona o Trigger URL;
+   - tenta confirmar novamente que o App está habilitado;
    - aguarda o EasyPanel publicar a revisão atual;
    - executa `scripts/smoke-deployment.mjs` contra `https://agnaldobarreto.tech`;
    - falha se o deploy não atualizar ou se banco, storage ou autenticação não estiverem prontos.
-5. `.github/workflows/homologate-deployment.yml` permanece disponível para smoke manual sem iniciar um novo deploy.
+7. Sem credenciais de API, o autostart é apenas ignorado; o deploy continua dependendo do serviço estar iniciado manualmente no EasyPanel.
+8. `.github/workflows/homologate-deployment.yml` permanece disponível para smoke manual sem iniciar um novo deploy.
 
-Se o secret não estiver configurado, o workflow de produção falha de forma explícita antes de tentar homologar uma versão antiga.
+Se `EASYPANEL_DEPLOY_TRIGGER_URL` não estiver configurado, o workflow de produção falha de forma explícita antes de tentar homologar uma versão antiga.
 
 ## 4. Migrações seguras
 

@@ -33,6 +33,8 @@ jobs:
         run: node --check scripts/smoke-deployment.mjs
       - name: EasyPanel deploy trigger syntax
         run: node --check scripts/trigger-easypanel-deploy.mjs
+      - name: EasyPanel start service syntax
+        run: node --check scripts/start-easypanel-service.mjs
       - name: Typecheck
         run: npm run typecheck
       - name: Build
