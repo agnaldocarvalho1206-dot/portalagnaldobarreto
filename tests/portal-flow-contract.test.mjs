@@ -1,13 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { mkdtemp } from 'node:fs/promises';
+import { mkdir, mkdtemp } from 'node:fs/promises';
 import path from 'node:path';
 import { PGlite } from '@electric-sql/pglite';
 
 const read = file => readFileSync(new URL('../' + file, import.meta.url), 'utf8');
 
 test('migração H03 recupera client_id e updated em projetos existentes', async () => {
+  await mkdir('work',{recursive:true});
   const dir = await mkdtemp(path.resolve('work', 'portal-flow-'));
   const db = await PGlite.create(dir);
 
@@ -60,4 +61,16 @@ test('vínculo Cliente ↔ Usuário permanece exclusivo do administrador', () =>
 
   assert.match(adminSet, /link-client-user/);
   assert.doesNotMatch(staffSet, /link-client-user/);
+});
+
+
+test('staff não recebe caminhos de interface para Configurações', () => {
+  const ui = read('app/portal-ui.tsx');
+  const settingsApi = read('app/api/settings/route.ts');
+
+  assert.match(ui, /tab==='Configurações'&&isFullAdmin/);
+  assert.match(ui, /fullAdmin=\{isFullAdmin\}/);
+  assert.match(ui, /fullAdmin\?links:links\.filter/);
+  assert.match(ui, /isFullAdmin&&<button onClick=\{\(\)=>setTab\('Configurações'\)\}/);
+  assert.match(settingsApi, /const \{admin\}=await identity\(\);if\(!admin\)return error\('Acesso restrito\.',403\)/);
 });
