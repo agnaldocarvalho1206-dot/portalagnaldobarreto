@@ -33,6 +33,22 @@ O portal armazena documentos em contact/ com identificador aleatório. O nome or
 - Defina pelo menos 1 GB de RAM para o App e memória adicional no build. Ajuste conforme a utilização.
 - O processo roda como usuário node, sem privilégios de root.
 
+## 3.1 Deploy automático GitHub → EasyPanel
+
+O deploy de produção é orquestrado por `.github/workflows/deploy-production.yml`.
+
+1. No serviço `portal-agnaldobarretoapp`, abra **Deployments** no EasyPanel e copie o **Deployment Trigger URL**.
+2. No GitHub, salve esse valor somente como secret de Actions chamado `EASYPANEL_DEPLOY_TRIGGER_URL`.
+3. Nunca grave o Trigger URL em arquivo, issue, log, variável pública ou código-fonte: o endereço contém token secreto.
+4. A cada push em `main`, o workflow:
+   - aciona o Trigger URL;
+   - aguarda o EasyPanel publicar a revisão atual;
+   - executa `scripts/smoke-deployment.mjs` contra `https://agnaldobarreto.tech`;
+   - falha se o deploy não atualizar ou se banco, storage ou autenticação não estiverem prontos.
+5. `.github/workflows/homologate-deployment.yml` permanece disponível para smoke manual sem iniciar um novo deploy.
+
+Se o secret não estiver configurado, o workflow de produção falha de forma explícita antes de tentar homologar uma versão antiga.
+
 ## 4. Migrações seguras
 
 Antes de atualizar um banco existente:
