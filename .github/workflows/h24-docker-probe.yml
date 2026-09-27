@@ -1,0 +1,21 @@
+name: H24 Docker Probe
+
+on:
+  push:
+    branches: [homologacao-h24-build-minimo]
+
+permissions:
+  contents: read
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docker production build
+        run: |
+          docker build --progress=plain \
+            --build-arg NEXT_PUBLIC_SUPABASE_URL="https://okhdrmnbfhbdmrrlakdj.supabase.co" \
+            --build-arg NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY="ci-placeholder-key" \
+            -t portal-ab-h24 .
