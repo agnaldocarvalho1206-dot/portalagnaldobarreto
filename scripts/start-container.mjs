@@ -1,6 +1,11 @@
-import { validateProductionConfig } from '../lib/production-config.mjs';
+import { validateRuntimeConfig } from '../lib/production-config.mjs';
 
-validateProductionConfig();
+try {
+  validateRuntimeConfig();
+} catch (error) {
+  console.error(JSON.stringify({event:'runtime_config_invalid',message:error instanceof Error?error.message:'Configuração inválida'}));
+  throw error;
+}
 
 function firstDefined(...values) {
   return values.find((value) => typeof value === 'string' && value.length > 0);
