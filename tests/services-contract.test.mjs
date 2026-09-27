@@ -15,6 +15,7 @@ test('cada serviço do catálogo possui ícone estável por slug',()=>{
     assert.match(page,new RegExp('(?:^|[,\\{])'+slug+':'));
   }
 
+  assert.doesNotMatch(page,/const icons=/);
   assert.doesNotMatch(page,/const Icon=icons\[i\]/);
   assert.match(page,/const Icon=serviceIcons\[s\.slug\]/);
   assert.match(page,/treinamentos:GraduationCap/);
