@@ -1,10 +1,15 @@
 import { validateRuntimeConfig } from '../lib/production-config.mjs';
 
+let runtimeMode='ready';
 try {
   validateRuntimeConfig();
 } catch (error) {
-  console.error(JSON.stringify({event:'runtime_config_invalid',message:error instanceof Error?error.message:'Configuração inválida'}));
-  throw error;
+  runtimeMode='degraded';
+  console.error(JSON.stringify({
+    event:'runtime_config_invalid',
+    mode:'degraded',
+    message:error instanceof Error?error.message:'Configuração inválida',
+  }));
 }
 
 function firstDefined(...values) {
@@ -38,36 +43,48 @@ function normalizeDatabaseUrl(value) {
     process.env.PGPASSWORD,
   );
 
-  if (user && !url.username) {
-    url.username = user;
-  }
-
-  if (password && !url.password) {
-    url.password = password;
-  }
+  if (user && !url.username) url.username = user;
+  if (password && !url.password) url.password = password;
 
   return url.toString();
 }
 
-process.env.DATABASE_URL = normalizeDatabaseUrl(process.env.DATABASE_URL);
-if (process.env.MIGRATION_DATABASE_URL) {
-  process.env.MIGRATION_DATABASE_URL = normalizeDatabaseUrl(process.env.MIGRATION_DATABASE_URL);
+function prepareDatabaseUrl(name) {
+  const value=process.env[name];
+  if (!value) return null;
+  try {
+    const normalized=normalizeDatabaseUrl(value);
+    if (normalized) process.env[name]=normalized;
+    return normalized;
+  } catch {
+    runtimeMode='degraded';
+    console.error(JSON.stringify({event:'runtime_database_config_invalid',variable:name,mode:'degraded'}));
+    return null;
+  }
 }
 
-const databaseUrl = new URL(process.env.DATABASE_URL);
-const databaseName = databaseUrl.pathname.startsWith('/')
-  ? databaseUrl.pathname.slice(1)
-  : databaseUrl.pathname;
+const normalizedDatabaseUrl=prepareDatabaseUrl('DATABASE_URL');
+prepareDatabaseUrl('MIGRATION_DATABASE_URL');
 
-console.log(JSON.stringify({
-  event: 'runtime_database_target',
-  hostname: databaseUrl.hostname,
-  port: databaseUrl.port || '5432',
-  database: databaseName,
-  hasUsername: Boolean(databaseUrl.username),
-  hasPassword: Boolean(databaseUrl.password),
-  credentialSource: (databaseUrl.username && databaseUrl.password) ? 'database_url_or_separate_env' : 'missing',
-}));
+if (normalizedDatabaseUrl) {
+  const databaseUrl = new URL(normalizedDatabaseUrl);
+  const databaseName = databaseUrl.pathname.startsWith('/')
+    ? databaseUrl.pathname.slice(1)
+    : databaseUrl.pathname;
 
-console.log(JSON.stringify({ event: 'runtime_start', migrations: 'manual' }));
+  console.log(JSON.stringify({
+    event: 'runtime_database_target',
+    hostname: databaseUrl.hostname,
+    port: databaseUrl.port || '5432',
+    database: databaseName,
+    hasUsername: Boolean(databaseUrl.username),
+    hasPassword: Boolean(databaseUrl.password),
+    credentialSource: (databaseUrl.username && databaseUrl.password) ? 'database_url_or_separate_env' : 'missing',
+  }));
+} else {
+  runtimeMode='degraded';
+  console.error(JSON.stringify({event:'runtime_database_unavailable',mode:'degraded'}));
+}
+
+console.log(JSON.stringify({ event: 'runtime_start', migrations: 'manual', mode: runtimeMode }));
 await import('../server.js');
