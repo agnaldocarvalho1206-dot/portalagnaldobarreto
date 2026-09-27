@@ -14,6 +14,6 @@ export async function publicSettings(){
   }catch(cause){
     const err=cause as {name?:string;code?:string};
     console.error(JSON.stringify({event:'public_settings_fallback',name:err?.name||'Error',code:err?.code||'UNKNOWN'}));
-    return {};
+    return publicSettingsView({});
   }
 }
