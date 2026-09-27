@@ -1,6 +1,8 @@
 name: Homologate Portal AB Deployment
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       base_url:
@@ -16,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
-      HOMOLOGATION_BASE_URL: ${{ inputs.base_url }}
+      HOMOLOGATION_BASE_URL: ${{ inputs.base_url || 'https://agnaldobarreto.tech' }}
       HOMOLOGATION_ADMIN_EMAIL: ${{ secrets.HOMOLOGATION_ADMIN_EMAIL }}
       HOMOLOGATION_ADMIN_PASSWORD: ${{ secrets.HOMOLOGATION_ADMIN_PASSWORD }}
       HOMOLOGATION_CLIENT_EMAIL: ${{ secrets.HOMOLOGATION_CLIENT_EMAIL }}
