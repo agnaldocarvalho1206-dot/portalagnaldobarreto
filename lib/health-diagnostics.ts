@@ -36,7 +36,15 @@ export function classifyStorageFailure(error:unknown){
 }
 
 
+export function normalizeStorageEndpoint(value:string|undefined){
+  if(!value)return value;
+  const trimmed=value.trim().replace(/\/+$/,'');
+  if(/\.r2\.cloudflarestorage$/i.test(trimmed))return trimmed+'.com';
+  return trimmed;
+}
+
 export function describeStorageEndpoint(value:string|undefined){
+  value=normalizeStorageEndpoint(value);
   if(!value)return {provider:'missing',format:'missing'} as const;
   try{
     const url=new URL(value);
