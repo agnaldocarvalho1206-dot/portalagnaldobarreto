@@ -1,8 +1,8 @@
 import type { NextConfig } from 'next';
 
 const isDev = process.env.NODE_ENV === 'development';
-const supabaseHttp = 'https://okhdrmnbfhbdmrrlakdj.supabase.co';
-const supabaseWs = 'wss://okhdrmnbfhbdmrrlakdj.supabase.co';
+const supabaseHttp = process.env.NEXT_PUBLIC_SUPABASE_URL ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).origin : '';
+const supabaseWs = supabaseHttp ? supabaseHttp.replace(/^https:/,'wss:') : '';
 
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -14,7 +14,7 @@ const contentSecurityPolicy = [
   "font-src 'self' data: https:",
   "style-src 'self' 'unsafe-inline' https:",
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''}`,
-  `connect-src 'self' ${supabaseHttp} ${supabaseWs}${isDev ? ' ws:' : ''}`,
+  `connect-src 'self'${supabaseHttp ? ' '+supabaseHttp : ''}${supabaseWs ? ' '+supabaseWs : ''}${isDev ? ' ws:' : ''}`,
   "frame-src 'self' https://maps.google.com https://www.google.com",
   "upgrade-insecure-requests",
 ].join('; ');

@@ -1,0 +1,32 @@
+name: Homologate Portal AB Deployment
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_url:
+        description: "Origem HTTPS publicada, por exemplo https://portal.exemplo.com"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      HOMOLOGATION_BASE_URL: ${{ inputs.base_url }}
+      HOMOLOGATION_ADMIN_EMAIL: ${{ secrets.HOMOLOGATION_ADMIN_EMAIL }}
+      HOMOLOGATION_ADMIN_PASSWORD: ${{ secrets.HOMOLOGATION_ADMIN_PASSWORD }}
+      HOMOLOGATION_CLIENT_EMAIL: ${{ secrets.HOMOLOGATION_CLIENT_EMAIL }}
+      HOMOLOGATION_CLIENT_PASSWORD: ${{ secrets.HOMOLOGATION_CLIENT_PASSWORD }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Deployment smoke test
+        run: node scripts/smoke-deployment.mjs

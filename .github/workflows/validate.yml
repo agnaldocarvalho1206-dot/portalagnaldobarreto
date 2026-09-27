@@ -29,6 +29,8 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Tests
         run: npm test
+      - name: Deployment smoke syntax
+        run: node --check scripts/smoke-deployment.mjs
       - name: Typecheck
         run: npm run typecheck
       - name: Build

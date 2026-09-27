@@ -51,6 +51,8 @@ node scripts/migrate-postgres.mjs
 
 O health check ready permanece 503 antes das migrações ou quando banco/bucket não respondem. Use um job/terminal disponível mesmo se o App ainda estiver não saudável. Nunca execute migrações automaticamente em cada réplica.
 
+O `scripts/start-container.mjs` **não executa migrações**. Ele inicia a aplicação com a configuração validada; a rota `/api/health/ready` permanece indisponível até `scripts/migrate-postgres.mjs` ter sido executado com sucesso no job/terminal de migração.
+
 ## 5. Primeiro administrador
 
 A autenticação é feita pelo Supabase Auth. Não use `scripts/manage-user.mjs` para criar contas; esse utilitário foi desativado.
