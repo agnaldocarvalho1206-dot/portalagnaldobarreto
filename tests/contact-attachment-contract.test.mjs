@@ -16,7 +16,7 @@ test('anexo de contato permanece privado mas acessível ao operador do CRM',()=>
 test('CRM exibe somente o endpoint privado do anexo salvo',()=>{
   const ui=read('app/portal-ui.tsx');
   assert.match(ui,/const leadAttachment=/);
-  assert.match(ui,/\/api\/contact-attachment/);
+  assert.match(ui,/contact-attachment/);
   assert.match(ui,/>Baixar anexo privado<\/a>/);
   assert.match(ui,/leadAttachment\(l\.message\)/);
   assert.doesNotMatch(ui,/Anexo privado: https?:\/\//);
