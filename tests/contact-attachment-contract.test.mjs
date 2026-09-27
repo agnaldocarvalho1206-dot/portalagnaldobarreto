@@ -21,3 +21,14 @@ test('CRM exibe somente o endpoint privado do anexo salvo',()=>{
   assert.match(ui,/leadAttachment\(l\.message\)/);
   assert.doesNotMatch(ui,/Anexo privado: https?:\/\//);
 });
+
+
+test('cliente não vinculado ao CRM mantém área funcional de transição',()=>{
+  const ui=read('app/portal-ui.tsx');
+  assert.match(ui,/tab==='Resumo'&&!admin/);
+  assert.match(ui,/tab==='Solicitações'&&!admin/);
+  assert.match(ui,/tab==='Projetos'&&!admin/);
+  assert.match(ui,/Baixar meu anexo privado/);
+  assert.match(ui,/Acompanhe suas solicitações enquanto preparamos o vínculo completo/);
+  assert.match(ui,/setSelected\(p\.id\);setTab\('Mensagens'\)/);
+});
