@@ -12,7 +12,8 @@ async function request(path,{expected,redirect='manual'}={}){
   const response=await fetch(url,{redirect,headers:{'User-Agent':'Portal-AB-Homologation/1.0'}});
   const allowed=expected??[200];
   if(!allowed.includes(response.status)){
-    throw new Error(path+' retornou '+response.status+'; esperado '+allowed.join('/'));
+    const detail=(await response.clone().text()).slice(0,1000);
+    throw new Error(path+' retornou '+response.status+'; esperado '+allowed.join('/')+(detail?' | '+detail:''));
   }
   checked.set(url.pathname+url.search,response.status);
   return response;
