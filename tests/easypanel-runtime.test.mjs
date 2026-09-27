@@ -13,5 +13,8 @@ const containerStart=readFileSync(new URL('../scripts/start-container.mjs',impor
 assert.doesNotMatch(containerStart,/migrate-postgres\.mjs/);
 assert.doesNotMatch(containerStart,/spawnSync/);
 assert.match(containerStart,/migrations: 'manual'/);
+assert.match(containerStart,/validateRuntimeConfig/);
+assert.match(containerStart,/runtime_config_invalid/);
+assert.doesNotMatch(containerStart,/validateProductionConfig/);
 assert.match(containerStart,/import\('\.\.\/server\.js'\)/);
 console.log('OK: container não executa migrações automaticamente.');
