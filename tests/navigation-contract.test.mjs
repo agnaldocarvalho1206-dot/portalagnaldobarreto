@@ -55,7 +55,7 @@ test('links internos literais apontam apenas para rotas públicas conhecidas', (
 
 test('âncoras públicas usadas por CTAs existem nas páginas de destino', () => {
   const checks = [
-    ['app/projects-ab.tsx', 'portfolio'],
+    ['app/portfolio-explorer.tsx', 'portfolio'],
     ['app/services-ab.tsx', 'processo'],
     ['app/services-ab.tsx', 'solucoes'],
     ['app/contact-ab.tsx', 'orcamento'],
