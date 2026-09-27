@@ -19,9 +19,10 @@ export function getProductionDb() {
   return state.portalPool;
 }
 export async function checkProductionDb() {
-  const result = await getProductionDb().query('SELECT id FROM app_migrations WHERE id=$1', ['0001_auth.sql']);
-  if (!result.rowCount) throw new Error('Migrações pendentes.');
-  await getProductionDb().query('SELECT id FROM users LIMIT 1');
+  const latestMigration = '0016_client_project_relationship.sql';
+  const result = await getProductionDb().query('SELECT id FROM app_migrations WHERE id=$1', [latestMigration]);
+  if (!result.rowCount) throw new Error('Migrações pendentes: ' + latestMigration);
+  await getProductionDb().query('SELECT id, client_id, updated FROM client_projects LIMIT 1');
 }
 export async function closeProductionDb() { await state.portalPool?.end(); delete state.portalPool; }
 // SQL is constant application code. User data is always passed separately.
