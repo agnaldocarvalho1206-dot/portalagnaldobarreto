@@ -7,34 +7,64 @@ if(base.protocol!=='https:'||base.pathname!=='/'||base.search||base.hash)throw n
 
 const checked=new Map();
 const EXPECTED_LIVE_CONTRACT='portal-ab-health-v2';
+const previousBuildId=(process.env.HOMOLOGATION_PREVIOUS_BUILD_ID||'').trim();
 
 async function waitForCurrentDeployment(){
-  const url=new URL('/api/health/live',base);
-  let lastStatus=0,lastBody='';
+  const liveUrl=new URL('/api/health/live',base);
+  const buildUrl=new URL('/build-info.json',base);
+  let lastStatus=0,lastBody='',lastBuild='';
+
   for(let attempt=1;attempt<=20;attempt++){
-    const response=await fetch(url,{
-      redirect:'manual',
-      headers:{
-        'User-Agent':'Portal-AB-Homologation/1.0',
-        'Cache-Control':'no-cache',
-      },
-    });
+    const [response,buildResponse]=await Promise.all([
+      fetch(liveUrl,{
+        redirect:'manual',
+        headers:{
+          'User-Agent':'Portal-AB-Homologation/1.0',
+          'Cache-Control':'no-cache',
+        },
+      }),
+      fetch(buildUrl,{
+        redirect:'manual',
+        headers:{
+          'User-Agent':'Portal-AB-Homologation/1.0',
+          'Cache-Control':'no-cache',
+        },
+      }).catch(()=>null),
+    ]);
+
     lastStatus=response.status;
     lastBody=(await response.text()).slice(0,1000);
     let body;
     try{body=JSON.parse(lastBody)}catch{body=null;}
 
-    if(response.status===200&&body?.status==='ok'&&body?.contract===EXPECTED_LIVE_CONTRACT){
-      checked.set(url.pathname,response.status);
-      return body;
+    let build=null;
+    if(buildResponse?.ok){
+      try{build=await buildResponse.json()}catch{}
+    }
+    lastBuild=build?.buildId||'';
+
+    const currentContract=response.status===200
+      && body?.status==='ok'
+      && body?.contract===EXPECTED_LIVE_CONTRACT;
+    const currentBuild=Boolean(lastBuild)
+      && (!previousBuildId||lastBuild!==previousBuildId);
+
+    if(currentContract&&currentBuild){
+      checked.set(liveUrl.pathname,response.status);
+      checked.set(buildUrl.pathname,buildResponse.status);
+      return {live:body,build};
     }
 
     if(attempt<20)await new Promise(resolve=>setTimeout(resolve,15000));
   }
 
   throw new Error(
-    'Produção não atualizou para o contrato de liveness '+EXPECTED_LIVE_CONTRACT
-    +' após as tentativas de homologação | último status '+lastStatus+(lastBody?' | '+lastBody:''),
+    'Produção não confirmou uma nova revisão após as tentativas de homologação'
+    +' | contrato esperado '+EXPECTED_LIVE_CONTRACT
+    +' | último status '+lastStatus
+    +(previousBuildId?' | build anterior '+previousBuildId:'')
+    +(lastBuild?' | build atual '+lastBuild:' | build atual ausente')
+    +(lastBody?' | '+lastBody:''),
   );
 }
 
@@ -76,7 +106,8 @@ for(const path of publicRoutes){
   }
 }
 
-const liveJson=await waitForCurrentDeployment();
+const deployment=await waitForCurrentDeployment();
+const liveJson=deployment.live;
 if(liveJson.status!=='ok'||liveJson.contract!==EXPECTED_LIVE_CONTRACT)throw new Error('Liveness não confirmou a revisão atual.');
 
 const ready=await request('/api/health/ready',{expected:[200]});
@@ -169,6 +200,8 @@ console.log(JSON.stringify({
   origin:base.origin,
   checkedRoutes:checked.size,
   live:'ok',
+  buildId:deployment.build.buildId,
+  builtAt:deployment.build.builtAt,
   ready:'ready',
   protectedAreas:'redirect-to-login',
   anonymousPortalApi:401,
