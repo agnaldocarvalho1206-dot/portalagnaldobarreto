@@ -1,4 +1,5 @@
 import { validateRuntimeConfig } from '../lib/production-config.mjs';
+import { ensurePostgresMigrations } from '../lib/ensure-postgres-migrations.mjs';
 
 let runtimeMode='ready';
 try {
@@ -86,5 +87,12 @@ if (normalizedDatabaseUrl) {
   console.error(JSON.stringify({event:'runtime_database_unavailable',mode:'degraded'}));
 }
 
-console.log(JSON.stringify({ event: 'runtime_start', migrations: 'manual', mode: runtimeMode }));
+let migrationStatus='skipped';
+if(normalizedDatabaseUrl){
+  const migration=await ensurePostgresMigrations(process.env);
+  migrationStatus=migration.status;
+  if(migration.status==='error')runtimeMode='degraded';
+}
+
+console.log(JSON.stringify({ event:'runtime_start', migrations:migrationStatus, mode:runtimeMode }));
 await import('../server.js');
