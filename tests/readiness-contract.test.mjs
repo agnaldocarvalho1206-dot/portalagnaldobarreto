@@ -29,6 +29,8 @@ test('smoke separa revisão publicada da saúde das dependências',()=>{
   assert.match(smoke,/new URL\('\/api\/health\/live',base\)/);
   assert.match(smoke,/attempt<=20/);
   assert.match(smoke,/setTimeout\(resolve,15000\)/);
-  assert.match(smoke,/Produção não atualizou para o contrato de liveness/);
+  assert.match(smoke,/Produção não confirmou uma nova revisão/);
+  assert.match(smoke,/new URL\('\/build-info\.json',base\)/);
+  assert.match(smoke,/HOMOLOGATION_PREVIOUS_BUILD_ID/);
   assert.match(smoke,/request\('\/api\/health\/ready',\{expected:\[200\]\}\)/);
 });
