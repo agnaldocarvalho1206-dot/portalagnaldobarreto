@@ -31,6 +31,8 @@ jobs:
         run: npm test
       - name: Deployment smoke syntax
         run: node --check scripts/smoke-deployment.mjs
+      - name: EasyPanel deploy trigger syntax
+        run: node --check scripts/trigger-easypanel-deploy.mjs
       - name: Typecheck
         run: npm run typecheck
       - name: Build
