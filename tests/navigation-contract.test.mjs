@@ -130,3 +130,10 @@ test('atalhos do rodapé administrativo apontam somente para abas válidas', () 
   const valid=new Set(['Resumo','Leads / CRM','Clientes','Propostas','Projetos','Tarefas','Calendário','Relatórios / BI','Financeiro','Documentos','Suporte','Conteúdos','Configurações']);
   for(const tab of tabs)assert.ok(valid.has(tab),'Rodapé aponta para aba inexistente: '+tab);
 });
+
+
+test('atalho de BI descreve somente a ação que realmente executa',()=>{
+  const ui=read('app/portal-ui.tsx');
+  assert.match(ui,/>Relatórios & BI<\/b><small>Abrir indicadores<\/small>/);
+  assert.doesNotMatch(ui,/>Relatório Rápido<\/b><small>Gerar relatório<\/small>/);
+});
