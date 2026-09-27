@@ -93,9 +93,10 @@ export async function GET(req:Request){
   try{
     const db=rawDb();
     const document=await db.prepare('SELECT id,client_id,status FROM portal_documents WHERE id=?').bind(id).first<{id:string,client_id:string|null,status:string}>();
-    if(!document||document.status==='Arquivado')return error('Documento não encontrado.',404);
+    if(!document)return error('Documento não encontrado.',404);
 
     if(!operator){
+      if(document.status==='Arquivado')return error('Documento não encontrado.',404);
       const client=await db.prepare('SELECT id FROM crm_clients WHERE user_id=? LIMIT 1').bind(user.userId).first<{id:string}>();
       if(!client||!document.client_id||document.client_id!==client.id)return error('Documento não encontrado.',404);
     }
