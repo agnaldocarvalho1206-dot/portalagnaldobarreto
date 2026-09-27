@@ -1,7 +1,8 @@
 import { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand, HeadBucketCommand } from '@aws-sdk/client-s3';
+import { normalizeStorageEndpoint } from '../../lib/health-diagnostics';
 let client:S3Client|undefined;
 function getClient() {
-  const endpoint=process.env.S3_ENDPOINT, accessKeyId=process.env.S3_ACCESS_KEY_ID, secretAccessKey=process.env.S3_SECRET_ACCESS_KEY;
+  const endpoint=normalizeStorageEndpoint(process.env.S3_ENDPOINT), accessKeyId=process.env.S3_ACCESS_KEY_ID, secretAccessKey=process.env.S3_SECRET_ACCESS_KEY;
   if(!endpoint||!accessKeyId||!secretAccessKey||!process.env.S3_BUCKET) throw new Error('Armazenamento S3 não configurado.');
   return client ??= new S3Client({endpoint,region:process.env.S3_REGION||'auto',forcePathStyle:process.env.S3_FORCE_PATH_STYLE==='true',credentials:{accessKeyId,secretAccessKey},maxAttempts:2});
 }
