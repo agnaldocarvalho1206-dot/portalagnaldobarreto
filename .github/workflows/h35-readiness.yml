@@ -1,0 +1,32 @@
+name: H35 Readiness R2
+
+on:
+  push:
+    branches: [homologacao-h35-readiness-r2]
+
+permissions:
+  contents: read
+
+jobs:
+  readiness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Read production readiness
+        env:
+          BASE: https://agnaldobarreto.tech
+        run: |
+          node --input-type=module <<'NODE'
+          const base=new URL(process.env.BASE);
+          const [live,ready]=await Promise.all([
+            fetch(new URL('/api/health/live',base),{headers:{'User-Agent':'Portal-AB-H35/1.0'}}),
+            fetch(new URL('/api/health/ready',base),{headers:{'User-Agent':'Portal-AB-H35/1.0'}}),
+          ]);
+          const liveJson=await live.json();
+          const readyJson=await ready.json();
+          console.log(JSON.stringify({liveStatus:live.status,live:liveJson,readyStatus:ready.status,ready:readyJson}));
+          if(live.status!==200)process.exit(2);
+          NODE
