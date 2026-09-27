@@ -55,7 +55,11 @@ test('métricas só ficam confirmadas quando os quatro valores existem',()=>{
 
 test('API preserva rascunhos para admin, mas marca aprovação explicitamente',()=>{
   const api=readFileSync(new URL('../app/api/settings/route.ts',import.meta.url),'utf8');
-  assert.match(api,/admin\?value:publicSettingsView\(value\)/);
+  const ui=readFileSync(new URL('../app/portal-ui.tsx',import.meta.url),'utf8');
+  assert.match(api,/searchParams\.get\('view'\)==='admin'/);
+  assert.match(api,/if\(adminView\)\{const \{admin\}=await identity\(\);if\(!admin\)return error\('Acesso restrito\.',403\);\}/);
+  assert.match(api,/adminView\?value:publicSettingsView\(value\)/);
+  assert.match(ui,/fetch\('\/api\/settings\?view=admin'/);
   assert.match(api,/approved:t\.approved===true/);
   assert.match(api,/metricsConfirmed:b\.metricsConfirmed===true&&\[projects,clients,satisfaction,experience\]\.every\(Boolean\)/);
 });
