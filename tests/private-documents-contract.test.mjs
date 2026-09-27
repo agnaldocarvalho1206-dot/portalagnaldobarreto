@@ -11,7 +11,7 @@ test('documentos usam bucket privado e endpoint autenticado',()=>{
   assert.match(route,/if\(!operator\)return error\('Acesso operacional necessário\.',403\)/);
   assert.match(route,/sameOrigin\(req\)/);
   assert.match(route,/validateAttachment/);
-  assert.match(route,/documents\/\+'?\/?/);
+  assert.match(route,/uploadedKey='documents\/'\+crypto\.randomUUID\(\)/);
   assert.match(route,/privateBucket\.put/);
   assert.match(route,/INSERT INTO portal_documents/);
   assert.match(route,/SELECT id FROM crm_clients WHERE user_id=\?/);
