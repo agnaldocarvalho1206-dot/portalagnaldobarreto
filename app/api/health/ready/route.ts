@@ -1,7 +1,7 @@
 import { checkProductionDb } from '../../../../db/postgres';
 import { checkStorage } from '../../../storage/s3';
 import { checkSupabaseAuth } from '../../../../lib/supabase/health';
-import { classifyDatabaseFailure, classifyStorageFailure } from '../../../../lib/health-diagnostics';
+import { classifyDatabaseFailure, classifyStorageFailure, describeStorageEndpoint } from '../../../../lib/health-diagnostics';
 
 export const dynamic='force-dynamic';
 
@@ -26,7 +26,7 @@ export async function GET(){
 
   const ready=Object.values(checks).every(value=>value==='ok');
   return Response.json(
-    {status:ready?'ready':'unavailable',checks,diagnostics},
+    {status:ready?'ready':'unavailable',checks,diagnostics,storageEndpoint:describeStorageEndpoint(process.env.S3_ENDPOINT)},
     {status:ready?200:503,headers:{'Cache-Control':'no-store'}},
   );
 }

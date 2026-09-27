@@ -13,7 +13,7 @@ Use uma VPS com EasyPanel e Docker. cPanel e EasyPanel são painéis diferentes;
 - Não publique a porta 5432 na internet.
 - Copie a URL de conexão **interna** exibida pelo EasyPanel para DATABASE_URL.
 - Na rede privada sem TLS, use DATABASE_SSL=false; banco remoto exige TLS validado.
-- Para menor privilégio, use um usuário de aplicação com SELECT/INSERT/UPDATE/DELETE nas tabelas e um usuário de migração com DDL. MIGRATION_DATABASE_URL pertence ao job de migração, não precisa permanecer no App.
+- Para menor privilégio, use um usuário de aplicação com SELECT/INSERT/UPDATE/DELETE nas tabelas e um usuário de migração com DDL. Se usar usuário separado de migração, mantenha `MIGRATION_DATABASE_URL` como secret do App; sem ela, o migrador usa `DATABASE_URL`.
 
 ## 2. Bucket privado
 
@@ -58,24 +58,23 @@ Se `EASYPANEL_DEPLOY_TRIGGER_URL` não estiver configurado, o workflow de produ�
 
 ## 4. Migrações seguras
 
-Antes de atualizar um banco existente:
+No startup, o Portal verifica e aplica **somente migrações pendentes** antes de iniciar o Next.js.
 
-1. Gere backup consistente e confirme que pode restaurá-lo.
-2. Faça deploy do build, mas mantenha tráfego desligado até a migração e a validação.
-3. Em terminal/job da mesma imagem com MIGRATION_DATABASE_URL configurada, execute:
+- O migrador usa transação, PostgreSQL advisory lock e checksum SHA-256.
+- Em múltiplas réplicas, o advisory lock serializa a execução e evita aplicação concorrente da mesma migração.
+- Migrações já aplicadas são apenas verificadas; não são executadas novamente.
+- Se houver checksum alterado, falha de conexão ou erro SQL, a transação faz rollback e o Portal continua em modo degradado; a área pública permanece disponível e `/api/health/ready` fica 503.
+- Não edite arquivos de migração já aplicados.
+- Não use drop, reset, db push destrutivo ou recriação automática do banco.
+- Antes de uma migração destrutiva planejada, gere backup consistente e valide restauração.
+
+A execução manual continua disponível para manutenção controlada:
 
 ```sh
 node scripts/migrate-postgres.mjs
 ```
 
-4. Confira a saída e o status de execução. O script usa transação, advisory lock e checksum. Falhas fazem rollback; não edite migrações já aplicadas.
-5. Execute novamente: deve apenas conferir as migrações, sem duplicar dados.
-6. Não use drop, reset, db push destrutivo ou recriação automática do banco.
-
-O health check ready permanece 503 antes das migrações ou quando banco/bucket não respondem. Use um job/terminal disponível mesmo se o App ainda estiver não saudável. Nunca execute migrações automaticamente em cada réplica.
-
-O `scripts/start-container.mjs` **não executa migrações**. Ele inicia a aplicação com a configuração validada; a rota `/api/health/ready` permanece indisponível até `scripts/migrate-postgres.mjs` ter sido executado com sucesso no job/terminal de migração.
-
+O script manual e o startup usam a mesma função de migração e o mesmo advisory lock/checksum.
 ## 5. Primeiro administrador
 
 A autenticação é feita pelo Supabase Auth. Não use `scripts/manage-user.mjs` para criar contas; esse utilitário foi desativado.

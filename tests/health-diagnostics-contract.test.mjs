@@ -14,6 +14,7 @@ test('readiness expõe apenas categorias seguras',()=>{
   assert.match(route,/diagnostics=\{/);
   assert.match(route,/classifyDatabaseFailure/);
   assert.match(route,/classifyStorageFailure/);
+  assert.match(route,/describeStorageEndpoint/);
   assert.doesNotMatch(route,/\.reason\.message/);
   assert.doesNotMatch(route,/message:/);
 });
@@ -22,5 +23,15 @@ test('contrato antigo de checks permanece compatível',()=>{
   assert.match(route,/database:results\[0\]\.status==='fulfilled'\?'ok':'unavailable'/);
   assert.match(route,/storage:results\[1\]\.status==='fulfilled'\?'ok':'unavailable'/);
   assert.match(route,/auth:results\[2\]\.status==='fulfilled'\?'ok':'unavailable'/);
-  assert.match(route,/\{status:ready\?'ready':'unavailable',checks,diagnostics\}/);
+  assert.match(route,/\{status:ready\?'ready':'unavailable',checks,diagnostics,storageEndpoint:describeStorageEndpoint/);
+});
+
+
+test('endpoint storage expõe apenas provider e validade estrutural',()=>{
+  assert.match(diag,/provider:'cloudflare-r2'/);
+  assert.match(diag,/provider:'aws-s3'/);
+  assert.match(diag,/provider:'custom'/);
+  assert.match(diag,/provider:'invalid'/);
+  assert.match(diag,/format:r2\.test\(host\)\?'valid':'invalid'/);
+  assert.doesNotMatch(route,/S3_ACCESS_KEY_ID|S3_SECRET_ACCESS_KEY/);
 });
