@@ -1,3 +1,4 @@
+import {publicSettingsView} from './public-settings-policy';
 import {trustedOrigin,InputError} from './request-security';
 import {rawDatabase} from '../db/postgres';
 import {currentUser} from './auth/session';
@@ -9,7 +10,7 @@ export function textValue(x:unknown,max=500){if(x===undefined||x===null)return '
 export async function publicSettings(){
   try{
     const row=await rawDb().prepare('SELECT value FROM settings WHERE key = ?').bind('public').first<{value:string}>();
-    return row?JSON.parse(row.value):{};
+    return publicSettingsView(row?JSON.parse(row.value):{});
   }catch(cause){
     const err=cause as {name?:string;code?:string};
     console.error(JSON.stringify({event:'public_settings_fallback',name:err?.name||'Error',code:err?.code||'UNKNOWN'}));
