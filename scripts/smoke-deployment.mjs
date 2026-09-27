@@ -66,6 +66,72 @@ if(portalApi.status!==401)throw new Error('/api/portal anônimo retornou '+porta
 await request('/api/projetos?pagina=0',{expected:[400]});
 await request('/api/blog?pagina=0',{expected:[400]});
 
+function cookieHeader(response){
+  const values=typeof response.headers.getSetCookie==='function'?response.headers.getSetCookie():[];
+  return values.map(value=>value.split(';',1)[0]).join('; ');
+}
+
+async function authenticatedSmoke(label,email,password,expectedRole){
+  if(!email&&!password)return {status:'not-configured'};
+  if(!email||!password)throw new Error(label+': configure e-mail e senha juntos.');
+
+  const login=await fetch(new URL('/api/auth/login',base),{
+    method:'POST',
+    redirect:'manual',
+    headers:{
+      Origin:base.origin,
+      'Content-Type':'application/json',
+      'User-Agent':'Portal-AB-Homologation/1.0',
+    },
+    body:JSON.stringify({email,password,returnTo:expectedRole==='client'?'/portal':'/gestao'}),
+  });
+  if(login.status!==200)throw new Error(label+': login retornou '+login.status);
+  const loginData=await login.json();
+  const cookie=cookieHeader(login);
+  if(!cookie)throw new Error(label+': login não retornou cookie de sessão.');
+
+  const portal=await fetch(new URL('/api/portal',base),{
+    headers:{Origin:base.origin,Cookie:cookie,'User-Agent':'Portal-AB-Homologation/1.0'},
+  });
+  if(portal.status!==200)throw new Error(label+': /api/portal retornou '+portal.status);
+  const portalData=await portal.json();
+  if(portalData.role!==expectedRole)throw new Error(label+': papel retornado foi '+portalData.role+' em vez de '+expectedRole);
+
+  if(expectedRole==='client'){
+    if(!portalData.clientPortal)throw new Error(label+': conta cliente não está vinculada ao CRM.');
+    const management=await fetch(new URL('/gestao',base),{
+      headers:{Cookie:cookie,'User-Agent':'Portal-AB-Homologation/1.0'},
+    });
+    if(management.status!==200)throw new Error(label+': verificação de /gestao retornou '+management.status);
+    const html=await management.text();
+    if(!html.includes('Acesso administrativo restrito'))throw new Error(label+': cliente não recebeu bloqueio explícito em /gestao.');
+  }
+
+  if(expectedRole==='admin'&&loginData.redirect!=='/gestao')throw new Error(label+': administrador não foi direcionado à gestão.');
+  if(expectedRole==='client'&&loginData.redirect!=='/portal')throw new Error(label+': cliente não foi direcionado ao portal.');
+
+  const logout=await fetch(new URL('/api/auth/logout',base),{
+    method:'POST',
+    headers:{Origin:base.origin,Cookie:cookie,'User-Agent':'Portal-AB-Homologation/1.0'},
+  });
+  if(logout.status!==200)throw new Error(label+': logout retornou '+logout.status);
+
+  return {status:'passed',role:expectedRole};
+}
+
+const adminAuth=await authenticatedSmoke(
+  'admin',
+  process.env.HOMOLOGATION_ADMIN_EMAIL,
+  process.env.HOMOLOGATION_ADMIN_PASSWORD,
+  'admin',
+);
+const clientAuth=await authenticatedSmoke(
+  'client',
+  process.env.HOMOLOGATION_CLIENT_EMAIL,
+  process.env.HOMOLOGATION_CLIENT_PASSWORD,
+  'client',
+);
+
 console.log(JSON.stringify({
   event:'deployment_homologation_passed',
   origin:base.origin,
@@ -74,4 +140,5 @@ console.log(JSON.stringify({
   ready:'ready',
   protectedAreas:'redirect-to-login',
   anonymousPortalApi:401,
+  authenticated:{admin:adminAuth,client:clientAuth},
 }));
