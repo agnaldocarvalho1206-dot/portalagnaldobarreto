@@ -21,11 +21,14 @@ test('smoke inclui corpo seguro quando endpoint falha',()=>{
 });
 
 
-test('smoke distingue deploy antigo de dependência indisponível',()=>{
+test('smoke separa revisão publicada da saúde das dependências',()=>{
+  const live=readFileSync(new URL('../app/api/health/live/route.ts',import.meta.url),'utf8');
+  assert.match(live,/contract: 'portal-ab-health-v2'/);
+  assert.match(smoke,/EXPECTED_LIVE_CONTRACT='portal-ab-health-v2'/);
   assert.match(smoke,/async function waitForCurrentDeployment/);
+  assert.match(smoke,/new URL\('\/api\/health\/live',base\)/);
   assert.match(smoke,/attempt<=20/);
   assert.match(smoke,/setTimeout\(resolve,15000\)/);
-  assert.match(smoke,/Produção não atualizou para o contrato de readiness H12/);
-  assert.match(smoke,/dependências não estão prontas/);
-  assert.match(smoke,/\['database','storage','auth'\]/);
+  assert.match(smoke,/Produção não atualizou para o contrato de liveness/);
+  assert.match(smoke,/request\('\/api\/health\/ready',\{expected:\[200\]\}\)/);
 });
