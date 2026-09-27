@@ -28,6 +28,7 @@ RUN mkdir -p /app/.build-tools && cd /app/.build-tools \
     && ln -s /app/.build-tools/node_modules/@types/react-dom /app/node_modules/@types/react-dom
 
 FROM dependencies AS builder
+ENV NODE_OPTIONS=--max-old-space-size=768
 ARG NEXT_PUBLIC_SUPABASE_URL
 ARG NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 ENV NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
