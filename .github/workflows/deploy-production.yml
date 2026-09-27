@@ -37,7 +37,15 @@ jobs:
             echo "::error::Configure o secret EASYPANEL_DEPLOY_TRIGGER_URL com o Deployment Trigger URL do serviço portal-agnaldobarretoapp no EasyPanel."
             exit 1
           fi
+      - name: Capture current production build
+        id: current-build
+        shell: bash
+        run: |
+          BUILD_ID="$(node -e "fetch(process.env.HOMOLOGATION_BASE_URL+'/build-info.json',{headers:{'Cache-Control':'no-cache'}}).then(async r=>{if(!r.ok)return '';const j=await r.json();return typeof j.buildId==='string'?j.buildId:''}).then(v=>process.stdout.write(v)).catch(()=>{})")"
+          echo "build_id=$BUILD_ID" >> "$GITHUB_OUTPUT"
       - name: Trigger EasyPanel deploy
         run: node scripts/trigger-easypanel-deploy.mjs
       - name: Homologate published deployment
+        env:
+          HOMOLOGATION_PREVIOUS_BUILD_ID: ${{ steps.current-build.outputs.build_id }}
         run: node scripts/smoke-deployment.mjs
