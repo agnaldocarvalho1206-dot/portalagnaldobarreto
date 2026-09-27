@@ -48,8 +48,43 @@ const live=await request('/api/health/live',{expected:[200]});
 const liveJson=await live.json();
 if(liveJson.status!=='ok')throw new Error('Liveness não confirmou status ok.');
 
-const ready=await request('/api/health/ready',{expected:[200]});
-const readyJson=await ready.json();
+async function waitForCurrentDeployment(){
+  const url=new URL('/api/health/ready',base);
+  let lastStatus=0,lastBody='';
+  for(let attempt=1;attempt<=20;attempt++){
+    const response=await fetch(url,{
+      redirect:'manual',
+      headers:{
+        'User-Agent':'Portal-AB-Homologation/1.0',
+        'Cache-Control':'no-cache',
+      },
+    });
+    lastStatus=response.status;
+    lastBody=(await response.text()).slice(0,1000);
+    let body;
+    try{body=JSON.parse(lastBody)}catch{body=null;}
+
+    const checks=body?.checks;
+    const currentContract=checks
+      && ['database','storage','auth'].every(key=>['ok','unavailable'].includes(checks[key]));
+
+    if(currentContract){
+      checked.set(url.pathname,response.status);
+      if(response.status!==200||body.status!=='ready'){
+        throw new Error('/api/health/ready confirmou deploy atual, mas dependências não estão prontas | '+lastBody);
+      }
+      return body;
+    }
+
+    if(attempt<20)await new Promise(resolve=>setTimeout(resolve,15000));
+  }
+  throw new Error(
+    'Produção não atualizou para o contrato de readiness H12 após as tentativas de homologação'
+    +' | último status '+lastStatus+(lastBody?' | '+lastBody:''),
+  );
+}
+
+const readyJson=await waitForCurrentDeployment();
 if(readyJson.status!=='ready')throw new Error('Readiness não confirmou banco, storage e Supabase.');
 
 for(const path of ['/portal','/gestao']){

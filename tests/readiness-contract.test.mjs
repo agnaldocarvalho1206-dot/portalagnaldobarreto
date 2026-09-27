@@ -19,3 +19,13 @@ test('smoke inclui corpo seguro quando endpoint falha',()=>{
   assert.match(smoke,/response\.clone\(\)\.text\(\)/);
   assert.match(smoke,/slice\(0,1000\)/);
 });
+
+
+test('smoke distingue deploy antigo de dependência indisponível',()=>{
+  assert.match(smoke,/async function waitForCurrentDeployment/);
+  assert.match(smoke,/attempt<=20/);
+  assert.match(smoke,/setTimeout\(resolve,15000\)/);
+  assert.match(smoke,/Produção não atualizou para o contrato de readiness H12/);
+  assert.match(smoke,/dependências não estão prontas/);
+  assert.match(smoke,/\['database','storage','auth'\]/);
+});
