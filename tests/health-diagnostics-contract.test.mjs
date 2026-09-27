@@ -35,3 +35,12 @@ test('endpoint storage expõe apenas provider e validade estrutural',()=>{
   assert.match(diag,/format:r2\.test\(host\)\?'valid':'invalid'/);
   assert.doesNotMatch(route,/S3_ACCESS_KEY_ID|S3_SECRET_ACCESS_KEY/);
 });
+
+
+test('endpoint R2 incompleto é normalizado antes do cliente S3',()=>{
+  const s3=readFileSync(new URL('../app/storage/s3.ts',import.meta.url),'utf8');
+  assert.match(diag,/export function normalizeStorageEndpoint/);
+  assert.match(diag,/\.r2\\.cloudflarestorage\$\/i/);
+  assert.match(diag,/return trimmed\+'\.com'/);
+  assert.match(s3,/normalizeStorageEndpoint\(process\.env\.S3_ENDPOINT\)/);
+});
