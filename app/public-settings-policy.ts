@@ -6,11 +6,28 @@ export type PublicTestimonial={
   approved:true;
 };
 
+export type PublicSettings={
+  city:string;
+  hours:string;
+  responseTime:string;
+  telephone:string;
+  email:string;
+  phone:string;
+  instagram:string;
+  linkedin:string;
+  projects:string;
+  clients:string;
+  satisfaction:string;
+  experience:string;
+  metricsConfirmed:boolean;
+  testimonials:PublicTestimonial[];
+};
+
 function safeText(value:unknown){
   return typeof value==='string'?value.trim():'';
 }
 
-export function publicSettingsView(input:unknown){
+export function publicSettingsView(input:unknown):PublicSettings{
   const source=input&&typeof input==='object'&&!Array.isArray(input)
     ? input as Record<string,unknown>
     : {};
@@ -36,7 +53,14 @@ export function publicSettingsView(input:unknown){
     : [];
 
   return {
-    ...source,
+    city:safeText(source.city),
+    hours:safeText(source.hours),
+    responseTime:safeText(source.responseTime),
+    telephone:safeText(source.telephone),
+    email:safeText(source.email),
+    phone:safeText(source.phone),
+    instagram:safeText(source.instagram),
+    linkedin:safeText(source.linkedin),
     projects,
     clients,
     satisfaction,
