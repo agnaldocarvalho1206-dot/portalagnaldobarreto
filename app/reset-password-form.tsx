@@ -12,12 +12,13 @@ export function ResetPasswordForm(){
       const url=new URL(window.location.href);
       const code=url.searchParams.get('code');
       let authError:Error|null=null;
+      let sessionEstablished=false;
 
       if(code){
         const result=await supabase.auth.exchangeCodeForSession(code);
         authError=result.error;
+        sessionEstablished=Boolean(result.data.session);
       }else{
-        // Compatibilidade com links de recovery no fluxo implicit/hash do Supabase.
         const hash=new URLSearchParams(url.hash.replace(/^#/,''));
         const accessToken=hash.get('access_token');
         const refreshToken=hash.get('refresh_token');
@@ -25,6 +26,7 @@ export function ResetPasswordForm(){
         if(accessToken&&refreshToken&&(!type||type==='recovery')){
           const result=await supabase.auth.setSession({access_token:accessToken,refresh_token:refreshToken});
           authError=result.error;
+          sessionEstablished=Boolean(result.data.session);
         }
       }
 
@@ -33,15 +35,20 @@ export function ResetPasswordForm(){
         return;
       }
 
-      // Remove tokens/código sensíveis da barra de endereço assim que a sessão é criada.
-      if(code||url.hash){
-        window.history.replaceState({},'',url.pathname);
+      // exchangeCodeForSession/setSession já devolvem a sessão válida. Não dependa de
+      // uma releitura imediata do storage, que pode sofrer uma corrida no navegador.
+      if(!sessionEstablished){
+        const {data}=await supabase.auth.getSession();
+        sessionEstablished=Boolean(data.session);
       }
 
-      const {data}=await supabase.auth.getSession();
       if(!active)return;
-      if(data.session)setReady(true);
-      else setError('Abra esta página pelo link de recuperação enviado ao seu e-mail.');
+      if(sessionEstablished){
+        if(code||url.hash)window.history.replaceState({},'',url.pathname);
+        setReady(true);
+      }else{
+        setError('Abra esta página pelo link de recuperação enviado ao seu e-mail.');
+      }
     };
     prepare();
     return()=>{active=false};
