@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "node scripts/start-production.mjs",
     "typecheck": "tsc --noEmit",
-    "test": "node --v8-pool-size=1 --test --test-force-exit --test-concurrency=1 tests/*.test.mjs",
+    "test": "bash -c 'for f in tests/*.test.mjs; do echo "=== TEST FILE: $f ==="; timeout 120s node --v8-pool-size=1 --test --test-force-exit "$f" || { code=$?; echo "=== FAILED OR TIMED OUT: $f (exit $code) ==="; exit $code; }; done'",
     "db:migrate": "node --env-file-if-exists=.env scripts/migrate-postgres.mjs",
     "postbuild": "node scripts/prepare-standalone.mjs",
     "preflight": "node --env-file-if-exists=.env scripts/preflight-production.mjs"
