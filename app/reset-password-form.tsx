@@ -11,12 +11,33 @@ export function ResetPasswordForm(){
     const prepare=async()=>{
       const url=new URL(window.location.href);
       const code=url.searchParams.get('code');
+      let authError:Error|null=null;
+
       if(code){
-        const {error}=await supabase.auth.exchangeCodeForSession(code);
-        if(error){if(active)setError('Este link de recuperação é inválido ou expirou. Solicite um novo link.');return;}
-        url.searchParams.delete('code');
-        window.history.replaceState({},'',url.pathname+url.search);
+        const result=await supabase.auth.exchangeCodeForSession(code);
+        authError=result.error;
+      }else{
+        // Compatibilidade com links de recovery no fluxo implicit/hash do Supabase.
+        const hash=new URLSearchParams(url.hash.replace(/^#/,''));
+        const accessToken=hash.get('access_token');
+        const refreshToken=hash.get('refresh_token');
+        const type=hash.get('type');
+        if(accessToken&&refreshToken&&(!type||type==='recovery')){
+          const result=await supabase.auth.setSession({access_token:accessToken,refresh_token:refreshToken});
+          authError=result.error;
+        }
       }
+
+      if(authError){
+        if(active)setError('Este link de recuperação é inválido ou expirou. Solicite um novo link.');
+        return;
+      }
+
+      // Remove tokens/código sensíveis da barra de endereço assim que a sessão é criada.
+      if(code||url.hash){
+        window.history.replaceState({},'',url.pathname);
+      }
+
       const {data}=await supabase.auth.getSession();
       if(!active)return;
       if(data.session)setReady(true);
