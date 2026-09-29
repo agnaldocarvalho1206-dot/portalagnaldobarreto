@@ -1,0 +1,48 @@
+name: H39 Auth Recovery Fast Check
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'app/reset-password-form.tsx'
+      - 'app/recover-password-form.tsx'
+      - 'app/api/auth/recover/**'
+      - 'lib/supabase/**'
+      - '.github/workflows/h39-auth-fast-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  auth-fast-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      NEXT_PUBLIC_SUPABASE_URL: https://okhdrmnbfhbdmrrlakdj.supabase.co
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder_1234567890
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Recovery regression contract
+        shell: bash
+        run: |
+          grep -q "exchangeCodeForSession" app/reset-password-form.tsx
+          grep -q "access_token" app/reset-password-form.tsx
+          grep -q "refresh_token" app/reset-password-form.tsx
+          grep -q "setSession" app/reset-password-form.tsx
+          grep -q "replaceState" app/reset-password-form.tsx
+          grep -q "updateUser" app/reset-password-form.tsx
+          grep -q "signOut" app/reset-password-form.tsx
+          grep -q "/redefinir-senha" app/api/auth/recover/route.ts
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Build
+        run: npm run build
