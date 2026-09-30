@@ -82,6 +82,6 @@ test('H49 impede cruzamento de cliente e projeto em Financeiro e Suporte', () =>
   assert.equal((api.match(guard) || []).length, 2);
   assert.match(api, /if\(b\.action==='create-finance'\)[\s\S]*SELECT id,client_id FROM client_projects WHERE id=\?/);
   assert.match(api, /if\(b\.action==='create-ticket'\)[\s\S]*SELECT id,client_id FROM client_projects WHERE id=\?/);
-  assert.match(api, /finances:\(await db\.prepare\("SELECT \* FROM financial_entries WHERE client_id=\? AND entry_type='Receita'/);
+  assert.match(api, /finances:\(await db\.prepare\("SELECT f\.\* FROM financial_entries f LEFT JOIN client_projects p ON p\.id=f\.project_id WHERE f\.client_id=\? AND f\.entry_type='Receita' AND \(f\.project_id IS NULL OR p\.client_id=\?\)/);
   assert.match(api, /tickets:\(await db\.prepare\('SELECT \* FROM support_tickets WHERE client_id=\?/);
 });
