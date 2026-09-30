@@ -74,3 +74,14 @@ test('staff não recebe caminhos de interface para Configurações', () => {
   assert.match(ui, /isFullAdmin&&<button onClick=\{\(\)=>setTab\('Configurações'\)\}/);
   assert.match(settingsApi, /const \{admin\}=await identity\(\);if\(!admin\)return error\('Acesso restrito\.',403\)/);
 });
+
+
+test('H49 impede cruzamento de cliente e projeto em Financeiro e Suporte', () => {
+  const api = read('app/api/portal/route.ts');
+  const guard = /O projeto selecionado não pertence ao cliente informado\./g;
+  assert.equal((api.match(guard) || []).length, 2);
+  assert.match(api, /if\(b\.action==='create-finance'\)[\s\S]*SELECT id,client_id FROM client_projects WHERE id=\?/);
+  assert.match(api, /if\(b\.action==='create-ticket'\)[\s\S]*SELECT id,client_id FROM client_projects WHERE id=\?/);
+  assert.match(api, /finances:\(await db\.prepare\("SELECT \* FROM financial_entries WHERE client_id=\? AND entry_type='Receita'/);
+  assert.match(api, /tickets:\(await db\.prepare\('SELECT \* FROM support_tickets WHERE client_id=\?/);
+});
