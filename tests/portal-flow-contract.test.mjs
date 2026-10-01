@@ -95,7 +95,7 @@ test('H54 isola integralmente dados do Portal do Cliente pelo client_id autentic
   assert.match(api, /JOIN client_projects p ON p\.id=t\.project_id WHERE p\.client_id=\?/);
   assert.match(api, /JOIN client_projects p ON p\.id=a\.project_id WHERE p\.client_id=\?/);
   assert.match(api, /WHERE f\.client_id=\? AND f\.entry_type='Receita' AND \(f\.project_id IS NULL OR p\.client_id=\?\)/);
-  assert.match(api, /SELECT \* FROM portal_documents WHERE client_id=\? AND status='Ativo'/);
+  assert.match(api, /SELECT \\* FROM portal_documents WHERE client_id=\\? AND status=\\\\'Ativo\\\\'/);
   assert.match(api, /SELECT \* FROM support_tickets WHERE client_id=\?/);
   assert.match(api, /JOIN client_projects p ON p\.id=m\.project_id WHERE p\.client_id = \? OR p\.user_id = \?/);
   assert.match(api, /if\(!operator&&b\.action==='client-approval-status'\)[\s\S]*p\.client_id=\?/);
