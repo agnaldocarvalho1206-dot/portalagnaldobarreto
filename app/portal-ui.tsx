@@ -39,7 +39,11 @@ useEffect(()=>{
   if(typeof window==='undefined')return;
   const syncTabFromUrl=()=>{
     const saved=new URLSearchParams(window.location.search).get('modulo');
-    setTabState(saved||'Resumo');
+    if(!saved){setTabState('Resumo');return;}
+    const knownModules=['Resumo','Leads / CRM','Clientes','Propostas','Projetos','Mensagens','Tarefas','Calendário','Aprovações','Financeiro','Documentos','Relatórios / BI','Conteúdos','Suporte','Usuários','Configurações'];
+    const normalized=saved.trim().toLocaleLowerCase('pt-BR');
+    const canonical=knownModules.find(module=>module.toLocaleLowerCase('pt-BR')===normalized);
+    setTabState(canonical||'Resumo');
   };
   syncTabFromUrl();
   window.addEventListener('popstate',syncTabFromUrl);
