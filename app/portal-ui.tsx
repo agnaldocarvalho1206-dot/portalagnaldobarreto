@@ -19,8 +19,10 @@ function AdminDateCardV66(){const now=new Date();return <article className="admi
 function AdminFooterV66({onTab,fullAdmin}:{onTab:(tab:string)=>void,fullAdmin:boolean}){const links=[['Resumo','Dashboard'],['Leads / CRM','Leads'],['Clientes','Clientes'],['Propostas','Propostas'],['Projetos','Projetos'],['Tarefas','Tarefas'],['Calendário','Calendário'],['Relatórios / BI','Relatórios'],['Financeiro','Financeiro'],['Documentos','Documentos'],['Suporte','Suporte'],['Conteúdos','Conteúdos'],['Configurações','Configurações']];const visibleLinks=fullAdmin?links:links.filter(([tab])=>tab!=='Configurações');return <footer className="admin-footer-v66"><div className="admin-footer-brand-v66"><img src="/ab-transparent.png" alt="AB"/><span><b>AGNALDO BARRETO</b><small>WEB DESIGNER</small></span><em>Sites que impulsionam negócios.</em></div><nav aria-label="Atalhos administrativos">{visibleLinks.map(([tab,label])=><button key={tab} onClick={()=>onTab(tab)}>{label}</button>)}</nav><small>© 2026 Agnaldo Barreto · Todos os direitos reservados.</small></footer>}
 
 
-export function Portal({user,admin,initialAdmin}:{user:{name:string,email:string},admin:boolean,initialAdmin:boolean}){
-const [tab,setTabState]=useState('Resumo'),[data,setData]=useState<{role?:PortalRole,leads:Row[],projects:Row[],messages:Row[],clients:Row[],proposals:Row[],tasks:Row[],events:Row[],approvals:Row[],finances:Row[],documents:Row[],metrics:Record<string,number>,contents:Row[],tickets:Row[],users:Row[],settings:Row[],clientPortal?:{projects:Row[],tasks:Row[],approvals:Row[],finances:Row[],documents:Row[],tickets:Row[],messages:Row[]}|null}>({leads:[],projects:[],messages:[],clients:[],proposals:[],tasks:[],events:[],approvals:[],finances:[],documents:[],metrics:{},contents:[],tickets:[],users:[],settings:[],clientPortal:null}),[busy,setBusy]=useState(true),[error,setError]=useState(''),[saving,setSaving]=useState(false),[notice,setNotice]=useState(''),[selected,setSelected]=useState(''),[message,setMessage]=useState(''),[statusFilter,setStatusFilter]=useState('Todos'),[config,setConfig]=useState<Row>({}),[create,setCreate]=useState(false),[loaded,setLoaded]=useState(false),[configReady,setConfigReady]=useState(false),[configError,setConfigError]=useState(''),[mobileNav,setMobileNav]=useState(false);
+export function Portal({user,admin,initialAdmin,initialModule=''}:{user:{name:string,email:string},admin:boolean,initialAdmin:boolean,initialModule?:string}){
+const knownModules=['Resumo','Leads / CRM','Clientes','Propostas','Projetos','Mensagens','Tarefas','Calendário','Aprovações','Financeiro','Documentos','Relatórios / BI','Conteúdos','Suporte','Usuários','Configurações'];
+const resolveModule=(value:string)=>{const normalized=String(value||'').trim().toLocaleLowerCase('pt-BR');return knownModules.find(module=>module.toLocaleLowerCase('pt-BR')===normalized)||'Resumo'};
+const [tab,setTabState]=useState(()=>resolveModule(initialModule)),[data,setData]=useState<{role?:PortalRole,leads:Row[],projects:Row[],messages:Row[],clients:Row[],proposals:Row[],tasks:Row[],events:Row[],approvals:Row[],finances:Row[],documents:Row[],metrics:Record<string,number>,contents:Row[],tickets:Row[],users:Row[],settings:Row[],clientPortal?:{projects:Row[],tasks:Row[],approvals:Row[],finances:Row[],documents:Row[],tickets:Row[],messages:Row[]}|null}>({leads:[],projects:[],messages:[],clients:[],proposals:[],tasks:[],events:[],approvals:[],finances:[],documents:[],metrics:{},contents:[],tickets:[],users:[],settings:[],clientPortal:null}),[busy,setBusy]=useState(true),[error,setError]=useState(''),[saving,setSaving]=useState(false),[notice,setNotice]=useState(''),[selected,setSelected]=useState(''),[message,setMessage]=useState(''),[statusFilter,setStatusFilter]=useState('Todos'),[config,setConfig]=useState<Row>({}),[create,setCreate]=useState(false),[loaded,setLoaded]=useState(false),[configReady,setConfigReady]=useState(false),[configError,setConfigError]=useState(''),[mobileNav,setMobileNav]=useState(false);
 const [adminQuery,setAdminQuery]=useState('');
 const [convertingLeadId,setConvertingLeadId]=useState('');
 const [leadConversionFeedback,setLeadConversionFeedback]=useState<Record<string,string>>({});
@@ -40,10 +42,7 @@ useEffect(()=>{
   const syncTabFromUrl=()=>{
     const saved=new URLSearchParams(window.location.search).get('modulo');
     if(!saved){setTabState('Resumo');return;}
-    const knownModules=['Resumo','Leads / CRM','Clientes','Propostas','Projetos','Mensagens','Tarefas','Calendário','Aprovações','Financeiro','Documentos','Relatórios / BI','Conteúdos','Suporte','Usuários','Configurações'];
-    const normalized=saved.trim().toLocaleLowerCase('pt-BR');
-    const canonical=knownModules.find(module=>module.toLocaleLowerCase('pt-BR')===normalized);
-    setTabState(canonical||'Resumo');
+    setTabState(resolveModule(saved));
   };
   syncTabFromUrl();
   window.addEventListener('popstate',syncTabFromUrl);
