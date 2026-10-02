@@ -29,13 +29,21 @@ const setTab=useCallback((next:string)=>{
   if(typeof window!=='undefined'){
     const url=new URL(window.location.href);
     if(next==='Resumo')url.searchParams.delete('modulo');else url.searchParams.set('modulo',next);
-    window.history.replaceState(window.history.state,'',url.pathname+url.search+url.hash);
+    const href=url.pathname+url.search+url.hash;
+    const current=new URL(window.location.href);
+    const currentModule=current.searchParams.get('modulo')||'Resumo';
+    if(currentModule!==next)window.history.pushState({...window.history.state,portalABModule:next},'',href);
   }
 },[]);
 useEffect(()=>{
   if(typeof window==='undefined')return;
-  const saved=new URLSearchParams(window.location.search).get('modulo');
-  if(saved)setTabState(saved);
+  const syncTabFromUrl=()=>{
+    const saved=new URLSearchParams(window.location.search).get('modulo');
+    setTabState(saved||'Resumo');
+  };
+  syncTabFromUrl();
+  window.addEventListener('popstate',syncTabFromUrl);
+  return()=>window.removeEventListener('popstate',syncTabFromUrl);
 },[]);
 const load=useCallback(async()=>{setBusy(true);setError('');try{const r=await fetch('/api/portal',{cache:'no-store'});const d:any=await r.json();if(!r.ok)throw new Error(d.error);setData(d);setLoaded(true);return true}catch(e:any){setError(e.message||'Não foi possível carregar.');return false}finally{setBusy(false)}},[]);useEffect(()=>{load()},[load]);const loadConfig=useCallback(async()=>{setConfigReady(false);setConfigError('');try{const r=await fetch('/api/settings?view=admin',{cache:'no-store'});const d:any=await r.json();if(!r.ok)throw new Error(d.error||'Não foi possível carregar as configurações.');setConfig(d);setConfigReady(true)}catch{setConfigError('Não foi possível carregar as configurações. Tente novamente antes de editar.')}},[]);useEffect(()=>{if(data.role==='admin')loadConfig()},[data.role,loadConfig]);
 async function action(body:Row){setSaving(true);setError('');setNotice('');try{const r=await fetch('/api/portal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const result:any=await r.json();if(!r.ok)throw new Error(result.error);if(body.action==='lead-status'){setData(current=>({...current,leads:current.leads.map(lead=>lead.id===body.id?{...lead,status:body.status}:lead)}));setNotice('Status atualizado.');void load();return true}const refreshed=await load();setNotice(refreshed?'Alteração salva.':'Alteração salva. Atualize os dados para conferir o resultado.');return true}catch(e:any){setError(e.message||'Não foi possível salvar.');return false}finally{setSaving(false)}}
