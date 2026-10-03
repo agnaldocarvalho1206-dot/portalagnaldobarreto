@@ -97,7 +97,8 @@ test('H54 isola integralmente dados do Portal do Cliente pelo client_id autentic
   assert.match(api, /WHERE f\.client_id=\? AND f\.entry_type='Receita' AND \(f\.project_id IS NULL OR p\.client_id=\?\)/);
   assert.ok(api.includes("SELECT * FROM portal_documents WHERE client_id=? AND status=\\'Ativo\\' ORDER BY updated DESC"));
   assert.match(api, /SELECT \* FROM support_tickets WHERE client_id=\?/);
-  assert.match(api, /JOIN client_projects p ON p\.id=m\.project_id WHERE p\.client_id = \? OR p\.user_id = \?/);
+  assert.match(api, /JOIN client_projects p ON p\.id=m\.project_id WHERE p\.client_id = \? ORDER BY m\.created DESC/);
+  assert.doesNotMatch(api, /JOIN client_projects p ON p\.id=m\.project_id WHERE p\.client_id = \? OR p\.user_id = \?/);
   assert.match(api, /if\(!operator&&b\.action==='client-approval-status'\)[\s\S]*p\.client_id=\?/);
   assert.match(api, /if\(!operator&&b\.action==='client-create-ticket'\)[\s\S]*WHERE id=\? AND client_id=\?/);
   assert.match(api, /if\(b\.action==='message'\)[\s\S]*project\.client_id!==clientId/);
