@@ -2932,3 +2932,32 @@ details.admin-table-row-v65>summary::-webkit-details-marker{display:none}
 .communications-welcome{min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 @media(max-width:1180px){.communications-shell{grid-template-columns:minmax(280px,36%) 1fr}.communications-context{grid-column:1 / -1;min-height:auto}}
 @media(max-width:780px){.communications-shell{grid-template-columns:1fr}.communications-inbox,.communications-chat{min-height:auto}.communications-context{grid-column:auto}.chat-thread{max-height:480px}.chat-bubble{width:90%}.chat-composer{grid-template-columns:1fr}}
+
+/* H81 — refinamento visual do chat de Comunicações */
+.communications-inbox{display:flex;flex-direction:column}
+.communications-inbox .inbox-list{flex:1;max-height:540px}
+.communications-inbox .inbox-message{background:#09182a;border-color:#1b3855}
+.communications-inbox .inbox-message.active{background:#0b233b;border-color:#20d9ff;box-shadow:inset 3px 0 #20d9ff}
+.communications-inbox .inbox-message>span:first-child b{font-size:14px}
+.communications-inbox .inbox-message>span:first-child small{font-size:11px;color:#8eaccb}
+.communications-inbox .inbox-message>p{color:#bfd0e2;line-height:1.35}
+.communications-chat{min-height:650px;max-height:72vh}
+.chat-project-head{flex:0 0 auto;background:#081727}
+.chat-project-head small{color:#63e8ff;font-weight:700;letter-spacing:.06em}
+.chat-thread{flex:1;max-height:none;padding:20px 22px;background:linear-gradient(180deg,#081625 0%,#0a192a 100%)}
+.chat-bubble{width:auto;max-width:min(72%,620px);padding:12px 15px;margin:8px 0;border-radius:14px}
+.chat-bubble b{display:block;font-size:12px;margin-bottom:2px}
+.chat-bubble small{display:block;font-size:10px;opacity:.72;margin-bottom:7px}
+.chat-bubble p{margin:0;line-height:1.45}
+.chat-bubble.operator{margin-left:auto;border-bottom-right-radius:4px;background:#075ca8;border-color:#168ee5}
+.chat-bubble.client{margin-right:auto;border-bottom-left-radius:4px;background:#102840;border-color:#244d70}
+.chat-composer{position:sticky;bottom:0;z-index:2;flex:0 0 auto;background:#081727;padding:12px 16px}
+.chat-composer textarea{min-height:62px;max-height:130px;resize:vertical;background:#0b1e32}
+.chat-composer .button{min-height:46px;align-self:center}
+.communications-context{background:#091827}
+.communications-context>h3{font-size:22px}
+.communications-context p{font-size:13px;line-height:1.45}
+.communications-context p b{color:#7feaff;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.context-actions .text-link{padding:7px 0;border-bottom:1px solid #173956}
+@media(max-width:1180px){.communications-chat{max-height:none}.chat-thread{max-height:560px}}
+@media(max-width:780px){.chat-bubble{max-width:88%}.chat-project-head{padding:14px 16px}.chat-thread{padding:14px}.communications-inbox .inbox-list{max-height:360px}}
