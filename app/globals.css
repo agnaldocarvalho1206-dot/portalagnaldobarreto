@@ -2903,3 +2903,32 @@ details.admin-table-row-v65>summary::-webkit-details-marker{display:none}
 .inbox-message.read{opacity:.88}
 @media(max-width:900px){.inbox-message{grid-template-columns:1fr auto}.inbox-message>p{grid-column:1 / -1;grid-row:2}.inbox-message>span:last-child{grid-column:2;grid-row:1}}
 @media(max-width:620px){.inbox-message{grid-template-columns:1fr;padding:12px}.inbox-message>p,.inbox-message>span:last-child{grid-column:1;grid-row:auto}.inbox-message>span:last-child{align-items:flex-start}}
+
+/* H80 — Comunicações: inbox + chat + contexto */
+.communications-shell{display:grid;grid-template-columns:minmax(280px,32%) minmax(420px,1fr) minmax(230px,25%);gap:14px;align-items:stretch}
+.communications-shell>.panel{margin:0;min-width:0}
+.communications-inbox,.communications-chat,.communications-context{min-height:650px}
+.communications-inbox{padding:16px}
+.communications-inbox .admin-section-head-v65{align-items:flex-start}
+.communications-inbox .admin-toolbar-v65{display:grid;grid-template-columns:1fr;gap:8px}
+.inbox-list{max-height:520px;margin:12px 0}
+.communications-inbox .inbox-message{grid-template-columns:1fr auto;gap:6px 10px;border-radius:8px;padding:11px 12px;min-height:78px}
+.communications-inbox .inbox-message>p{grid-column:1 / -1;font-size:13px}
+.communications-inbox .inbox-message.active{border-color:#16c9ff;box-shadow:inset 3px 0 #16c9ff}
+.communications-chat{display:flex;flex-direction:column;padding:0;overflow:hidden}
+.chat-project-head{padding:18px 20px;border-bottom:1px solid #173956}
+.chat-project-head h3{margin:4px 0}
+.chat-project-head p{margin:0;color:#8da9c8}
+.chat-thread{flex:1;max-height:500px;padding:12px 18px;margin:0;overflow:auto}
+.chat-bubble{width:min(78%,680px);text-align:left;margin:9px 0}
+.chat-bubble.operator{margin-left:auto;background:#0a3578;border-color:#176ee8}
+.chat-bubble.client{margin-right:auto}
+.chat-composer{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;padding:14px 18px;border-top:1px solid #173956}
+.chat-composer label{margin:0}.chat-composer textarea{margin:0}
+.communications-context{padding:18px}
+.communications-context h3{margin:14px 0 22px}
+.communications-context p{padding:12px 0;border-bottom:1px solid #173956;margin:0}
+.context-actions{display:grid;gap:8px;margin-top:18px}.context-actions .text-link{text-align:left}
+.communications-welcome{min-height:560px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+@media(max-width:1180px){.communications-shell{grid-template-columns:minmax(280px,36%) 1fr}.communications-context{grid-column:1 / -1;min-height:auto}}
+@media(max-width:780px){.communications-shell{grid-template-columns:1fr}.communications-inbox,.communications-chat{min-height:auto}.communications-context{grid-column:auto}.chat-thread{max-height:480px}.chat-bubble{width:90%}.chat-composer{grid-template-columns:1fr}}
