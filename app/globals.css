@@ -2887,3 +2887,19 @@ details.admin-table-row-v65>summary::-webkit-details-marker{display:none}
     bottom:-67px!important;
   }
 }
+
+
+/* H80 — Caixa de entrada: leitura horizontal, compacta e alinhada à esquerda */
+.inbox-message{width:100%;display:grid;grid-template-columns:minmax(190px,260px) minmax(0,1fr) auto;align-items:center;gap:18px;text-align:left;padding:13px 16px;margin:6px 0;min-height:68px;cursor:pointer}
+.inbox-message>span:first-child{display:grid;grid-template-columns:auto 1fr;column-gap:8px;align-items:center;min-width:0}
+.inbox-message>span:first-child i{grid-row:1 / span 2;font-style:normal;font-size:10px}
+.inbox-message>span:first-child b,.inbox-message>span:first-child small{display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0}
+.inbox-message>span:first-child small{grid-column:2}
+.inbox-message>p{margin:0!important;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:left}
+.inbox-message>span:last-child{display:flex;flex-direction:column;align-items:flex-end;gap:5px;white-space:nowrap}
+.inbox-message>span:last-child small{margin:0}
+.inbox-message>span:last-child strong{font-size:12px}
+.inbox-message.unread{font-weight:600}
+.inbox-message.read{opacity:.88}
+@media(max-width:900px){.inbox-message{grid-template-columns:1fr auto}.inbox-message>p{grid-column:1 / -1;grid-row:2}.inbox-message>span:last-child{grid-column:2;grid-row:1}}
+@media(max-width:620px){.inbox-message{grid-template-columns:1fr;padding:12px}.inbox-message>p,.inbox-message>span:last-child{grid-column:1;grid-row:auto}.inbox-message>span:last-child{align-items:flex-start}}
