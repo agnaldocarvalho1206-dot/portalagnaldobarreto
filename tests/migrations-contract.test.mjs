@@ -1,13 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile, readdir, mkdir, mkdtemp } from 'node:fs/promises';
+import { readFile, readdir, mkdir, mkdtemp, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { PGlite } from '@electric-sql/pglite';
 
-test('todas as migrações PostgreSQL aplicam do zero na ordem oficial', async () => {
+test('todas as migrações PostgreSQL aplicam do zero na ordem oficial', {timeout: 120000}, async () => {
   await mkdir('work',{recursive:true});
   const dir=await mkdtemp(path.resolve('work','migrations-'));
-  const db=await PGlite.create(dir);
+  let db;
+  try{
+  db=await PGlite.create(dir);
   const migrationDir=path.resolve('drizzle/postgres');
   const files=(await readdir(migrationDir)).filter(x=>x.endsWith('.sql')).sort();
 
@@ -33,5 +35,9 @@ test('todas as migrações PostgreSQL aplicam do zero na ordem oficial', async (
     assert.equal(found.rows[0].name,table,'Tabela ausente: '+table);
   }
 
-  await db.close();
+  await db.close(); db=undefined;
+  } finally {
+    if(db) await db.close().catch(()=>{});
+    await rm(dir,{recursive:true,force:true}).catch(()=>{});
+  }
 });

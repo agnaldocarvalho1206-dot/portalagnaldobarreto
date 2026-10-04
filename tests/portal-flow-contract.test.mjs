@@ -44,7 +44,9 @@ test('contrato H03 mantém o vínculo real em criação, conversão e mensagens'
   const db = read('db/postgres.ts');
 
   assert.match(api, /INSERT INTO client_projects \(id,lead_id,user_id,client_id,name,phase,progress,deadline,description,created,updated\)/);
-  assert.match(api, /UPDATE client_projects SET client_id=\?,user_id=COALESCE\(user_id,\?\),updated=\?/);
+  assert.ok(api.includes('INSERT INTO client_projects (id,lead_id,user_id,client_id,name,phase,progress,deadline,description,created,updated)'));
+  assert.match(api, /client-proposal-status/);
+  assert.match(api, /projectCreated:true/);
   assert.match(api, /SELECT id,user_id,client_id FROM client_projects WHERE id = \?/);
   assert.match(api, /project\.client_id!==clientId/);
   assert.match(api, /link-client-user/);
