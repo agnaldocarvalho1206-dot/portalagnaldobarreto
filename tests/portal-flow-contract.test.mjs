@@ -92,7 +92,7 @@ test('H49 impede cruzamento de cliente e projeto em Financeiro e Suporte', () =>
 test('H54 isola integralmente dados do Portal do Cliente pelo client_id autenticado', () => {
   const api = read('app/api/portal/route.ts');
 
-  assert.match(api, /SELECT id FROM crm_clients WHERE user_id=\? LIMIT 1/);
+  assert.match(api, /SELECT id FROM crm_clients WHERE user_id=\? OR lower\(email\)=lower\(\?\) ORDER BY CASE WHEN user_id=\? THEN 0 ELSE 1 END LIMIT 1/);
   assert.match(api, /SELECT \* FROM client_projects WHERE client_id=\? ORDER BY updated DESC/);
   assert.match(api, /JOIN client_projects p ON p\.id=t\.project_id WHERE p\.client_id=\?/);
   assert.match(api, /JOIN client_projects p ON p\.id=a\.project_id WHERE p\.client_id=\?/);
