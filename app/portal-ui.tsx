@@ -50,7 +50,33 @@ useEffect(()=>{
   window.addEventListener('popstate',syncTabFromUrl);
   return()=>window.removeEventListener('popstate',syncTabFromUrl);
 },[]);
-const load=useCallback(async()=>{setBusy(true);setError('');try{const r=await fetch('/api/portal',{cache:'no-store'});const d:any=await r.json();if(!r.ok)throw new Error(d.error);setData(d);setLoaded(true);return true}catch(e:any){setError(e.message||'Não foi possível carregar.');return false}finally{setBusy(false)}},[]);useEffect(()=>{load()},[load]);const loadConfig=useCallback(async()=>{setConfigReady(false);setConfigError('');try{const r=await fetch('/api/settings?view=admin',{cache:'no-store'});const d:any=await r.json();if(!r.ok)throw new Error(d.error||'Não foi possível carregar as configurações.');setConfig(d);setConfigReady(true)}catch{setConfigError('Não foi possível carregar as configurações. Tente novamente antes de editar.')}},[]);useEffect(()=>{if(data.role==='admin')loadConfig()},[data.role,loadConfig]);
+const load=useCallback(async()=>{setBusy(true);setError('');try{const r=await fetch('/api/portal',{cache:'no-store'});const d:any=await r.json();if(!r.ok)throw new Error(d.error);setData(d);setLoaded(true);return true}catch(e:any){setError(e.message||'Não foi possível carregar.');return false}finally{setBusy(false)}},[]);useEffect(()=>{load()},[load]);
+useEffect(()=>{
+  let active=true;
+  let running=false;
+  const refresh=async()=>{
+    if(!active||running||document.visibilityState!=='visible')return;
+    running=true;
+    try{
+      const response=await fetch('/api/portal',{cache:'no-store'});
+      if(!response.ok)return;
+      const next=await response.json();
+      if(active)setData(previous=>{
+        const oldMessages=JSON.stringify(previous.messages||[]);
+        const newMessages=JSON.stringify(next.messages||[]);
+        const oldProjects=JSON.stringify(previous.projects||[]);
+        const newProjects=JSON.stringify(next.projects||[]);
+        return oldMessages===newMessages&&oldProjects===newProjects?previous:{...previous,...next};
+      });
+    }catch{
+      // Background synchronization must not interrupt typing or navigation.
+    }finally{running=false;}
+  };
+  const timer=window.setInterval(()=>{void refresh()},15000);
+  const onVisible=()=>{if(document.visibilityState==='visible')void refresh()};
+  document.addEventListener('visibilitychange',onVisible);
+  return()=>{active=false;window.clearInterval(timer);document.removeEventListener('visibilitychange',onVisible)};
+},[]);const loadConfig=useCallback(async()=>{setConfigReady(false);setConfigError('');try{const r=await fetch('/api/settings?view=admin',{cache:'no-store'});const d:any=await r.json();if(!r.ok)throw new Error(d.error||'Não foi possível carregar as configurações.');setConfig(d);setConfigReady(true)}catch{setConfigError('Não foi possível carregar as configurações. Tente novamente antes de editar.')}},[]);useEffect(()=>{if(data.role==='admin')loadConfig()},[data.role,loadConfig]);
 async function action(body:Row){setSaving(true);setError('');setNotice('');try{const r=await fetch('/api/portal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const result:any=await r.json();if(!r.ok)throw new Error(result.error);if(body.action==='lead-status'){setData(current=>({...current,leads:current.leads.map(lead=>lead.id===body.id?{...lead,status:body.status}:lead)}));setNotice('Status atualizado.');void load();return true}const refreshed=await load();setNotice(refreshed?'Alteração salva.':'Alteração salva. Atualize os dados para conferir o resultado.');return true}catch(e:any){setError(e.message||'Não foi possível salvar.');return false}finally{setSaving(false)}}
 async function convertLead(leadId:string){if(convertingLeadId)return;setConvertingLeadId(leadId);setLeadConversionFeedback(x=>({...x,[leadId]:'Processando conversão no CRM...'}));setError('');setNotice('');try{const r=await fetch('/api/portal',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({action:'convert-client',leadId})});const raw=await r.text();let result:any={};try{result=raw?JSON.parse(raw):{}}catch{throw new Error('Resposta inválida do servidor (HTTP '+r.status+').')}if(!r.ok)throw new Error(result.error||('Falha ao converter o cliente (HTTP '+r.status+').'));setData(current=>({...current,leads:current.leads.map(lead=>lead.id===leadId?{...lead,status:'Aprovado'}:lead)}));const msg=result.existing?'Cliente já existente atualizado e vinculado com sucesso.':'Cliente convertido com sucesso.';setLeadConversionFeedback(x=>({...x,[leadId]:msg}));setNotice(msg);await load();return true}catch(e:any){const msg=e.message||'Não foi possível converter este lead em cliente.';setLeadConversionFeedback(x=>({...x,[leadId]:'ERRO: '+msg}));setError(msg);return false}finally{setConvertingLeadId('')}}
 async function uploadDocument(form:HTMLFormElement){setSaving(true);setError('');setNotice('');try{const payload=new FormData(form);const r=await fetch('/api/portal-document',{method:'POST',body:payload});const result:any=await r.json();if(!r.ok)throw new Error(result.error||'Não foi possível enviar o documento.');form.reset();const refreshed=await load();setNotice(refreshed?'Documento privado enviado com segurança.':'Documento enviado. Atualize os dados para conferir.');return true}catch(e:any){setError(e.message||'Não foi possível enviar o documento.');return false}finally{setSaving(false)}}
