@@ -3091,3 +3091,12 @@ body:has(.client-app-h90) .site-shell{padding-top:0!important}
 .communications-inbox .inbox-message .inbox-card-client i{flex:none}
 .communications-inbox .inbox-message .inbox-card-project{display:block;min-width:0;white-space:normal;overflow-wrap:anywhere;line-height:1.4;color:#a8dfff;font-size:.88em;font-weight:600}
 @media(max-width:767px){.communications-inbox .inbox-message .inbox-card-identity{gap:4px}}
+
+
+/* PR8.18 — Painel contextual recolhível, sem perder a conversa ativa. */
+.communications-shell.context-collapsed{grid-template-columns:minmax(260px,340px) minmax(0,1fr)}
+.communications-shell .chat-project-head{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.communications-shell .chat-project-head>div{min-width:0}
+.communications-shell .conversation-context-toggle{flex:none;white-space:normal;text-align:center}
+@media(max-width:1100px){.communications-shell.context-collapsed{grid-template-columns:minmax(220px,300px) minmax(0,1fr)}}
+@media(max-width:767px){.communications-shell.context-collapsed{grid-template-columns:minmax(0,1fr)}.communications-shell .chat-project-head{flex-wrap:wrap}.communications-shell .conversation-context-toggle{width:100%}}
