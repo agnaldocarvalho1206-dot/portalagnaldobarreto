@@ -3255,3 +3255,33 @@ body:has(.client-app-h90) .site-shell{padding-top:0!important}
     grid-template-columns:minmax(0,1fr);
   }
 }
+
+/* H122.6 — Navegação AB Premium: estados de foco e leitura, sem mudar eventos. */
+.portal-admin-v65 .portal-sidebar nav button{
+  position:relative;
+  min-width:0;
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+.portal-admin-v65 .portal-sidebar nav button:not(.active):hover{
+  border-color:rgba(50,173,250,.38)!important;
+  background:rgba(13,73,119,.32)!important;
+  color:#fff!important;
+}
+.portal-admin-v65 .portal-sidebar nav button:focus-visible{
+  outline:2px solid #5ce1ff;
+  outline-offset:2px;
+}
+.portal-admin-v65 .portal-sidebar nav button.active{
+  box-shadow:0 0 12px rgba(0,115,255,.35),inset 0 0 15px rgba(53,210,255,.12)!important;
+}
+.portal-admin-v65 .admin-topbar-v65>label:focus-within{
+  border-color:#54d8ff;
+  box-shadow:0 0 0 2px rgba(36,172,244,.18);
+}
+.portal-admin-v65 .admin-topbar-v65>label input:focus-visible{
+  outline:none;
+}
+@media(prefers-reduced-motion:reduce){
+  .portal-admin-v65 .portal-sidebar nav button{scroll-behavior:auto}
+}
