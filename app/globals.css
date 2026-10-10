@@ -3110,3 +3110,12 @@ body:has(.client-app-h90) .site-shell{padding-top:0!important}
 .communications-shell .conversation-context-toggle{flex:0 0 auto;max-width:100%;align-self:flex-start;white-space:normal}
 @media(max-width:1350px){.communications-shell .chat-project-heading{flex-basis:100%}.communications-shell .conversation-context-toggle{margin-left:auto}}
 @media(max-width:767px){.communications-shell .chat-project-heading{flex-basis:100%}.communications-shell .conversation-context-toggle{width:100%;margin-left:0}}
+
+/* H121 — KPIs responsivos exclusivos de Relatórios / BI */
+.portal-main .bi-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch;margin:16px 0}
+.portal-main .bi-kpis>.panel{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;min-width:0;min-height:100px;padding:18px 20px}
+.portal-main .bi-kpis>.panel small{display:block;line-height:1.35}
+.portal-main .bi-kpis>.panel strong{display:block;max-width:100%;font-size:clamp(21px,2vw,27px);line-height:1.2;overflow-wrap:anywhere}
+.portal-main .bi-kpis .bi-overdue{margin-top:2px;font-size:12px;color:#9fc2df}
+@media(max-width:1100px){.portal-main .bi-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.portal-main .bi-kpis{grid-template-columns:minmax(0,1fr);gap:10px}.portal-main .bi-kpis>.panel{min-height:84px;padding:14px 16px}}
