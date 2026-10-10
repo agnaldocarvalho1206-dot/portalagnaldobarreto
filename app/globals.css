@@ -3215,3 +3215,43 @@ body:has(.client-app-h90) .site-shell{padding-top:0!important}
 @media(prefers-reduced-motion:reduce){
   .portal-admin-v65 .admin-quick-v66 button{transition:none}
 }
+
+/* H122.5 — Resumo premium: hierarquia de gráficos e atalhos em telas intermediárias. */
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66{
+  gap:12px;
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66>.admin-panel-v65{
+  border-radius:12px;
+  padding:clamp(12px,1.2vw,18px);
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66>.admin-panel-v65 h3{
+  font-size:clamp(.78rem,1vw,.96rem);
+  line-height:1.4;
+}
+.portal-admin-v65.portal-tab-resumo .admin-quick-v66{
+  gap:10px;
+}
+@media(min-width:901px) and (max-width:1450px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .portal-admin-v65.portal-tab-resumo .admin-quick-v66{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media(min-width:621px) and (max-width:900px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .portal-admin-v65.portal-tab-resumo .admin-quick-v66{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:620px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .portal-admin-v65.portal-tab-resumo .admin-quick-v66{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
