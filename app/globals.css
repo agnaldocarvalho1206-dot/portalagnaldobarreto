@@ -3138,3 +3138,56 @@ body:has(.client-app-h90) .site-shell{padding-top:0!important}
   .portal-admin-v65 .module-overview{padding:16px;border-radius:12px}
   .portal-admin-v65 .module-overview p{font-size:12px}
 }
+
+/* H122.2 — Dashboard premium: leitura dos KPIs em notebook, tablet e celular.
+   Escopo restrito ao Resumo administrativo; sem mudar handlers ou métricas. */
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66{
+  grid-template-columns:minmax(0,1fr) minmax(140px,160px);
+  align-items:stretch;
+  gap:12px;
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpis-v65{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65{
+  min-width:0;
+  min-height:92px;
+  border-radius:12px;
+  padding:14px;
+  border-color:rgba(30,157,238,.45);
+  box-shadow:inset 0 1px 0 rgba(125,219,255,.08),0 9px 24px rgba(0,0,0,.15);
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65>div{min-width:0}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65 strong{
+  font-size:clamp(1rem,1.45vw,1.45rem);
+  line-height:1.25;
+  overflow-wrap:anywhere;
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65 span,
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65 small{
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+.portal-admin-v65.portal-tab-resumo .admin-quick-v66 button{
+  border-radius:12px;
+  transition:border-color .16s ease,background-color .16s ease;
+}
+.portal-admin-v65.portal-tab-resumo .admin-quick-v66 button:focus-visible{
+  outline:2px solid #4bdcff;
+  outline-offset:3px;
+}
+@media(max-width:1200px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66{grid-template-columns:minmax(0,1fr)}
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpis-v65{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpis-v65{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:430px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpis-v65{grid-template-columns:minmax(0,1fr)}
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65{min-height:76px}
+}
+@media(prefers-reduced-motion:reduce){
+  .portal-admin-v65.portal-tab-resumo .admin-quick-v66 button{transition:none}
+}
