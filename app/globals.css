@@ -3191,3 +3191,27 @@ body:has(.client-app-h90) .site-shell{padding-top:0!important}
 @media(prefers-reduced-motion:reduce){
   .portal-admin-v65.portal-tab-resumo .admin-quick-v66 button{transition:none}
 }
+
+/* H122.3 — Acabamento compartilhado, escopado ao administrativo premium. */
+.portal-admin-v65 .admin-panel-v65,
+.portal-admin-v65 .admin-kpi-v65,
+.portal-admin-v65 .admin-date-v66{
+  border-color:rgba(41,153,228,.35);
+  box-shadow:inset 0 1px 0 rgba(132,220,255,.06),0 10px 28px rgba(0,0,0,.14);
+}
+.portal-admin-v65 .admin-panel-v65{min-width:0}
+.portal-admin-v65 .admin-panel-v65 h3{line-height:1.3;overflow-wrap:anywhere}
+.portal-admin-v65 .admin-quick-v66 button{
+  min-width:0;
+  border-color:rgba(41,153,228,.36);
+}
+.portal-admin-v65 .admin-quick-v66 button span{min-width:0}
+.portal-admin-v65 .admin-quick-v66 button b,
+.portal-admin-v65 .admin-quick-v66 button small{overflow-wrap:anywhere}
+.portal-admin-v65 .admin-quick-v66 button:focus-visible{
+  outline:2px solid #56d8ff;
+  outline-offset:3px;
+}
+@media(prefers-reduced-motion:reduce){
+  .portal-admin-v65 .admin-quick-v66 button{transition:none}
+}
