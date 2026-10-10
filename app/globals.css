@@ -3324,3 +3324,51 @@ body:has(.client-app-h90) .site-shell{padding-top:0!important}
     grid-template-columns:minmax(0,1fr);
   }
 }
+
+/* H122.8 — Tabelas e filtros premium para CRM, Projetos e Clientes.
+   Escopo visual: não modifica busca, abertura de detalhes ou formulários. */
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65{
+  gap:12px;
+  flex-wrap:wrap;
+  margin:14px 0;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65>label{
+  min-width:min(100%,240px);
+  min-height:42px;
+  border-radius:10px;
+  border-color:rgba(42,153,225,.45);
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65>label:focus-within{
+  border-color:#55d8ff;
+  box-shadow:0 0 0 2px rgba(34,166,241,.16);
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65 select{
+  min-height:42px;
+  border-radius:10px;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-table-card-v65{
+  border-radius:12px;
+  border-color:rgba(34,148,219,.38);
+  box-shadow:0 12px 32px rgba(0,0,0,.14);
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-table-head-v65{
+  min-height:42px;
+  background:linear-gradient(90deg,#071c32,#09223b);
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-table-row-v65>summary,
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-table-row-v65:not(details){
+  min-height:52px;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) details.admin-table-row-v65>summary:focus-visible{
+  outline:2px solid #56dfff;
+  outline-offset:-2px;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) details.admin-table-row-v65[open]{
+  background:rgba(9,46,78,.35);
+}
+@media(max-width:620px){
+  .portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65>label{
+    flex-basis:100%;
+    max-width:none;
+  }
+}
