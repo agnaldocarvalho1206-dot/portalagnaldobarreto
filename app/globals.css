@@ -3110,3 +3110,31 @@ body:has(.client-app-h90) .site-shell{padding-top:0!important}
 .communications-shell .conversation-context-toggle{flex:0 0 auto;max-width:100%;align-self:flex-start;white-space:normal}
 @media(max-width:1350px){.communications-shell .chat-project-heading{flex-basis:100%}.communications-shell .conversation-context-toggle{margin-left:auto}}
 @media(max-width:767px){.communications-shell .chat-project-heading{flex-basis:100%}.communications-shell .conversation-context-toggle{width:100%;margin-left:0}}
+
+
+/* H122.1 — AB Premium: refinamento progressivo da interface administrativa.
+   Mantém retrato oficial /agnaldo.png, componentes e comportamentos existentes. */
+.portal-admin-v65 .module-overview{
+  border-color:rgba(29,175,255,.28);
+  background:linear-gradient(115deg,rgba(4,18,36,.96),rgba(8,44,76,.9));
+  box-shadow:inset 0 1px 0 rgba(131,224,255,.08),0 12px 32px rgba(0,0,0,.13);
+}
+.portal-admin-v65 .module-overview h2{letter-spacing:-.025em;line-height:1.18}
+.portal-admin-v65 .module-overview p{line-height:1.55;max-width:68ch}
+.portal-admin-v65 .admin-hero-v65{
+  border-color:rgba(35,161,249,.3);
+  box-shadow:inset 0 1px 0 rgba(120,220,255,.09),0 12px 36px rgba(0,0,0,.16);
+}
+.portal-admin-v65 .admin-hero-copy-v65{min-width:0}
+.portal-admin-v65 .admin-hero-title-v65 h1{overflow-wrap:anywhere}
+.portal-admin-v65 .admin-hero-visual-v65{isolation:isolate}
+.portal-admin-v65 .admin-hero-ab-v65{pointer-events:none}
+.portal-admin-v65 .admin-hero-person-v65{pointer-events:none}
+@media(max-width:900px){
+  .portal-admin-v65 .module-overview{padding:20px;gap:14px;flex-wrap:wrap}
+  .portal-admin-v65 .module-overview h2{font-size:clamp(1.3rem,3vw,1.75rem)}
+}
+@media(max-width:620px){
+  .portal-admin-v65 .module-overview{padding:16px;border-radius:12px}
+  .portal-admin-v65 .module-overview p{font-size:12px}
+}
