@@ -13,3 +13,20 @@ test('H122: dashboard premium preserva o personagem existente e responsividade d
  assert.match(css,/@media\(max-width:760px\)/);
  assert.match(css,/@media\(max-width:430px\)/);
 });
+
+test('H122.6–H122.9: melhorias de apresentação permanecem limitadas ao portal administrativo',()=>{
+ const ui=readFileSync(new URL('../app/portal-ui.tsx',import.meta.url),'utf8');
+ const css=readFileSync(new URL('../app/globals.css',import.meta.url),'utf8');
+ for(const section of ['clientes','projetos','leads-crm','propostas','tarefas','financeiro']){
+   assert.match(css,new RegExp('\\.portal-tab-'+section+'\\b'), 'módulo sem escopo visual: '+section);
+ }
+ for(const stage of ['H122.6','H122.7','H122.8','H122.9']){
+   assert.ok(css.includes(stage), 'ausente: '+stage);
+ }
+ assert.match(ui,/className=\{\x60portal-layout container \$\{admin\?'portal-admin-v65':''\} portal-tab-/);
+ assert.match(ui,/src="\/agnaldo\.png"/);
+ assert.match(ui,/action:\s*'create-finance'/);
+ assert.match(ui,/action:\s*'create-project'/);
+ assert.match(ui,/action:\s*'proposal-status'/);
+ assert.match(ui,/action:\s*'lead-status'/);
+});
