@@ -3110,3 +3110,321 @@ body:has(.client-app-h90) .site-shell{padding-top:0!important}
 .communications-shell .conversation-context-toggle{flex:0 0 auto;max-width:100%;align-self:flex-start;white-space:normal}
 @media(max-width:1350px){.communications-shell .chat-project-heading{flex-basis:100%}.communications-shell .conversation-context-toggle{margin-left:auto}}
 @media(max-width:767px){.communications-shell .chat-project-heading{flex-basis:100%}.communications-shell .conversation-context-toggle{width:100%;margin-left:0}}
+
+
+/* H122.1 — AB Premium: refinamento progressivo da interface administrativa.
+   Mantém retrato oficial /agnaldo.png, componentes e comportamentos existentes. */
+.portal-admin-v65 .module-overview{
+  border-color:rgba(29,175,255,.28);
+  background:linear-gradient(115deg,rgba(4,18,36,.96),rgba(8,44,76,.9));
+  box-shadow:inset 0 1px 0 rgba(131,224,255,.08),0 12px 32px rgba(0,0,0,.13);
+}
+.portal-admin-v65 .module-overview h2{letter-spacing:-.025em;line-height:1.18}
+.portal-admin-v65 .module-overview p{line-height:1.55;max-width:68ch}
+.portal-admin-v65 .admin-hero-v65{
+  border-color:rgba(35,161,249,.3);
+  box-shadow:inset 0 1px 0 rgba(120,220,255,.09),0 12px 36px rgba(0,0,0,.16);
+}
+.portal-admin-v65 .admin-hero-copy-v65{min-width:0}
+.portal-admin-v65 .admin-hero-title-v65 h1{overflow-wrap:anywhere}
+.portal-admin-v65 .admin-hero-visual-v65{isolation:isolate}
+.portal-admin-v65 .admin-hero-ab-v65{pointer-events:none}
+.portal-admin-v65 .admin-hero-person-v65{pointer-events:none}
+@media(max-width:900px){
+  .portal-admin-v65 .module-overview{padding:20px;gap:14px;flex-wrap:wrap}
+  .portal-admin-v65 .module-overview h2{font-size:clamp(1.3rem,3vw,1.75rem)}
+}
+@media(max-width:620px){
+  .portal-admin-v65 .module-overview{padding:16px;border-radius:12px}
+  .portal-admin-v65 .module-overview p{font-size:12px}
+}
+
+/* H122.2 — Dashboard premium: leitura dos KPIs em notebook, tablet e celular.
+   Escopo restrito ao Resumo administrativo; sem mudar handlers ou métricas. */
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66{
+  grid-template-columns:minmax(0,1fr) minmax(140px,160px);
+  align-items:stretch;
+  gap:12px;
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpis-v65{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65{
+  min-width:0;
+  min-height:92px;
+  border-radius:12px;
+  padding:14px;
+  border-color:rgba(30,157,238,.45);
+  box-shadow:inset 0 1px 0 rgba(125,219,255,.08),0 9px 24px rgba(0,0,0,.15);
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65>div{min-width:0}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65 strong{
+  font-size:clamp(1rem,1.45vw,1.45rem);
+  line-height:1.25;
+  overflow-wrap:anywhere;
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65 span,
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65 small{
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+.portal-admin-v65.portal-tab-resumo .admin-quick-v66 button{
+  border-radius:12px;
+  transition:border-color .16s ease,background-color .16s ease;
+}
+.portal-admin-v65.portal-tab-resumo .admin-quick-v66 button:focus-visible{
+  outline:2px solid #4bdcff;
+  outline-offset:3px;
+}
+@media(max-width:1200px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66{grid-template-columns:minmax(0,1fr)}
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpis-v65{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpis-v65{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:430px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpis-v65{grid-template-columns:minmax(0,1fr)}
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-kpi-row-v66 .admin-kpi-v65{min-height:76px}
+}
+@media(prefers-reduced-motion:reduce){
+  .portal-admin-v65.portal-tab-resumo .admin-quick-v66 button{transition:none}
+}
+
+/* H122.3 — Acabamento compartilhado, escopado ao administrativo premium. */
+.portal-admin-v65 .admin-panel-v65,
+.portal-admin-v65 .admin-kpi-v65,
+.portal-admin-v65 .admin-date-v66{
+  border-color:rgba(41,153,228,.35);
+  box-shadow:inset 0 1px 0 rgba(132,220,255,.06),0 10px 28px rgba(0,0,0,.14);
+}
+.portal-admin-v65 .admin-panel-v65{min-width:0}
+.portal-admin-v65 .admin-panel-v65 h3{line-height:1.3;overflow-wrap:anywhere}
+.portal-admin-v65 .admin-quick-v66 button{
+  min-width:0;
+  border-color:rgba(41,153,228,.36);
+}
+.portal-admin-v65 .admin-quick-v66 button span{min-width:0}
+.portal-admin-v65 .admin-quick-v66 button b,
+.portal-admin-v65 .admin-quick-v66 button small{overflow-wrap:anywhere}
+.portal-admin-v65 .admin-quick-v66 button:focus-visible{
+  outline:2px solid #56d8ff;
+  outline-offset:3px;
+}
+@media(prefers-reduced-motion:reduce){
+  .portal-admin-v65 .admin-quick-v66 button{transition:none}
+}
+
+/* H122.5 — Resumo premium: hierarquia de gráficos e atalhos em telas intermediárias. */
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66{
+  gap:12px;
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66>.admin-panel-v65{
+  border-radius:12px;
+  padding:clamp(12px,1.2vw,18px);
+}
+.portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66>.admin-panel-v65 h3{
+  font-size:clamp(.78rem,1vw,.96rem);
+  line-height:1.4;
+}
+.portal-admin-v65.portal-tab-resumo .admin-quick-v66{
+  gap:10px;
+}
+@media(min-width:901px) and (max-width:1450px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .portal-admin-v65.portal-tab-resumo .admin-quick-v66{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media(min-width:621px) and (max-width:900px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .portal-admin-v65.portal-tab-resumo .admin-quick-v66{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:620px){
+  .portal-admin-v65.portal-tab-resumo .admin-dashboard-grid-v66{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .portal-admin-v65.portal-tab-resumo .admin-quick-v66{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+
+/* H122.6 — Navegação AB Premium: estados de foco e leitura, sem mudar eventos. */
+.portal-admin-v65 .portal-sidebar nav button{
+  position:relative;
+  min-width:0;
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+.portal-admin-v65 .portal-sidebar nav button:not(.active):hover{
+  border-color:rgba(50,173,250,.38)!important;
+  background:rgba(13,73,119,.32)!important;
+  color:#fff!important;
+}
+.portal-admin-v65 .portal-sidebar nav button:focus-visible{
+  outline:2px solid #5ce1ff;
+  outline-offset:2px;
+}
+.portal-admin-v65 .portal-sidebar nav button.active{
+  box-shadow:0 0 12px rgba(0,115,255,.35),inset 0 0 15px rgba(53,210,255,.12)!important;
+}
+.portal-admin-v65 .admin-topbar-v65>label:focus-within{
+  border-color:#54d8ff;
+  box-shadow:0 0 0 2px rgba(36,172,244,.18);
+}
+.portal-admin-v65 .admin-topbar-v65>label input:focus-visible{
+  outline:none;
+}
+@media(prefers-reduced-motion:reduce){
+  .portal-admin-v65 .portal-sidebar nav button{scroll-behavior:auto}
+}
+
+/* H122.7 — Cartões premium reutilizados em Clientes, Projetos e Leads/CRM.
+   Apenas aparência: dados, ações, filtros e permissões continuam originais. */
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm,.portal-tab-solicita-es) .admin-kpis-v65{
+  gap:12px;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm,.portal-tab-solicita-es) .admin-kpi-v65{
+  min-width:0;
+  border-radius:12px;
+  padding:14px;
+  border-color:rgba(35,156,237,.42);
+  box-shadow:inset 0 1px 0 rgba(128,220,255,.07),0 9px 25px rgba(0,0,0,.13);
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm,.portal-tab-solicita-es) .admin-kpi-v65>div{
+  min-width:0;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm,.portal-tab-solicita-es) .admin-kpi-v65 strong{
+  line-height:1.25;
+  overflow-wrap:anywhere;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm,.portal-tab-solicita-es) .admin-kpi-v65 span{
+  line-height:1.35;
+  overflow-wrap:anywhere;
+}
+@media(min-width:761px) and (max-width:1350px){
+  .portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm,.portal-tab-solicita-es) .admin-kpis-v65{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media(max-width:760px){
+  .portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm,.portal-tab-solicita-es) .admin-kpis-v65{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:430px){
+  .portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm,.portal-tab-solicita-es) .admin-kpis-v65{
+    grid-template-columns:minmax(0,1fr);
+  }
+}
+
+/* H122.8 — Tabelas e filtros premium para CRM, Projetos e Clientes.
+   Escopo visual: não modifica busca, abertura de detalhes ou formulários. */
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65{
+  gap:12px;
+  flex-wrap:wrap;
+  margin:14px 0;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65>label{
+  min-width:min(100%,240px);
+  min-height:42px;
+  border-radius:10px;
+  border-color:rgba(42,153,225,.45);
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65>label:focus-within{
+  border-color:#55d8ff;
+  box-shadow:0 0 0 2px rgba(34,166,241,.16);
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65 select{
+  min-height:42px;
+  border-radius:10px;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-table-card-v65{
+  border-radius:12px;
+  border-color:rgba(34,148,219,.38);
+  box-shadow:0 12px 32px rgba(0,0,0,.14);
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-table-head-v65{
+  min-height:42px;
+  background:linear-gradient(90deg,#071c32,#09223b);
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-table-row-v65>summary,
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-table-row-v65:not(details){
+  min-height:52px;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) details.admin-table-row-v65>summary:focus-visible{
+  outline:2px solid #56dfff;
+  outline-offset:-2px;
+}
+.portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) details.admin-table-row-v65[open]{
+  background:rgba(9,46,78,.35);
+}
+@media(max-width:620px){
+  .portal-admin-v65:is(.portal-tab-clientes,.portal-tab-projetos,.portal-tab-leads-crm) .admin-toolbar-v65>label{
+    flex-basis:100%;
+    max-width:none;
+  }
+}
+
+/* H122.9 — Listagens comerciais/operacionais: Propostas, Tarefas e Financeiro. */
+.portal-admin-v65:is(.portal-tab-propostas,.portal-tab-tarefas,.portal-tab-financeiro) .admin-toolbar-v65{
+  flex-wrap:wrap;
+  gap:12px;
+  margin:14px 0;
+}
+.portal-admin-v65.portal-tab-tarefas .admin-toolbar-v65>label{
+  min-width:min(100%,240px);
+  min-height:42px;
+  border-radius:10px;
+}
+.portal-admin-v65.portal-tab-tarefas .admin-toolbar-v65>label:focus-within{
+  border-color:#55d8ff;
+  box-shadow:0 0 0 2px rgba(34,166,241,.16);
+}
+.portal-admin-v65.portal-tab-tarefas .admin-table-card-v65{
+  border-radius:12px;
+  border-color:rgba(34,148,219,.38);
+  box-shadow:0 12px 32px rgba(0,0,0,.14);
+}
+.portal-admin-v65.portal-tab-tarefas .admin-table-head-v65{
+  min-height:42px;
+  background:linear-gradient(90deg,#071c32,#09223b);
+}
+.portal-admin-v65.portal-tab-tarefas .admin-table-row-v65>summary{
+  min-height:52px;
+}
+.portal-admin-v65.portal-tab-tarefas details.admin-table-row-v65>summary:focus-visible{
+  outline:2px solid #56dfff;
+  outline-offset:-2px;
+}
+.portal-admin-v65:is(.portal-tab-propostas,.portal-tab-financeiro) :is(.proposal-list,.finance-list){
+  display:grid;
+  gap:12px;
+  min-width:0;
+}
+.portal-admin-v65:is(.portal-tab-propostas,.portal-tab-financeiro) :is(.proposal-row,.finance-row){
+  min-width:0;
+  border:1px solid rgba(34,148,219,.4);
+  border-radius:12px;
+  box-shadow:inset 0 1px 0 rgba(128,220,255,.06),0 10px 24px rgba(0,0,0,.12);
+}
+.portal-admin-v65:is(.portal-tab-propostas,.portal-tab-financeiro) :is(.proposal-row,.finance-row) h3{
+  overflow-wrap:anywhere;
+}
+.portal-admin-v65:is(.portal-tab-propostas,.portal-tab-financeiro) :is(.proposal-row,.finance-row) select:focus-visible{
+  outline:2px solid #55d8ff;
+  outline-offset:2px;
+}
+@media(max-width:620px){
+  .portal-admin-v65.portal-tab-tarefas .admin-toolbar-v65>label{
+    flex-basis:100%;
+    max-width:none;
+  }
+}
